@@ -9,11 +9,14 @@
 #import "YEssenceViewController.h"
 
 @interface YEssenceViewController ()
-
+@property(strong,nonatomic)UIView *VC;
 @end
 
 @implementation YEssenceViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(change:) name:@"NotificationNight" object:nil];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // 设置导航栏biaoti
@@ -22,8 +25,20 @@
     self.view.backgroundColor = YRGBbg;
     // 设置导航栏左边的按钮
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:@"MainTagSubIcon" heightImage:@"MainTagSubIconClick" target:self action:@selector(tagClick)];
+    self.VC = [[UIView alloc] initWithFrame:self.view.frame];
+    self.VC.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.VC];
 }
-
+- (void)change:(NSNotification *)notication{
+    //NSLog(@"self.notification = %@", notication);
+    NSDictionary *userInfo = [notication userInfo];
+    if ([[userInfo objectForKey:@"isNight"] isEqualToString:@"1"]) {
+        [self changeToNight];
+    }else if ([[userInfo objectForKey:@"isNight"] isEqualToString:@"0"]){
+        [self changeToDay];
+    }
+    
+}
 - (void)tagClick{
 
     YLogFunc;

@@ -25,12 +25,12 @@
 - (IBAction)loginAction:(id)sender {
     [AVUser logInWithUsernameInBackground:self.userNameTF.text password:self.passwordTF.text block:^(AVUser *user, NSError *error) {
         if (nil != user) {
-            [self dismissViewControllerAnimated:YES completion:nil];
+            YTabBarController *tabBarVC = [YTabBarController new];
+            [self presentViewController:tabBarVC animated:YES completion:nil];
         } else if(error.code == 210){
             UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"提示" message:@"用户名与密码不匹配!" preferredStyle:(UIAlertControllerStyleAlert)];
             UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-                YTabBarController *tabBarVC = [YTabBarController new];
-                [self presentViewController:tabBarVC animated:YES completion:nil];
+            [self dismissViewControllerAnimated:YES completion:nil];
             }];
             [alertView addAction:doneAction];
             [self presentViewController:alertView animated:YES completion:nil];

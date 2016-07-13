@@ -162,14 +162,17 @@
     user.email = self.emailTF.text;
     NSData *data = UIImageJPEGRepresentation(self.avatarImgView.image, 1);
     AVFile *file =  [AVFile fileWithName:@"avatar.png" data:data];
+    [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        NSLog(@"%@",file.url);//返回一个唯一的 Url 地址
+    }];
     [user setObject:file forKey:@"avatar"];
     dispatch_async(dispatch_get_main_queue(), ^{
         [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"提示" message:@"注册成功!" preferredStyle:(UIAlertControllerStyleAlert)];
                 UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-                    YTabBarController *tabBarVC = [YTabBarController new];
-                    [self presentViewController:tabBarVC animated:YES completion:nil];
+                    YLoginViewController *loginVC = [YLoginViewController new];
+                    [self presentViewController:loginVC animated:YES completion:nil];
                 }];
                 [alertView addAction:doneAction];
                 [self presentViewController:alertView animated:YES completion:nil];

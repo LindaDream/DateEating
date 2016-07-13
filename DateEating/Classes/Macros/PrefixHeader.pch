@@ -13,7 +13,10 @@
 #import "UIBarButtonItem+XMGCategory.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import <UIImageView+WebCache.h>
+#import "UIViewController+YCategory.h"
 
+#define kCachesPath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
 #ifdef DEBUG // 意思是如果是调试阶段 则用自定义的XMGLog(...)宏定义系统的NSLog(__VA_ARGS__)
 #define  YLog(...) NSLog(__VA_ARGS__)
 #else // 如果软件已经发布，则使所有的自定义XMGLog(...) 宏定义为空
@@ -26,4 +29,6 @@
 
 #define YRGBbg YRGBColor(223,223,223)
 
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
 #endif /* PrefixHeader_pch */
