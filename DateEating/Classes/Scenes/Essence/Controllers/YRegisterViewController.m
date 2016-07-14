@@ -156,6 +156,7 @@
 }
 #pragma mark--注册按钮--
 - (IBAction)registerAction:(id)sender {
+#pragma mark--注册LeanCloud--
     AVUser *user = [AVUser user];
     user.username = self.userNameTF.text;
     user.password = self.passwordTF.text;
@@ -171,6 +172,14 @@
             if (succeeded) {
                 UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"提示" message:@"注册成功!" preferredStyle:(UIAlertControllerStyleAlert)];
                 UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+#pragma mark--注册环信--
+                EMError *error = [[EMClient sharedClient] registerWithUsername:self.userNameTF.text password:self.passwordTF.text];
+                if (error==nil) {
+                    [[NSUserDefaults standardUserDefaults] setObject:self.userNameTF.text forKey:@"userName"];
+                    [[NSUserDefaults standardUserDefaults] setObject:self.passwordTF.text forKey:@"passWord"];
+                }else{
+                        NSLog(@"%@",error);
+                    }
                     YLoginViewController *loginVC = [YLoginViewController new];
                     [self presentViewController:loginVC animated:YES completion:nil];
                 }];

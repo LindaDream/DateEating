@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YTabBar : UITabBar
-
+@property (strong,nonatomic)UIButton *publishButton;
 @end

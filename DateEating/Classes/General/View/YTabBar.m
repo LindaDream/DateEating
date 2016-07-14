@@ -9,32 +9,48 @@
 #import "YTabBar.h"
 
 @interface YTabBar ()
-
-@property (strong,nonatomic)UIButton *publishButton;
+@property(assign,nonatomic)BOOL isClicked;
 
 @end
 
 @implementation YTabBar
 
 - (instancetype)initWithFrame:(CGRect)frame{
-
+    
     if (self = [super initWithFrame:frame]) {
+        self.isClicked = YES;
         // 设置tabBar背景图片
         [self setBackgroundImage:[UIImage imageNamed:@"tabbar-light"]];
 #pragma mark -- 添加中间的加号按钮
         self.publishButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
         [self.publishButton setBackgroundImage:[UIImage imageNamed:@"tabBar_publish_icon"] forState:(UIControlStateNormal)];
         [self.publishButton setBackgroundImage:[UIImage imageNamed:@"tabBar_publish_click_icon"] forState:(UIControlStateHighlighted)];
+        self.publishButton.layer.masksToBounds = YES;
+        self.publishButton.layer.cornerRadius = self.publishButton.width / 2;
         self.publishButton.size = CGSizeMake(self.publishButton.currentBackgroundImage.size.width + 30, self.publishButton.currentBackgroundImage.size.height + 30);
-        
+        NSLog(@"%f",self.publishButton.center.x);
+        NSLog(@"%f",self.publishButton.center.y);
+        [self.publishButton addTarget:self action:@selector(dateAction:) forControlEvents:(UIControlEventTouchUpInside)];
         [self addSubview:self.publishButton];
-        
     }
     return self;
 }
-
+#pragma mark--加号按钮实现方法--
+- (void)dateAction:(UIButton *)btn{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DateButtonClicked" object:nil userInfo:@{@"isClicked":[NSNumber numberWithBool:self.isClicked],@"tabView":self}];
+    if (self.isClicked) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.publishButton.transform = CGAffineTransformRotate(self.publishButton.transform, M_PI_4);
+        }];
+        self.isClicked = NO;
+    }else{
+        [UIView animateWithDuration:0.5 animations:^{
+            self.publishButton.transform = CGAffineTransformRotate(self.publishButton.transform, -M_PI_4);
+        }];
+        self.isClicked = YES;
+    }
+}
 - (void)layoutSubviews{
-
     [super layoutSubviews];
     
     CGFloat width = self.width;

@@ -7,30 +7,35 @@
 //
 
 #import "YEssenceViewController.h"
-
+#import "YTabBar.h"
 @interface YEssenceViewController ()
 @property(strong,nonatomic)UIView *VC;
 @end
 
 @implementation YEssenceViewController
--(void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(change:) name:@"NotificationNight" object:nil];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // 设置导航栏biaoti
-    //self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MainTitle"]];
+    
+    // 接收夜间模式转换通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(change:) name:@"NotificationNight" object:nil];
+    // 接收加号按钮点击通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dateView:) name:@"DateButtonClicked" object:nil];
+    
     // 设置view的背景色
     self.view.backgroundColor = YRGBbg;
     // 设置导航栏左边的按钮
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:@"MainTagSubIcon" heightImage:@"MainTagSubIconClick" target:self action:@selector(tagClick)];
+    
+    // 测试视图（要删掉）
     self.VC = [[UIView alloc] initWithFrame:self.view.frame];
     self.VC.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.VC];
 }
+#pragma mark--夜间模式通知方法--
 - (void)change:(NSNotification *)notication{
-    //NSLog(@"self.notification = %@", notication);
     NSDictionary *userInfo = [notication userInfo];
     if ([[userInfo objectForKey:@"isNight"] isEqualToString:@"1"]) {
         [self changeToNight];
@@ -38,6 +43,16 @@
         [self changeToDay];
     }
     
+}
+#pragma mark--加号按钮通知方法--
+- (void)dateView:(NSNotification *)notification{
+    NSDictionary *userInfo = [notification userInfo];
+    NSNumber *num = [userInfo objectForKey:@"isClicked"];
+    if (num.boolValue) {
+        [self addDateBtnAndPartyBtn];
+    }else{
+        [self removeDateBtnAndPartyBtn];
+    }
 }
 - (void)tagClick{
 

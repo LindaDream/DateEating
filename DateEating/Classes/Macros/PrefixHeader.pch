@@ -15,6 +15,8 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <UIImageView+WebCache.h>
 #import "UIViewController+YCategory.h"
+#import <HyphenateFullSDK/EMSDKFull.h>
+
 
 #define kCachesPath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
 #ifdef DEBUG // 意思是如果是调试阶段 则用自定义的XMGLog(...)宏定义系统的NSLog(__VA_ARGS__)

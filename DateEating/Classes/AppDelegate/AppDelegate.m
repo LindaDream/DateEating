@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "YTabBarController.h"
 #import "YOpenViewController.h"
+#import <EMSDK.h>
 @interface AppDelegate ()
 
 @end
@@ -18,6 +19,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+#pragma mark--环信--
+    EMOptions *options = [EMOptions optionsWithAppkey:@"znw#dateeating"];
+    options.apnsCertName = @"0309DevPush";
+    [[EMClient sharedClient] initializeSDKWithOptions:options];
 #pragma mark--Leancloud--
     [AVOSCloud setApplicationId:@"HG6nn22YGNtjgFvfVPpbdRaE-gzGzoHsz"
                       clientKey:@"Ce6WOl25IXT1Ck2RabzVh60k"];
@@ -31,7 +36,7 @@
     if (nil == currentUser) {
         YOpenViewController *openVC = [YOpenViewController new];
         self.window.rootViewController = openVC;
-    }else{
+    }else if(currentUser && nil != [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"]){
         self.window.rootViewController = tabBarController;
     }
     return YES;
@@ -45,6 +50,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[EMClient sharedClient] applicationDidEnterBackground:application];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -53,6 +59,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[EMClient sharedClient] applicationWillEnterForeground:application];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

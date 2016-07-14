@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface UIViewController (YCategory)
+// 转变为夜间模式
 - (void)changeToNight;
+// 转变为白天模式
 - (void)changeToDay;
+// 按钮动画
+- (void)addDateBtnAndPartyBtn;
+- (void)removeDateBtnAndPartyBtn;
 @end

@@ -25,6 +25,8 @@
 - (IBAction)loginAction:(id)sender {
     [AVUser logInWithUsernameInBackground:self.userNameTF.text password:self.passwordTF.text block:^(AVUser *user, NSError *error) {
         if (nil != user) {
+            [[EMClient sharedClient] loginWithUsername:self.userNameTF.text password:self.passwordTF.text];
+            [[EMClient sharedClient].options setIsAutoLogin:YES];
             YTabBarController *tabBarVC = [YTabBarController new];
             [self presentViewController:tabBarVC animated:YES completion:nil];
         } else if(error.code == 210){

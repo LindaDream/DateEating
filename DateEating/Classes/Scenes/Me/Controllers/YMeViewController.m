@@ -67,6 +67,8 @@ static NSString *const listCellIdentifier = @"listCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // 接收加号按钮点击通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dateView:) name:@"DateButtonClicked" object:nil];
     self.isNight = @"1";
     // 设置导航栏标题
     self.navigationItem.title = @"我的";
@@ -75,14 +77,20 @@ static NSString *const listCellIdentifier = @"listCell";
     UIBarButtonItem *settingButton = [UIBarButtonItem itemWithImage:@"mine-setting-icon" heightImage:@"mine-setting-icon-click" target:self action:@selector(settingClick)];
     UIBarButtonItem *nightModeButton = [UIBarButtonItem itemWithImage:@"mine-moon-icon" heightImage:@"mine-moon-icon-click" target:self action:@selector(nightModeClick)];
     self.navigationItem.rightBarButtonItems = @[settingButton,nightModeButton];
-
-    
-    // 设置通知中心
-    
-    
     [self addMeTableView];
     [self addHeadView];
 }
+#pragma mark--加号按钮通知方法--
+- (void)dateView:(NSNotification *)notification{
+    NSDictionary *userInfo = [notification userInfo];
+    NSNumber *num = [userInfo objectForKey:@"isClicked"];
+    if (num.boolValue) {
+        [self addDateBtnAndPartyBtn];
+    }else{
+        [self removeDateBtnAndPartyBtn];
+    }
+}
+
 #pragma mark--设置tableview--
 - (void)addMeTableView{
     self.meTableView = [[UITableView alloc] initWithFrame:self.view.frame style:(UITableViewStylePlain)];
@@ -156,6 +164,7 @@ static NSString *const listCellIdentifier = @"listCell";
         [self presentViewController:loginVC animated:YES completion:nil];
     }else{
         [AVUser logOut];
+        [[EMClient sharedClient].options setIsAutoLogin:NO];
         [self.meTableView reloadData];
         [self addHeadView];
     }
@@ -405,6 +414,7 @@ static NSString *const listCellIdentifier = @"listCell";
 // 退出按钮
 - (void)exitAction{
     [AVUser logOut];
+    [[EMClient sharedClient].options setIsAutoLogin:NO];
     YTabBarController *tabBarVC = [YTabBarController new];
     [self presentViewController:tabBarVC animated:YES completion:nil];
 }
