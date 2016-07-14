@@ -16,7 +16,7 @@
 @implementation YTabBar
 
 - (instancetype)initWithFrame:(CGRect)frame{
-    
+
     if (self = [super initWithFrame:frame]) {
         self.isClicked = YES;
         // 设置tabBar背景图片
@@ -32,12 +32,20 @@
         NSLog(@"%f",self.publishButton.center.y);
         [self.publishButton addTarget:self action:@selector(dateAction:) forControlEvents:(UIControlEventTouchUpInside)];
         [self addSubview:self.publishButton];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeIsClickedValue:) name:@"changeIsClickedValue" object:nil];
     }
     return self;
 }
+- (void)changeIsClickedValue:(NSNotification *)notification{
+    NSDictionary *userInfo = [notification userInfo];
+    NSNumber *num = [userInfo objectForKey:@"isClicked"];
+    BOOL value = num.boolValue;
+    self.isClicked = value;
+}
 #pragma mark--加号按钮实现方法--
 - (void)dateAction:(UIButton *)btn{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"DateButtonClicked" object:nil userInfo:@{@"isClicked":[NSNumber numberWithBool:self.isClicked],@"tabView":self}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DateButtonClicked" object:nil userInfo:@{@"isClicked":[NSNumber numberWithBool:self.isClicked]}];
     if (self.isClicked) {
         [UIView animateWithDuration:0.5 animations:^{
             self.publishButton.transform = CGAffineTransformRotate(self.publishButton.transform, M_PI_4);

@@ -40,6 +40,20 @@
 		CED28D751D37942B00A468CF /* event_single@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CED28D6F1D37942B00A468CF /* event_single@3x.png */; };
 		CED28D761D37942B00A468CF /* guide_slide_2.png in Resources */ = {isa = PBXBuildFile; fileRef = CED28D701D37942B00A468CF /* guide_slide_2.png */; };
 		CED28D771D37942B00A468CF /* publishButtonClicked.png in Resources */ = {isa = PBXBuildFile; fileRef = CED28D711D37942B00A468CF /* publishButtonClicked.png */; };
+		CED374EC1D37DBD60039709F /* YConcreteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CED374DA1D37DBD60039709F /* YConcreteTableViewCell.m */; };
+		CED374ED1D37DBD60039709F /* YConcreteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED374DB1D37DBD60039709F /* YConcreteTableViewCell.xib */; };
+		CED374EE1D37DBD60039709F /* YFindeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CED374DD1D37DBD60039709F /* YFindeTableViewCell.m */; };
+		CED374EF1D37DBD60039709F /* YFindeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED374DE1D37DBD60039709F /* YFindeTableViewCell.xib */; };
+		CED374F01D37DBD60039709F /* YObjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CED374E01D37DBD60039709F /* YObjectTableViewCell.m */; };
+		CED374F11D37DBD60039709F /* YObjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED374E11D37DBD60039709F /* YObjectTableViewCell.xib */; };
+		CED374F21D37DBD60039709F /* YThemeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CED374E31D37DBD60039709F /* YThemeTableViewCell.m */; };
+		CED374F31D37DBD60039709F /* YThemeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED374E41D37DBD60039709F /* YThemeTableViewCell.xib */; };
+		CED374F41D37DBD60039709F /* YTimeOrAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CED374E61D37DBD60039709F /* YTimeOrAddressTableViewCell.m */; };
+		CED374F51D37DBD60039709F /* YTimeOrAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED374E71D37DBD60039709F /* YTimeOrAddressTableViewCell.xib */; };
+		CED374F61D37DBD60039709F /* YPartyCountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CED374EA1D37DBD60039709F /* YPartyCountTableViewCell.m */; };
+		CED374F71D37DBD60039709F /* YPartyCountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED374EB1D37DBD60039709F /* YPartyCountTableViewCell.xib */; };
+		CED374FA1D37DC970039709F /* notSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = CED374F81D37DC970039709F /* notSelected.png */; };
+		CED374FB1D37DC970039709F /* Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CED374F91D37DC970039709F /* Selected.png */; };
 		CEE0818D1D3658760052A1D4 /* UIViewController+YCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE0818C1D3658760052A1D4 /* UIViewController+YCategory.m */; };
 		CEE081911D3658B90052A1D4 /* head.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEE0818E1D3658B90052A1D4 /* head.jpg */; };
 		CEE081921D3658B90052A1D4 /* mine_save.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE0818F1D3658B90052A1D4 /* mine_save.png */; };
@@ -313,6 +327,26 @@
 		CED28D6F1D37942B00A468CF /* event_single@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event_single@3x.png"; sourceTree = "<group>"; };
 		CED28D701D37942B00A468CF /* guide_slide_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide_slide_2.png; sourceTree = "<group>"; };
 		CED28D711D37942B00A468CF /* publishButtonClicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = publishButtonClicked.png; sourceTree = "<group>"; };
+		CED374D91D37DBD60039709F /* YConcreteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YConcreteTableViewCell.h; sourceTree = "<group>"; };
+		CED374DA1D37DBD60039709F /* YConcreteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YConcreteTableViewCell.m; sourceTree = "<group>"; };
+		CED374DB1D37DBD60039709F /* YConcreteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YConcreteTableViewCell.xib; sourceTree = "<group>"; };
+		CED374DC1D37DBD60039709F /* YFindeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFindeTableViewCell.h; sourceTree = "<group>"; };
+		CED374DD1D37DBD60039709F /* YFindeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFindeTableViewCell.m; sourceTree = "<group>"; };
+		CED374DE1D37DBD60039709F /* YFindeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YFindeTableViewCell.xib; sourceTree = "<group>"; };
+		CED374DF1D37DBD60039709F /* YObjectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YObjectTableViewCell.h; sourceTree = "<group>"; };
+		CED374E01D37DBD60039709F /* YObjectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YObjectTableViewCell.m; sourceTree = "<group>"; };
+		CED374E11D37DBD60039709F /* YObjectTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YObjectTableViewCell.xib; sourceTree = "<group>"; };
+		CED374E21D37DBD60039709F /* YThemeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YThemeTableViewCell.h; sourceTree = "<group>"; };
+		CED374E31D37DBD60039709F /* YThemeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YThemeTableViewCell.m; sourceTree = "<group>"; };
+		CED374E41D37DBD60039709F /* YThemeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YThemeTableViewCell.xib; sourceTree = "<group>"; };
+		CED374E51D37DBD60039709F /* YTimeOrAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTimeOrAddressTableViewCell.h; sourceTree = "<group>"; };
+		CED374E61D37DBD60039709F /* YTimeOrAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTimeOrAddressTableViewCell.m; sourceTree = "<group>"; };
+		CED374E71D37DBD60039709F /* YTimeOrAddressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTimeOrAddressTableViewCell.xib; sourceTree = "<group>"; };
+		CED374E91D37DBD60039709F /* YPartyCountTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPartyCountTableViewCell.h; sourceTree = "<group>"; };
+		CED374EA1D37DBD60039709F /* YPartyCountTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPartyCountTableViewCell.m; sourceTree = "<group>"; };
+		CED374EB1D37DBD60039709F /* YPartyCountTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YPartyCountTableViewCell.xib; sourceTree = "<group>"; };
+		CED374F81D37DC970039709F /* notSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notSelected.png; sourceTree = "<group>"; };
+		CED374F91D37DC970039709F /* Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Selected.png; sourceTree = "<group>"; };
 		CEE0818B1D3658760052A1D4 /* UIViewController+YCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+YCategory.h"; sourceTree = "<group>"; };
 		CEE0818C1D3658760052A1D4 /* UIViewController+YCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+YCategory.m"; sourceTree = "<group>"; };
 		CEE0818E1D3658B90052A1D4 /* head.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = head.jpg; sourceTree = "<group>"; };
@@ -689,6 +723,8 @@
 		CE6913531D33CFDB001FE50B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CED374F81D37DC970039709F /* notSelected.png */,
+				CED374F91D37DC970039709F /* Selected.png */,
 				CED28D6C1D37942B00A468CF /* event_multi@2x.png */,
 				CED28D6D1D37942B00A468CF /* event_multi@3x.png */,
 				CED28D6E1D37942B00A468CF /* event_single@2x.png */,
@@ -761,6 +797,8 @@
 		CE6913581D33CFDB001FE50B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CED374D81D37DBD60039709F /* DateViews */,
+				CED374E81D37DBD60039709F /* PartyViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -880,6 +918,38 @@
 				CE4979531D3514E10087FAF6 /* YClearTableViewCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CED374D81D37DBD60039709F /* DateViews */ = {
+			isa = PBXGroup;
+			children = (
+				CED374D91D37DBD60039709F /* YConcreteTableViewCell.h */,
+				CED374DA1D37DBD60039709F /* YConcreteTableViewCell.m */,
+				CED374DB1D37DBD60039709F /* YConcreteTableViewCell.xib */,
+				CED374DC1D37DBD60039709F /* YFindeTableViewCell.h */,
+				CED374DD1D37DBD60039709F /* YFindeTableViewCell.m */,
+				CED374DE1D37DBD60039709F /* YFindeTableViewCell.xib */,
+				CED374DF1D37DBD60039709F /* YObjectTableViewCell.h */,
+				CED374E01D37DBD60039709F /* YObjectTableViewCell.m */,
+				CED374E11D37DBD60039709F /* YObjectTableViewCell.xib */,
+				CED374E21D37DBD60039709F /* YThemeTableViewCell.h */,
+				CED374E31D37DBD60039709F /* YThemeTableViewCell.m */,
+				CED374E41D37DBD60039709F /* YThemeTableViewCell.xib */,
+				CED374E51D37DBD60039709F /* YTimeOrAddressTableViewCell.h */,
+				CED374E61D37DBD60039709F /* YTimeOrAddressTableViewCell.m */,
+				CED374E71D37DBD60039709F /* YTimeOrAddressTableViewCell.xib */,
+			);
+			path = DateViews;
+			sourceTree = "<group>";
+		};
+		CED374E81D37DBD60039709F /* PartyViews */ = {
+			isa = PBXGroup;
+			children = (
+				CED374E91D37DBD60039709F /* YPartyCountTableViewCell.h */,
+				CED374EA1D37DBD60039709F /* YPartyCountTableViewCell.m */,
+				CED374EB1D37DBD60039709F /* YPartyCountTableViewCell.xib */,
+			);
+			path = PartyViews;
 			sourceTree = "<group>";
 		};
 		D66E598A1D33DD20003DED51 /* Category */ = {
@@ -1277,6 +1347,7 @@
 				D66E5A9F1D33DE84003DED51 /* video-play@2x.png in Resources */,
 				CED28D751D37942B00A468CF /* event_single@3x.png in Resources */,
 				D66E5A781D33DE84003DED51 /* mainCellComment.png in Resources */,
+				CED374ED1D37DBD60039709F /* YConcreteTableViewCell.xib in Resources */,
 				D66E5AC31D33DE84003DED51 /* mine-setting-icon@2x.png in Resources */,
 				D66E5AED1D33DE84003DED51 /* pushguidebg.png in Resources */,
 				D66E5A701D33DE84003DED51 /* imageBackground@2x.png in Resources */,
@@ -1304,6 +1375,7 @@
 				D66E5AFA1D33DE84003DED51 /* tabBar_essence_click_icon@2x.png in Resources */,
 				D66E5AF01D33DE84003DED51 /* pushguidebot@3x.png in Resources */,
 				D66E5A9C1D33DE84003DED51 /* tagicon@2x.png in Resources */,
+				CED374F51D37DBD60039709F /* YTimeOrAddressTableViewCell.xib in Resources */,
 				D66E5AD01D33DE84003DED51 /* nav_coin_icon_click@3x.png in Resources */,
 				D66E5B0E1D33DE84003DED51 /* tabBar_new_icon.png in Resources */,
 				D66E5AD81D33DE84003DED51 /* app_slogan.png in Resources */,
@@ -1342,11 +1414,13 @@
 				D66E5B021D33DE84003DED51 /* tabBar_friendTrends_icon.png in Resources */,
 				D66E5A7E1D33DE84003DED51 /* mainCellDingClick.png in Resources */,
 				D66E5AE81D33DE84003DED51 /* publish-text@2x.png in Resources */,
+				CED374EF1D37DBD60039709F /* YFindeTableViewCell.xib in Resources */,
 				D66E5AA11D33DE84003DED51 /* FollowBtnBg.png in Resources */,
 				D66E5AB11D33DE84003DED51 /* MainTagSubIcon.png in Resources */,
 				CEF341F11D3483D1007C3640 /* YRegisterViewController.xib in Resources */,
 				D66E5A9B1D33DE84003DED51 /* tagicon.png in Resources */,
 				D66E5A8E1D33DE84003DED51 /* playButtonPlay@2x.png in Resources */,
+				CED374F11D37DBD60039709F /* YObjectTableViewCell.xib in Resources */,
 				D66E5A951D33DE84003DED51 /* Profile_AddV_authen@3x.png in Resources */,
 				D66E5B0F1D33DE84003DED51 /* tabBar_new_icon@2x.png in Resources */,
 				CED28D731D37942B00A468CF /* event_multi@3x.png in Resources */,
@@ -1379,6 +1453,7 @@
 				D66E5B061D33DE84003DED51 /* tabBar_me_click_icon@2x.png in Resources */,
 				CE49791A1D34EF400087FAF6 /* head_img.png in Resources */,
 				D66E5AE71D33DE84003DED51 /* publish-text.png in Resources */,
+				CED374FA1D37DC970039709F /* notSelected.png in Resources */,
 				D66E5B091D33DE84003DED51 /* tabBar_me_icon@2x.png in Resources */,
 				D66E5A941D33DE84003DED51 /* Profile_AddV_authen@2x.png in Resources */,
 				D66E5AEE1D33DE84003DED51 /* pushguidebot.png in Resources */,
@@ -1412,6 +1487,7 @@
 				D66E5AA31D33DE84003DED51 /* FollowBtnClickBg.png in Resources */,
 				D66E5ABF1D33DE84003DED51 /* mine-setting-icon-click.png in Resources */,
 				D66E5A851D33DE84003DED51 /* playButton@2x.png in Resources */,
+				CED374F31D37DBD60039709F /* YThemeTableViewCell.xib in Resources */,
 				D66E5AAD1D33DE84003DED51 /* friendsRecommentIcon-click@3x.png in Resources */,
 				D66E5A751D33DE84003DED51 /* mainCellCai@2x.png in Resources */,
 				D66E5A611D33DE84003DED51 /* cellFollowClickIcon.png in Resources */,
@@ -1449,8 +1525,10 @@
 				CEE081921D3658B90052A1D4 /* mine_save.png in Resources */,
 				D66E5AA51D33DE84003DED51 /* friendsTrend_login.png in Resources */,
 				D66E5AFD1D33DE84003DED51 /* tabBar_essence_icon@2x.png in Resources */,
+				CED374F71D37DBD60039709F /* YPartyCountTableViewCell.xib in Resources */,
 				D66E5AEC1D33DE84003DED51 /* publish-video@3x.png in Resources */,
 				D66E5B051D33DE84003DED51 /* tabBar_me_click_icon.png in Resources */,
+				CED374FB1D37DC970039709F /* Selected.png in Resources */,
 				D66E5AB51D33DE84003DED51 /* MainTagSubIconClick@2x.png in Resources */,
 				D66E5B041D33DE84003DED51 /* tabBar_friendTrends_icon@3x.png in Resources */,
 				CEE081931D3658B90052A1D4 /* MineBackGround.jpg in Resources */,
@@ -1532,11 +1610,15 @@
 			files = (
 				D66E597A1D33DBA1003DED51 /* YEssenceViewController.m in Sources */,
 				CEF341F01D3483D1007C3640 /* YRegisterViewController.m in Sources */,
+				CED374F41D37DBD60039709F /* YTimeOrAddressTableViewCell.m in Sources */,
 				D66E599B1D33DD20003DED51 /* YTabBar.m in Sources */,
+				CED374EC1D37DBD60039709F /* YConcreteTableViewCell.m in Sources */,
 				D66E599A1D33DD20003DED51 /* YTabBarController.m in Sources */,
 				D66E597D1D33DBE9003DED51 /* YFunnyViewController.m in Sources */,
+				CED374EE1D37DBD60039709F /* YFindeTableViewCell.m in Sources */,
 				D66E5B1A1D33DF76003DED51 /* NetWorkRequestManager.m in Sources */,
 				CE49795E1D3515170087FAF6 /* YFeeTypeModel.m in Sources */,
+				CED374F61D37DBD60039709F /* YPartyCountTableViewCell.m in Sources */,
 				CED28D681D3793C900A468CF /* YPublishDateViewController.m in Sources */,
 				CED28D521D378A0300A468CF /* YPlayModel.m in Sources */,
 				D66E59801D33DBF1003DED51 /* YDateViewController.m in Sources */,
@@ -1551,11 +1633,13 @@
 				D66E59981D33DD20003DED51 /* UIView+XMGCategory.m in Sources */,
 				CE4979171D34EA900087FAF6 /* YOpenViewController.m in Sources */,
 				D66E59971D33DD20003DED51 /* UIBarButtonItem+XMGCategory.m in Sources */,
+				CED374F21D37DBD60039709F /* YThemeTableViewCell.m in Sources */,
 				CE69131C1D33C95D001FE50B /* main.m in Sources */,
 				CED28D571D378A1C00A468CF /* AppDelegate.m in Sources */,
 				CED28D501D378A0300A468CF /* YMealDetailsModel.m in Sources */,
 				CEE0818D1D3658760052A1D4 /* UIViewController+YCategory.m in Sources */,
 				CE49795C1D3515170087FAF6 /* YActionUserModel.m in Sources */,
+				CED374F01D37DBD60039709F /* YObjectTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

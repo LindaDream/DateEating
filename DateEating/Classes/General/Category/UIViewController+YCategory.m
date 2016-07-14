@@ -9,6 +9,7 @@
 #import "UIViewController+YCategory.h"
 #import "YPublishDateViewController.h"
 #import "YPublishPartyViewController.h"
+#import "YTabBar.h"
 @implementation UIViewController (YCategory)
 -(void)changeToNight{
     [[self.view subviews] lastObject].backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
@@ -41,11 +42,31 @@
     }];
 }
 - (void)addDate:(UIButton *)btn{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeIsClickedValue" object:nil userInfo:@{@"isClicked":[NSNumber numberWithBool:1]}];
     YPublishDateViewController *dateVC = [YPublishDateViewController new];
+    UIButton *dateBtn = (UIButton *)[self.view viewWithTag:101];
+    UIButton *partyBtn = (UIButton *)[self.view viewWithTag:102];
+    [dateBtn removeFromSuperview];
+    [partyBtn removeFromSuperview];
+    UIButton *addBtn = [self.tabBarController.tabBar.subviews objectAtIndex:1];
+    [UIView animateWithDuration:0.5 animations:^{
+        addBtn.transform = CGAffineTransformRotate(addBtn.transform, -M_PI_4);
+        
+    }];
     [self.navigationController pushViewController:dateVC animated:YES];
 }
 - (void)addParty:(UIButton *)btn{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeIsClickedValue" object:nil userInfo:@{@"isClicked":[NSNumber numberWithBool:1]}];
     YPublishPartyViewController *partyVC = [YPublishPartyViewController new];
+    UIButton *dateBtn = (UIButton *)[self.view viewWithTag:101];
+    UIButton *partyBtn = (UIButton *)[self.view viewWithTag:102];
+    [dateBtn removeFromSuperview];
+    [partyBtn removeFromSuperview];
+    UIButton *addBtn = [self.tabBarController.tabBar.subviews objectAtIndex:1];
+    [UIView animateWithDuration:0.5 animations:^{
+        addBtn.transform = CGAffineTransformRotate(addBtn.transform, -M_PI_4);
+        
+    }];
     [self.navigationController pushViewController:partyVC animated:YES];
 }
 -(void)removeDateBtnAndPartyBtn{

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface YPublishPartyViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITableView *partyTableView;
 
 @end
