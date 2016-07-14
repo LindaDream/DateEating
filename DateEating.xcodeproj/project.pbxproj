@@ -30,6 +30,16 @@
 		CED28D521D378A0300A468CF /* YPlayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CED28D4E1D378A0300A468CF /* YPlayModel.m */; };
 		CED28D541D378A0D00A468CF /* guide_background_i5@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CED28D531D378A0D00A468CF /* guide_background_i5@2x.jpg */; };
 		CED28D571D378A1C00A468CF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CED28D561D378A1C00A468CF /* AppDelegate.m */; };
+		CED28D681D3793C900A468CF /* YPublishDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED28D631D3793C900A468CF /* YPublishDateViewController.m */; };
+		CED28D691D3793C900A468CF /* YPublishDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED28D641D3793C900A468CF /* YPublishDateViewController.xib */; };
+		CED28D6A1D3793C900A468CF /* YPublishPartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED28D661D3793C900A468CF /* YPublishPartyViewController.m */; };
+		CED28D6B1D3793C900A468CF /* YPublishPartyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED28D671D3793C900A468CF /* YPublishPartyViewController.xib */; };
+		CED28D721D37942B00A468CF /* event_multi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CED28D6C1D37942B00A468CF /* event_multi@2x.png */; };
+		CED28D731D37942B00A468CF /* event_multi@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CED28D6D1D37942B00A468CF /* event_multi@3x.png */; };
+		CED28D741D37942B00A468CF /* event_single@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CED28D6E1D37942B00A468CF /* event_single@2x.png */; };
+		CED28D751D37942B00A468CF /* event_single@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CED28D6F1D37942B00A468CF /* event_single@3x.png */; };
+		CED28D761D37942B00A468CF /* guide_slide_2.png in Resources */ = {isa = PBXBuildFile; fileRef = CED28D701D37942B00A468CF /* guide_slide_2.png */; };
+		CED28D771D37942B00A468CF /* publishButtonClicked.png in Resources */ = {isa = PBXBuildFile; fileRef = CED28D711D37942B00A468CF /* publishButtonClicked.png */; };
 		CEE0818D1D3658760052A1D4 /* UIViewController+YCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE0818C1D3658760052A1D4 /* UIViewController+YCategory.m */; };
 		CEE081911D3658B90052A1D4 /* head.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEE0818E1D3658B90052A1D4 /* head.jpg */; };
 		CEE081921D3658B90052A1D4 /* mine_save.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE0818F1D3658B90052A1D4 /* mine_save.png */; };
@@ -291,6 +301,18 @@
 		CED28D531D378A0D00A468CF /* guide_background_i5@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "guide_background_i5@2x.jpg"; sourceTree = "<group>"; };
 		CED28D551D378A1C00A468CF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CED28D561D378A1C00A468CF /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CED28D621D3793C900A468CF /* YPublishDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPublishDateViewController.h; sourceTree = "<group>"; };
+		CED28D631D3793C900A468CF /* YPublishDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPublishDateViewController.m; sourceTree = "<group>"; };
+		CED28D641D3793C900A468CF /* YPublishDateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YPublishDateViewController.xib; sourceTree = "<group>"; };
+		CED28D651D3793C900A468CF /* YPublishPartyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPublishPartyViewController.h; sourceTree = "<group>"; };
+		CED28D661D3793C900A468CF /* YPublishPartyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPublishPartyViewController.m; sourceTree = "<group>"; };
+		CED28D671D3793C900A468CF /* YPublishPartyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YPublishPartyViewController.xib; sourceTree = "<group>"; };
+		CED28D6C1D37942B00A468CF /* event_multi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event_multi@2x.png"; sourceTree = "<group>"; };
+		CED28D6D1D37942B00A468CF /* event_multi@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event_multi@3x.png"; sourceTree = "<group>"; };
+		CED28D6E1D37942B00A468CF /* event_single@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event_single@2x.png"; sourceTree = "<group>"; };
+		CED28D6F1D37942B00A468CF /* event_single@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event_single@3x.png"; sourceTree = "<group>"; };
+		CED28D701D37942B00A468CF /* guide_slide_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide_slide_2.png; sourceTree = "<group>"; };
+		CED28D711D37942B00A468CF /* publishButtonClicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = publishButtonClicked.png; sourceTree = "<group>"; };
 		CEE0818B1D3658760052A1D4 /* UIViewController+YCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+YCategory.h"; sourceTree = "<group>"; };
 		CEE0818C1D3658760052A1D4 /* UIViewController+YCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+YCategory.m"; sourceTree = "<group>"; };
 		CEE0818E1D3658B90052A1D4 /* head.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = head.jpg; sourceTree = "<group>"; };
@@ -667,6 +689,12 @@
 		CE6913531D33CFDB001FE50B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CED28D6C1D37942B00A468CF /* event_multi@2x.png */,
+				CED28D6D1D37942B00A468CF /* event_multi@3x.png */,
+				CED28D6E1D37942B00A468CF /* event_single@2x.png */,
+				CED28D6F1D37942B00A468CF /* event_single@3x.png */,
+				CED28D701D37942B00A468CF /* guide_slide_2.png */,
+				CED28D711D37942B00A468CF /* publishButtonClicked.png */,
 				CEE0818E1D3658B90052A1D4 /* head.jpg */,
 				CEE0818F1D3658B90052A1D4 /* mine_save.png */,
 				CEE081901D3658B90052A1D4 /* MineBackGround.jpg */,
@@ -705,6 +733,12 @@
 		CE6913561D33CFDB001FE50B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CED28D621D3793C900A468CF /* YPublishDateViewController.h */,
+				CED28D631D3793C900A468CF /* YPublishDateViewController.m */,
+				CED28D641D3793C900A468CF /* YPublishDateViewController.xib */,
+				CED28D651D3793C900A468CF /* YPublishPartyViewController.h */,
+				CED28D661D3793C900A468CF /* YPublishPartyViewController.m */,
+				CED28D671D3793C900A468CF /* YPublishPartyViewController.xib */,
 				D66E597E1D33DBF1003DED51 /* YDateViewController.h */,
 				D66E597F1D33DBF1003DED51 /* YDateViewController.m */,
 			);
@@ -1241,6 +1275,7 @@
 				D66E5A771D33DE84003DED51 /* mainCellCaiClick@2x.png in Resources */,
 				D66E5B081D33DE84003DED51 /* tabBar_me_icon.png in Resources */,
 				D66E5A9F1D33DE84003DED51 /* video-play@2x.png in Resources */,
+				CED28D751D37942B00A468CF /* event_single@3x.png in Resources */,
 				D66E5A781D33DE84003DED51 /* mainCellComment.png in Resources */,
 				D66E5AC31D33DE84003DED51 /* mine-setting-icon@2x.png in Resources */,
 				D66E5AED1D33DE84003DED51 /* pushguidebg.png in Resources */,
@@ -1254,6 +1289,7 @@
 				D66E5AC21D33DE84003DED51 /* mine-setting-icon.png in Resources */,
 				CE4979181D34EA900087FAF6 /* YOpenViewController.xib in Resources */,
 				D66E5A641D33DE84003DED51 /* cellFollowDisableIcon.png in Resources */,
+				CED28D721D37942B00A468CF /* event_multi@2x.png in Resources */,
 				D66E5A631D33DE84003DED51 /* cellFollowClickIcon@3x.png in Resources */,
 				D66E5ADD1D33DE84003DED51 /* publish-audio@3x.png in Resources */,
 				D66E5AC11D33DE84003DED51 /* mine-setting-icon-click@3x.png in Resources */,
@@ -1293,6 +1329,7 @@
 				D66E5ACE1D33DE84003DED51 /* nav_coin_icon_click.png in Resources */,
 				D66E5ABD1D33DE84003DED51 /* mine-moon-icon@2x.png in Resources */,
 				D66E5AD11D33DE84003DED51 /* navigationbarBackgroundWhite.png in Resources */,
+				CED28D771D37942B00A468CF /* publishButtonClicked.png in Resources */,
 				CE4979101D34EA5F0087FAF6 /* guide_slide_2.png in Resources */,
 				D66E5ACA1D33DE84003DED51 /* mine-sun-icon@3x.png in Resources */,
 				D66E5AF81D33DE84003DED51 /* tabbar-light@2x.png in Resources */,
@@ -1312,6 +1349,7 @@
 				D66E5A8E1D33DE84003DED51 /* playButtonPlay@2x.png in Resources */,
 				D66E5A951D33DE84003DED51 /* Profile_AddV_authen@3x.png in Resources */,
 				D66E5B0F1D33DE84003DED51 /* tabBar_new_icon@2x.png in Resources */,
+				CED28D731D37942B00A468CF /* event_multi@3x.png in Resources */,
 				D66E5AE31D33DE84003DED51 /* publish-picture@3x.png in Resources */,
 				D66E5AF41D33DE84003DED51 /* pushguidetop.png in Resources */,
 				D66E5B131D33DE84003DED51 /* tabBar_publish_click_icon@3x.png in Resources */,
@@ -1326,9 +1364,11 @@
 				D66E5B111D33DE84003DED51 /* tabBar_publish_click_icon.png in Resources */,
 				D66E5A821D33DE84003DED51 /* mainCellShareClick.png in Resources */,
 				CE69132A1D33C95D001FE50B /* LaunchScreen.storyboard in Resources */,
+				CED28D741D37942B00A468CF /* event_single@2x.png in Resources */,
 				D66E5ACD1D33DE84003DED51 /* nav_coin_icon@3x.png in Resources */,
 				D66E5A831D33DE84003DED51 /* mainCellShareClick@2x.png in Resources */,
 				D66E5A5F1D33DE84003DED51 /* cell-content-line.png in Resources */,
+				CED28D691D3793C900A468CF /* YPublishDateViewController.xib in Resources */,
 				D66E5A9A1D33DE84003DED51 /* see-big-picture@3x.png in Resources */,
 				D66E5B151D33DE84003DED51 /* tabBar_publish_icon@2x.png in Resources */,
 				D66E5A6D1D33DE84003DED51 /* defaultUserIcon@2x.png in Resources */,
@@ -1361,6 +1401,7 @@
 				D66E5A671D33DE84003DED51 /* cellFollowIcon.png in Resources */,
 				D66E5AE61D33DE84003DED51 /* publish-review@3x.png in Resources */,
 				D66E5A9E1D33DE84003DED51 /* video-play.png in Resources */,
+				CED28D6B1D3793C900A468CF /* YPublishPartyViewController.xib in Resources */,
 				D66E5A8C1D33DE84003DED51 /* playButtonPause@3x.png in Resources */,
 				D66E5A7D1D33DE84003DED51 /* mainCellDing@2x.png in Resources */,
 				D66E5A7C1D33DE84003DED51 /* mainCellDing.png in Resources */,
@@ -1402,6 +1443,7 @@
 				D66E5ADF1D33DE84003DED51 /* publish-offline@2x.png in Resources */,
 				D66E5B161D33DE84003DED51 /* tabBar_publish_icon@3x.png in Resources */,
 				D66E5AA61D33DE84003DED51 /* friendsTrend_login@2x.png in Resources */,
+				CED28D761D37942B00A468CF /* guide_slide_2.png in Resources */,
 				D66E5A9D1D33DE84003DED51 /* tagicon@3x.png in Resources */,
 				D66E5ADC1D33DE84003DED51 /* publish-audio@2x.png in Resources */,
 				CEE081921D3658B90052A1D4 /* mine_save.png in Resources */,
@@ -1495,6 +1537,7 @@
 				D66E597D1D33DBE9003DED51 /* YFunnyViewController.m in Sources */,
 				D66E5B1A1D33DF76003DED51 /* NetWorkRequestManager.m in Sources */,
 				CE49795E1D3515170087FAF6 /* YFeeTypeModel.m in Sources */,
+				CED28D681D3793C900A468CF /* YPublishDateViewController.m in Sources */,
 				CED28D521D378A0300A468CF /* YPlayModel.m in Sources */,
 				D66E59801D33DBF1003DED51 /* YDateViewController.m in Sources */,
 				CE49790D1D34CACE0087FAF6 /* YLoginViewController.m in Sources */,
@@ -1502,6 +1545,7 @@
 				CED28D4F1D378A0300A468CF /* YCityModel.m in Sources */,
 				D66E59891D33DC55003DED51 /* YMeViewController.m in Sources */,
 				CE49795D1D3515170087FAF6 /* YDateContentModel.m in Sources */,
+				CED28D6A1D3793C900A468CF /* YPublishPartyViewController.m in Sources */,
 				CED28D511D378A0300A468CF /* YMealModel.m in Sources */,
 				CE4979541D3514E10087FAF6 /* YClearTableViewCell.m in Sources */,
 				D66E59981D33DD20003DED51 /* UIView+XMGCategory.m in Sources */,
