@@ -10,19 +10,36 @@
 
 @implementation YDateContentModel
 
+- (void)setValue:(id)value forKey:(NSString *)key {
+    if ([key isEqualToString:@"user"]) {
+        self.user = [[YActionUserModel alloc]init];
+        [_user setValuesForKeysWithDictionary:value];
+    } else if ([key isEqualToString:@"feeType"]) {
+        self.feeType = [[YFeeTypeModel alloc]init];
+        [_feeType setValuesForKeysWithDictionary:value];
+    } else if ([key isEqualToString:@"caterPlatform"]) {
+        self.caterPlatform = [NSString stringWithFormat:@"%@",value];
+    } else {
+        [super setValue:value forKey:key];
+    }
+}
+
+
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
     if ([key isEqualToString:@"id"]) {
         [self setValue:value forKey:@"ID"];;
+    } 
+}
+
++ (NSMutableArray *)getDateContentListWithDic:(NSDictionary *)dict {
+    NSMutableArray *array = [NSMutableArray array];
+    NSDictionary *dictionary = dict[@"data"];
+    for (NSDictionary *modelDic in dictionary[@"results"]) {
+        YDateContentModel *model = [[YDateContentModel alloc]init];
+        [model setValuesForKeysWithDictionary:modelDic];
+        [array addObject:model];
     }
-    if ([key isEqualToString:@"caterPlatform"]) {
-        _caterPlatform = [NSString stringWithFormat:@"%@",value];
-    }
-    if ([key isEqualToString:@"user"]){
-        [_user setValuesForKeysWithDictionary:value];
-    }
-    if ([key isEqualToString:@"feeType"]) {
-        [_feeType setValuesForKeysWithDictionary:value];
-    }
+    return array;
 }
 
 @end
