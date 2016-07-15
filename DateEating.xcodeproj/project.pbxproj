@@ -24,6 +24,7 @@
 		CE69132A1D33C95D001FE50B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6913281D33C95D001FE50B /* LaunchScreen.storyboard */; };
 		CE6913351D33C95D001FE50B /* DateEatingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6913341D33C95D001FE50B /* DateEatingTests.m */; };
 		CE6913401D33C95D001FE50B /* DateEatingUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE69133F1D33C95D001FE50B /* DateEatingUITests.m */; };
+		CE97AB7C1D38CCB10051D2D7 /* YTimePiker.m in Sources */ = {isa = PBXBuildFile; fileRef = CE97AB7B1D38CCB10051D2D7 /* YTimePiker.m */; };
 		CED28D4F1D378A0300A468CF /* YCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CED28D481D378A0300A468CF /* YCityModel.m */; };
 		CED28D501D378A0300A468CF /* YMealDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CED28D4A1D378A0300A468CF /* YMealDetailsModel.m */; };
 		CED28D511D378A0300A468CF /* YMealModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CED28D4C1D378A0300A468CF /* YMealModel.m */; };
@@ -342,6 +343,8 @@
 		CE69133B1D33C95D001FE50B /* DateEatingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DateEatingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE69133F1D33C95D001FE50B /* DateEatingUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DateEatingUITests.m; sourceTree = "<group>"; };
 		CE6913411D33C95D001FE50B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE97AB7A1D38CCB10051D2D7 /* YTimePiker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTimePiker.h; sourceTree = "<group>"; };
+		CE97AB7B1D38CCB10051D2D7 /* YTimePiker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTimePiker.m; sourceTree = "<group>"; };
 		CED28D471D378A0300A468CF /* YCityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCityModel.h; sourceTree = "<group>"; };
 		CED28D481D378A0300A468CF /* YCityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCityModel.m; sourceTree = "<group>"; };
 		CED28D491D378A0300A468CF /* YMealDetailsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMealDetailsModel.h; sourceTree = "<group>"; };
@@ -872,6 +875,8 @@
 		CE6913571D33CFDB001FE50B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CE97AB7A1D38CCB10051D2D7 /* YTimePiker.h */,
+				CE97AB7B1D38CCB10051D2D7 /* YTimePiker.m */,
 				D61D1AF31D38718C00C36F84 /* 操作类 */,
 				CE4979561D3515170087FAF6 /* YActionUserModel.h */,
 				CE4979571D3515170087FAF6 /* YActionUserModel.m */,
@@ -1819,6 +1824,7 @@
 				CED374EC1D37DBD60039709F /* YConcreteTableViewCell.m in Sources */,
 				D66E599A1D33DD20003DED51 /* YTabBarController.m in Sources */,
 				D66E597D1D33DBE9003DED51 /* YFunnyViewController.m in Sources */,
+				CE97AB7C1D38CCB10051D2D7 /* YTimePiker.m in Sources */,
 				CED374EE1D37DBD60039709F /* YFindeTableViewCell.m in Sources */,
 				CE49795E1D3515170087FAF6 /* YFeeTypeModel.m in Sources */,
 				CED374F61D37DBD60039709F /* YPartyCountTableViewCell.m in Sources */,
