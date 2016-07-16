@@ -30,7 +30,6 @@
 #pragma mark--界面--
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor yellowColor];
-    [self.window makeKeyAndVisible];
     // 添加UITabBarC ontroller
     UITabBarController *tabBarController = [[YTabBarController alloc] init];
     if (nil == currentUser || nil == [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"]) {
@@ -39,6 +38,7 @@
     }else if(currentUser && nil != [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"]){
         self.window.rootViewController = tabBarController;
     }
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

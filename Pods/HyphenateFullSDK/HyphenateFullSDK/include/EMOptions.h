@@ -154,10 +154,10 @@ typedef enum {
 
 /*!
  *  \~chinese 
- *  从数据库加载消息时是否按服务器时间排序，默认为NO，按接收方时间排序
+ *  从数据库加载消息时是否按服务器时间排序，默认为YES，按服务器时间排序
  *
  *  \~english 
- *  Whether sort message by server time when load message from database, default is NO, sort by receiver's time
+ *  Whether sort message by server time when load message from database, default is YES, sort by server time
  */
 @property (nonatomic, assign) BOOL sortMessageByServerTime;
 

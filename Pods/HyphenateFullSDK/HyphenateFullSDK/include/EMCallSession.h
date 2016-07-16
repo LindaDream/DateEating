@@ -171,7 +171,7 @@ typedef enum{
  *  \~english
  *  Local display view
  */
-@property (nonatomic, strong) EMCallLocalView *localView;
+@property (nonatomic, strong) EMCallLocalView *localVideoView;
 
 /*!
  *  \~chinese
@@ -180,7 +180,7 @@ typedef enum{
  *  \~english
  *  Remote display view
  */
-@property (nonatomic, strong) EMCallRemoteView *remoteView;
+@property (nonatomic, strong) EMCallRemoteView *remoteVideoView;
 
 /*!
  *  \~chinese

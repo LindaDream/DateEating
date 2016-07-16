@@ -38,6 +38,7 @@ typedef enum{
     EMErrorServerTimeout,                    /*! \~chinese 服务器超时 \~english Wait server response timeout */
     EMErrorServerBusy,                       /*! \~chinese 服务器忙碌 \~english Server is busy */
     EMErrorServerUnknownError,               /*! \~chinese 未知服务器错误 \~english Unknown server error */
+    EMErrorServerGetDNSConfigFailed,         /*! \~chinese 获取DNS设置失败 \~english Get DNS config failed */
     
     EMErrorFileNotFound = 400,               /*! \~chinese 文件没有找到 \~english Can't find the file */
     EMErrorFileInvalid,                      /*! \~chinese 文件无效 \~english File is invalid */

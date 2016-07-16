@@ -59,4 +59,13 @@
 @property (assign, nonatomic) NSInteger userId;         // 活动发起者id
 @property (assign, nonatomic) NSInteger visitorState;   // 访问状态
 
+// 活动详情页多出来的数据
+@property (assign, nonatomic) NSInteger dayChatCount;
+@property (assign, nonatomic) NSInteger guarantee;
+@property (assign, nonatomic) NSInteger guaranteeCred;
+@property (assign, nonatomic) NSInteger rankNumber;
+@property (assign, nonatomic) NSInteger recentContact;
+
++ (NSMutableArray *)getDateContentListWithDic:(NSDictionary *)dict;
+
 @end

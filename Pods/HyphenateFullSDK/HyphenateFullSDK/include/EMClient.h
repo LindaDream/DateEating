@@ -484,7 +484,7 @@
  *  @param aSuccessBlock    The callback block of success
  *  @param aFailureBlock    The callback block of failure
  */
-- (void)asyncGetPushOptionsFromServer:(void (^)(EMPushOptions *))aSuccessBlock
+- (void)asyncGetPushOptionsFromServer:(void (^)(EMPushOptions *aOptions))aSuccessBlock
                               failure:(void (^)(EMError *aError))aFailureBlock;
 
 /*!

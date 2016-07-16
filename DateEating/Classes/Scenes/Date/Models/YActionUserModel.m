@@ -14,6 +14,9 @@
     if ([key isEqualToString:@"role2"]) {
         _role2 = [NSString stringWithFormat:@"%@",value];
     }
+    if ([key isEqualToString:@"nick"]) {
+        _nick = [NSString stringWithFormat:@"%@",value];
+    }
 }
 
 @end

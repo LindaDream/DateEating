@@ -38,7 +38,7 @@ typedef enum{
  */
 typedef enum{
     EMMessageSearchDirectionUp  = 0,    /*! \~chinese 向上搜索 \~english Search older messages */
-    EMMessageSearchDirectionDownload    /*! \~chinese 向下搜索 \~english Search newer messages */
+    EMMessageSearchDirectionDown        /*! \~chinese 向下搜索 \~english Search newer messages */
 } EMMessageSearchDirection;
 
 @class EMMessage;
@@ -113,6 +113,23 @@ typedef enum{
  *  @result Message insert result, YES: success, No: fail
  */
 - (BOOL)insertMessage:(EMMessage *)aMessage;
+
+/*!
+ *  \~chinese
+ *  插入一条消息到会话尾部，消息的conversationId应该和会话的conversationId一致，消息会被插入DB，并且更新会话的latestMessage等属性
+ *
+ *  @param aMessage  消息实例
+ *
+ *  @result 是否成功
+ *
+ *  \~english
+ *  Insert a message to the tail of conversation, message's conversationId should equle to conversation's conversationId, message will be inserted to DB, and update conversation's property
+ *
+ *  @param aMessage  Message
+ *
+ *  @result Message insert result, YES: success, No: fail
+ */
+- (BOOL)appendMessage:(EMMessage *)aMessage;
 
 /*!
  *  \~chinese
