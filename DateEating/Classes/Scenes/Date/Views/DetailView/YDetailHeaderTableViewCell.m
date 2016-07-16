@@ -71,6 +71,28 @@
     }
 }
 
+#pragma mark -- 按钮事件 --
+// 聊天按钮
+- (IBAction)chatBtnAction:(id)sender {
+    if (_delegate && [_delegate respondsToSelector:@selector(chatBtnDidClicked:)]) {
+        [_delegate chatBtnDidClicked:self];
+    }
+}
+
+// 餐厅详情
+- (IBAction)acterDetailBtn:(id)sender {
+    if (_delegate && [_delegate respondsToSelector:@selector(restaurantBtnDidClicked:)]) {
+        [_delegate restaurantBtnDidClicked:self];
+    }
+}
+
+// 举报按钮
+- (IBAction)reportBtn:(id)sender {
+    if (_delegate && [_delegate respondsToSelector:@selector(reportBtnDidClicked:)]) {
+        [_delegate reportBtnDidClicked:self];
+    }
+}
+
 #pragma mark -- 求cell的高度 --
 + (CGFloat)getHeightForCellWithActivity:(YDateContentModel *)activity {
     CGSize size = CGSizeMake([UIScreen mainScreen].bounds.size.width -155, 100000);

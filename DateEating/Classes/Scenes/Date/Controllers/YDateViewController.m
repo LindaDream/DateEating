@@ -15,6 +15,7 @@
 #import "Request_Url.h"
 #import "YDateContentModel.h"
 #import <MJRefreshAutoNormalFooter.h>
+#import <MJRefreshNormalHeader.h>
 
 @interface YDateViewController ()
 <
@@ -35,6 +36,8 @@
 @property (strong, nonatomic) YNSUserDefaultHandel *handle;
 @property (assign, nonatomic) NSInteger hotCount;
 @property (assign,nonatomic) NSInteger nearbyCount;
+@property (assign,nonatomic) BOOL isHotDown;
+@property (assign,nonatomic) BOOL isNearByDown;
 
 @end
 
@@ -105,6 +108,10 @@
     [YNetWorkRequestManager getRequestWithUrl:HotRequest_Url([_handle multi], [_handle gender], [_handle time], [_handle age], [_handle constellation], [_handle occupation], start) successRequest:^(id dict) {
         NSNumber *count = dict[@"data"][@"total"];
         dateVC.hotCount = count.integerValue;
+        if (dateVC.isHotDown) {
+            [dateVC.hotArray removeAllObjects];
+            dateVC.isHotDown = NO;
+        }
         [dateVC.hotArray addObjectsFromArray:[YDateContentModel getDateContentListWithDic:dict]];
         dispatch_async(dispatch_get_main_queue(), ^{
             [dateVC reloadAllData];
@@ -118,6 +125,10 @@
     [YNetWorkRequestManager getRequestWithUrl:NearByRequest_Url([_handle multi], [_handle gender], [_handle time], [_handle age], [_handle constellation], [_handle occupation], start) successRequest:^(id dict) {
         NSNumber *count = dict[@"data"][@"total"];
         dateVC.nearbyCount = count.integerValue;
+        if (dateVC.isNearByDown) {
+            [dateVC.nearByArray removeAllObjects];
+            dateVC.isNearByDown = NO;
+        }
         [dateVC.nearByArray addObjectsFromArray:[YDateContentModel getDateContentListWithDic:dict]];
         dispatch_async(dispatch_get_main_queue(), ^{
             [dateVC reloadAllData];
@@ -154,6 +165,20 @@
     footerNearBy.stateLabel.textColor = YRGBColor(248, 89, 64);
     self.nearbyTableView.mj_footer = footerNearBy;
     // 头
+    __weak typeof(self) weakSelf = self;
+    MJRefreshNormalHeader *headerHot = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.isHotDown = YES;
+        [weakSelf requestHotDataWithUrl:0];
+        [weakSelf.hotTableView.mj_header endRefreshing];
+    }];
+    self.hotTableView.mj_header = headerHot;
+    
+    MJRefreshNormalHeader *headerNearBy = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        weakSelf.isNearByDown = YES;
+        [weakSelf requestNearByDataWithUrl:0];
+        [weakSelf.nearbyTableView.mj_header endRefreshing];
+    }];
+    self.nearbyTableView.mj_header = headerNearBy;
 }
 
 - (void)loadMoreHotData:(MJRefreshAutoNormalFooter *)footer {

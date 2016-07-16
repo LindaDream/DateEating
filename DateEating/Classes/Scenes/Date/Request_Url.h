@@ -17,6 +17,10 @@
 
 #define NearByRequest_Url(multi,gender,time,age,constellation,occupation,start) [NSString stringWithFormat:@"http://api.qingchifan.com/api/event/nearby.json?access_token=6916a7ab1f71e43ac4eadf40a51b4ab16CBEB96E84AF9926E7406CC46FF121FD&basicCheck=0&lat=40.030482&lon=116.343562&multi=%ld&gender=%ld&time=%ld&age=%ld&constellation=%ld&occupation=%ld&start=%ld&size=20&apiVersion=2.9.0",multi,gender,time,age,constellation,occupation,start]
 
+// 评论信息的链接
 #define ChatMessageRequest_Url(eventId) [NSString stringWithFormat:@"http://api.qingchifan.com/api/event/comments.json?access_token=6916a7ab1f71e43ac4eadf40a51b4ab1AD09063BB2436532A103098481B9ADF2&basicCheck=0&eventId=%ld&start=0&size=50",eventId]
+
+// 餐厅详情链接(参数需要进行处理)
+#define CaterDetailRequest_Url(businessId) [NSString stringWithFormat:@"http://api.qingchifan.com/api/shop/findCaterShop.json?access_token=6916a7ab1f71e43ac4eadf40a51b4ab1AD09063BB2436532A103098481B9ADF2&businessId=%@&eventId=0&platform=1",businessId]
 
 #endif /* Request_Url_h */

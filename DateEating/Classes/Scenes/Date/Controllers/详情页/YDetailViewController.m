@@ -12,11 +12,14 @@
 #import "YNetWorkRequestManager.h"
 #import "Request_Url.h"
 #import "YChatMessageModel.h"
+#import "YCaterViewController.h"
+
 @interface YDetailViewController ()
 <
     UITableViewDataSource,
     UITableViewDelegate,
-    UIScrollViewDelegate
+    UIScrollViewDelegate,
+    YDetailHeaderTableViewCellDelegate
 >
 
 
@@ -78,6 +81,14 @@
     
 }
 
+#pragma mark -- 餐厅详情按钮代理 --
+- (void)restaurantBtnDidClicked:(YDetailHeaderTableViewCell *)cell {
+    YCaterViewController *caterVC = [[YCaterViewController alloc]init];
+    caterVC.businessId = cell.model.caterBusinessId;
+    [self.navigationController pushViewController:caterVC animated:YES];
+}
+
+
 #pragma mark -- tableview 实现的代理方法 --
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
@@ -91,6 +102,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         YDetailHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:YDetailHeaderTableViewCell_Identify forIndexPath:indexPath];
+        cell.delegate = self;
         cell.model = self.model;
         return cell;
     } else {

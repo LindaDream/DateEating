@@ -22,6 +22,7 @@
 @interface YDetailHeaderTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) YDateContentModel *model;
+@property (assign, nonatomic) id<YDetailHeaderTableViewCellDelegate>delegate;
 
 + (CGFloat)getHeightForCellWithActivity:(YDateContentModel *)activity;
 
