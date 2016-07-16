@@ -75,4 +75,9 @@
     [dateBtn removeFromSuperview];
     [partyBtn removeFromSuperview];
 }
+#pragma mark--高度自适应--
+-(CGFloat)textHeightForLabel:(UILabel *)label{
+    CGRect rect = [label.text boundingRectWithSize:CGSizeMake(label.frame.size.width, 500) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15.0]} context:nil];
+    return rect.size.height;
+}
 @end

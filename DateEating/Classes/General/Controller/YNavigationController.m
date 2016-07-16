@@ -82,7 +82,7 @@
 }
 
 - (void)back:(UIButton *)button{
-    [self popToViewController:self.viewControllers[0] animated:YES];
+    [self popViewControllerAnimated:YES];
 }
 
 

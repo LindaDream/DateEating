@@ -13,6 +13,7 @@
 #import "YTimeOrAddressTableViewCell.h"
 #import "YFindeTableViewCell.h"
 #import "YTimePiker.h"
+#import "YRestaurantViewController.h"
 @interface YPublishDateViewController ()<
     UITableViewDataSource,
     UITableViewDelegate,
@@ -32,6 +33,8 @@
 @property(strong,nonatomic)NSString *dateTmpStr;
 @property(strong,nonatomic)NSString *hourTmpStr;
 @property(strong,nonatomic)NSString *minuteTmpStr;
+@property(strong,nonatomic)NSString *timeStr;
+@property(strong,nonatomic)NSString *addressStr;
 @end
 
 // 设置重用标识符
@@ -102,10 +105,12 @@ static NSString *const findeCellIdentifier = @"findeCell";
             YTimeOrAddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:timeOrAddressCellIdentifier forIndexPath:indexPath];
             if (indexPath.row == 1) {
                 cell.timeOrAddLabel.text = @"时间";
+                cell.addressLabel.text = self.timeStr;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }else{
                 cell.timeOrAddLabel.text = @"地点";
+                cell.addressLabel.text = self.addressStr;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }
@@ -129,7 +134,15 @@ static NSString *const findeCellIdentifier = @"findeCell";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 2 && indexPath.row == 1) {
         [self addPickerView];
+    }else if(indexPath.section == 2 && indexPath.row == 2){
+        YRestaurantViewController *restaurantVC = [YRestaurantViewController new];
+        restaurantVC.passValueBlock = ^(NSString *addressStr){
+            self.addressStr = addressStr;
+            [self.dateTableView reloadData];
+        };
+        [self.navigationController pushViewController:restaurantVC animated:YES];
     }
+
 }
 #pragma mark--cell上的按钮点击方法--
 - (void)selectAction:(UIButton *)btn{

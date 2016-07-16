@@ -10,5 +10,6 @@
 
 @interface YTimeOrAddressTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *timeOrAddLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
 @end

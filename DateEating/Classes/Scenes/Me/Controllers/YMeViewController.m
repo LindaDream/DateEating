@@ -12,12 +12,13 @@
 #import "YLoginViewController.h"
 #import "YTabBarController.h"
 #import <MessageUI/MessageUI.h>
+#import "YAttentionListViewController.h"
 @interface YMeViewController ()<
-    UITableViewDataSource,
-    UITableViewDelegate,
-    UINavigationControllerDelegate,
-    UIImagePickerControllerDelegate,
-    MFMailComposeViewControllerDelegate
+UITableViewDataSource,
+UITableViewDelegate,
+UINavigationControllerDelegate,
+UIImagePickerControllerDelegate,
+MFMailComposeViewControllerDelegate
 >
 @property(strong,nonatomic)UITableView *meTableView;
 @property(strong,nonatomic)UIView *headView;
@@ -34,8 +35,8 @@
 @property(strong,nonatomic)NSString *isNight;
 // 模糊视图
 @property(strong,nonatomic)UIVisualEffectView *visualView;
-@end
 
+@end
 // 我的界面cell标识符
 static NSString *const clearCellIdentifier = @"clearCell";
 // 设置列表cell标识符
@@ -50,13 +51,13 @@ static NSString *const listCellIdentifier = @"listCell";
         self.emailLabel.text = [AVUser currentUser].email;
         [self.loginButton setTitle:@"注销" forState:(UIControlStateNormal)];
         AVFile *file = [[AVUser currentUser] objectForKey:@"avatar"];
-            [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.headImgView.image = [UIImage imageWithData:data];
-                });
-            } progressBlock:^(NSInteger percentDone) {
-                
-            }];
+        [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.headImgView.image = [UIImage imageWithData:data];
+            });
+        } progressBlock:^(NSInteger percentDone) {
+            
+        }];
     }else{
         self.nameLabel.text = @"未登录";
         self.headImgView.image = [UIImage imageNamed:@"head_img"];
@@ -233,7 +234,7 @@ static NSString *const listCellIdentifier = @"listCell";
 
 #pragma mark--夜间模式--
 - (void)nightModeClick{
-    if ([AVUser currentUser]) {        
+    if ([AVUser currentUser]) {
         // 发送通知
         // 变为夜间模式
         [[NSNotificationCenter defaultCenter] postNotificationName:@"NotificationNight" object:nil userInfo:@{@"isNight":self.isNight}];
@@ -298,7 +299,7 @@ static NSString *const listCellIdentifier = @"listCell";
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == self.meTableView) {
-        return 2;
+        return 3;
     }
     return 5;
 }
@@ -306,8 +307,11 @@ static NSString *const listCellIdentifier = @"listCell";
     if (tableView == self.meTableView) {
         YClearTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:clearCellIdentifier forIndexPath:indexPath];
         if (indexPath.row == 0) {
+            cell.imgView.image = [UIImage imageNamed:@"mine_committed"];
+            cell.cellNameLabel.text = @"我发起的";
+        }else if (indexPath.row == 1) {
             cell.imgView.image = [UIImage imageNamed:@"mine_save"];
-            cell.cellNameLabel.text = @"我的收藏";
+            cell.cellNameLabel.text = @"我的关注";
         }else{
             cell.imgView.image = [UIImage imageNamed:@"mine_clear"];
             cell.cellNameLabel.text = @"清除缓存";
@@ -351,12 +355,20 @@ static NSString *const listCellIdentifier = @"listCell";
                 YLoginViewController *loginVC = [YLoginViewController new];
                 [self presentViewController:loginVC animated:YES completion:nil];
             }
+        }else if (indexPath.row == 1) {
+            if ([AVUser currentUser]) {
+                YAttentionListViewController *attentionListVC = [YAttentionListViewController new];
+                [self.navigationController pushViewController:attentionListVC animated:YES];
+            }else{
+                YLoginViewController *loginVC = [YLoginViewController new];
+                [self presentViewController:loginVC animated:YES completion:nil];
+            }
         }else{
             __weak typeof(self)mySelf = self;
             UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认清楚缓存?" preferredStyle:(UIAlertControllerStyleAlert)];
             UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
                 [mySelf clearCache:kCachesPath];
-                [mySelf.meTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:1 inSection:0]] withRowAnimation:(UITableViewRowAnimationNone)];
+                [mySelf.meTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:2 inSection:0]] withRowAnimation:(UITableViewRowAnimationNone)];
             }];
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil];
             [alertView addAction:doneAction];
@@ -381,7 +393,7 @@ static NSString *const listCellIdentifier = @"listCell";
                 [mcVC setCcRecipients:@[@"2696380320@qq.com"]];
                 [mcVC setSubject:@"意见反馈"];
                 // 邮件正文
-                 NSString *mailBody = [NSString stringWithFormat:@"约起来,感谢你宝贵的反馈,我们会不断完善"];
+                NSString *mailBody = [NSString stringWithFormat:@"约起来,感谢你宝贵的反馈,我们会不断完善"];
                 [mcVC setMessageBody:mailBody isHTML:NO];
                 [self presentViewController:mcVC animated:YES completion:nil];
             }else{
@@ -406,6 +418,7 @@ static NSString *const listCellIdentifier = @"listCell";
     }
     return 50;
 }
+
 // 回收当前版本alertView
 - (void)actionDismissAlertView:(UIAlertController *)alertView{
     [alertView dismissViewControllerAnimated:YES completion:nil];
@@ -463,13 +476,13 @@ static NSString *const listCellIdentifier = @"listCell";
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

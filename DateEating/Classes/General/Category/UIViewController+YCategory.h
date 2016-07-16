@@ -16,4 +16,6 @@
 // 按钮动画
 - (void)addDateBtnAndPartyBtn;
 - (void)removeDateBtnAndPartyBtn;
+// label高度自适应
+- (CGFloat)textHeightForLabel:(UILabel *)label;
 @end
