@@ -175,8 +175,7 @@
 #pragma mark--注册环信--
                 EMError *error = [[EMClient sharedClient] registerWithUsername:self.userNameTF.text password:self.passwordTF.text];
                 if (error==nil) {
-                    [[NSUserDefaults standardUserDefaults] setObject:self.userNameTF.text forKey:@"userName"];
-                    [[NSUserDefaults standardUserDefaults] setObject:self.passwordTF.text forKey:@"passWord"];
+                    
                 }else{
                         NSLog(@"%@",error);
                     }

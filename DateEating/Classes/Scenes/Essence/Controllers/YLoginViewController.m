@@ -27,6 +27,8 @@
         if (nil != user) {
             [[EMClient sharedClient] loginWithUsername:self.userNameTF.text password:self.passwordTF.text];
             [[EMClient sharedClient].options setIsAutoLogin:YES];
+            [[NSUserDefaults standardUserDefaults] setObject:self.userNameTF.text forKey:@"userName"];
+            [[NSUserDefaults standardUserDefaults] setObject:self.passwordTF.text forKey:@"passWord"];
             YTabBarController *tabBarVC = [YTabBarController new];
             [self presentViewController:tabBarVC animated:YES completion:nil];
         } else if(error.code == 210){

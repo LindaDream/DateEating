@@ -33,7 +33,7 @@
     [self.window makeKeyAndVisible];
     // 添加UITabBarC ontroller
     UITabBarController *tabBarController = [[YTabBarController alloc] init];
-    if (nil == currentUser) {
+    if (nil == currentUser || nil == [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"]) {
         YOpenViewController *openVC = [YOpenViewController new];
         self.window.rootViewController = openVC;
     }else if(currentUser && nil != [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"]){
