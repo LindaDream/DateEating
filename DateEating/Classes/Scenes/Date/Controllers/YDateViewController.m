@@ -14,6 +14,7 @@
 #import "YNetWorkRequestManager.h"
 #import "Request_Url.h"
 #import "YDateContentModel.h"
+#import <MJRefreshAutoNormalFooter.h>
 
 @interface YDateViewController ()
 <
@@ -32,6 +33,8 @@
 @property (strong,nonatomic) NSMutableArray *hotArray;
 @property (strong,nonatomic) NSMutableArray *nearByArray;
 @property (strong, nonatomic) YNSUserDefaultHandel *handle;
+@property (assign, nonatomic) NSInteger hotCount;
+@property (assign,nonatomic) NSInteger nearbyCount;
 
 @end
 
@@ -45,12 +48,17 @@
     
     // 设置navigtationbar的头视图
     [self setNavigationBar];
+    
+    // 设置上拉加载下拉刷新
+    [self refrushData];
+    
+    
     // 注册cell
     [self.hotTableView registerNib:[UINib nibWithNibName:@"YDateListTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:YDateListTableViewCell_Identify];
     [self.nearbyTableView registerNib:[UINib nibWithNibName:@"YDateListTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:YDateListTableViewCell_Identify];
     // 数据请求
-    [self requestHotDataWithUrl];
-    [self requestNearByDataWithUrl];
+    [self requestHotDataWithUrl:0];
+    [self requestNearByDataWithUrl:0];
     
 }
 // 懒加载
@@ -68,10 +76,12 @@
 }
 
 #pragma mark -- 数据查询 --
-- (void)requestHotDataWithUrl {
+- (void)requestHotDataWithUrl:(NSInteger )start {
     __weak YDateViewController *dateVC = self;
-    [YNetWorkRequestManager getRequestWithUrl:HotRequest_Url([_handle multi], [_handle gender], [_handle time], [_handle age], [_handle constellation], [_handle occupation]) successRequest:^(id dict) {
-        dateVC.hotArray = [YDateContentModel getDateContentListWithDic:dict];
+    [YNetWorkRequestManager getRequestWithUrl:HotRequest_Url([_handle multi], [_handle gender], [_handle time], [_handle age], [_handle constellation], [_handle occupation], start) successRequest:^(id dict) {
+        NSNumber *count = dict[@"data"][@"total"];
+        dateVC.hotCount = count.integerValue;
+        [dateVC.hotArray addObjectsFromArray:[YDateContentModel getDateContentListWithDic:dict]];
         dispatch_async(dispatch_get_main_queue(), ^{
             [dateVC reloadAllData];
         });
@@ -79,10 +89,12 @@
         
     }];
 }
-- (void)requestNearByDataWithUrl {
+- (void)requestNearByDataWithUrl:(NSInteger )start {
     __weak YDateViewController *dateVC = self;
-    [YNetWorkRequestManager getRequestWithUrl:NearByRequest_Url([_handle multi], [_handle gender], [_handle time], [_handle age], [_handle constellation], [_handle occupation]) successRequest:^(id dict) {
-        dateVC.nearByArray = [YDateContentModel getDateContentListWithDic:dict];
+    [YNetWorkRequestManager getRequestWithUrl:NearByRequest_Url([_handle multi], [_handle gender], [_handle time], [_handle age], [_handle constellation], [_handle occupation], start) successRequest:^(id dict) {
+        NSNumber *count = dict[@"data"][@"total"];
+        dateVC.nearbyCount = count.integerValue;
+        [dateVC.nearByArray addObjectsFromArray:[YDateContentModel getDateContentListWithDic:dict]];
         dispatch_async(dispatch_get_main_queue(), ^{
             [dateVC reloadAllData];
         });
@@ -99,13 +111,59 @@
     [self.nearbyTableView reloadData];
 }
 
+#pragma mark -- 上拉加载 --
+- (void)refrushData {
+    // 尾
+    MJRefreshAutoNormalFooter *footerHot = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreHotData:)];
+    [footerHot setTitle:@"" forState:MJRefreshStateIdle];
+    [footerHot setTitle:@"正在加载..." forState:MJRefreshStateRefreshing];
+    [footerHot setTitle:@"没有更多了" forState:MJRefreshStateNoMoreData];
+    footerHot.stateLabel.font = [UIFont systemFontOfSize:17];
+    footerHot.stateLabel.textColor = YRGBColor(248, 89, 64);
+    self.hotTableView.mj_footer = footerHot;
+    
+    MJRefreshAutoNormalFooter *footerNearBy = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreNearByData:)];
+    [footerNearBy setTitle:@"" forState:MJRefreshStateIdle];
+    [footerNearBy setTitle:@"正在加载..." forState:MJRefreshStateRefreshing];
+    [footerNearBy setTitle:@"没有更多了" forState:MJRefreshStateNoMoreData];
+    footerNearBy.stateLabel.font = [UIFont systemFontOfSize:17];
+    footerNearBy.stateLabel.textColor = YRGBColor(248, 89, 64);
+    self.nearbyTableView.mj_footer = footerNearBy;
+    // 头
+}
+
+- (void)loadMoreHotData:(MJRefreshAutoNormalFooter *)footer {
+    if (self.hotArray.count >= self.hotCount) {
+        NSLog(@"%ld--%ld",self.hotCount,self.hotArray.count);
+        footer.state = MJRefreshStateNoMoreData;
+        return;
+    }
+    [self requestHotDataWithUrl:self.hotArray.count];
+    [footer endRefreshing];
+    
+}
+- (void)loadMoreNearByData:(MJRefreshAutoNormalFooter *)footer {
+    if (self.nearByArray.count >= self.nearbyCount) {
+        footer.state = MJRefreshStateNoMoreData;
+        return;
+    }
+    [self requestNearByDataWithUrl:self.nearByArray.count];
+    [footer endRefreshing];
+}
+
 #pragma mark -- 设置导航栏上的各功能按钮 --
 - (void)setNavigationBar {
     
     // 设置导航栏左边的按钮
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImage:@"MainTagSubIcon" heightImage:@"MainTagSubIconClick" target:self action:@selector(tagClick)];
     // 设置右边的按钮
-    self.barButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"NaviUnFiltered"] style:UIBarButtonItemStyleDone target:self action:@selector(seekByConditionAction:)];
+    NSString *imgString = nil;
+    if ([self.handle haveSeekCondition]) {
+        imgString = @"NaviFiltered";
+    } else {
+        imgString = @"NaviUnFiltered";
+    }
+    self.barButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:imgString] style:UIBarButtonItemStyleDone target:self action:@selector(seekByConditionAction:)];
     self.navigationItem.rightBarButtonItem = _barButton;
     
     // 设置头视图
@@ -151,8 +209,8 @@
     }
     [self.hotArray removeAllObjects];
     [self.nearByArray removeAllObjects];
-    [self requestHotDataWithUrl];
-    [self requestNearByDataWithUrl];
+    [self requestHotDataWithUrl:0];
+    [self requestNearByDataWithUrl:0];
 }
 
 - (void)tagClick{
@@ -191,6 +249,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     YDetailViewController *detailVC = [[YDetailViewController alloc]init];
+    if (tableView == self.hotTableView) {
+        detailVC.model = self.hotArray[indexPath.section];
+    } else {
+        detailVC.model = self.nearByArray[indexPath.section];
+    }
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 

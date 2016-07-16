@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YDateContentModel.h"
 
 @interface YDetailViewController : UIViewController
+
+@property (strong,nonatomic) YDateContentModel *model;
 
 @end

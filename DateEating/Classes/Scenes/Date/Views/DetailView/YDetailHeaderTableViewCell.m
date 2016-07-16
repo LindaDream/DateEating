@@ -7,6 +7,7 @@
 //
 
 #import "YDetailHeaderTableViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface YDetailHeaderTableViewCell()
 
@@ -27,7 +28,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *eventNumberDesc;
 
-
 @end
 
 @implementation YDetailHeaderTableViewCell
@@ -42,15 +42,49 @@
     // Configure the view for the selected state
 }
 
+#pragma mark -- 重写model的set方法赋值 --
+- (void)setModel:(YDateContentModel *)model {
+    if (_model != model) {
+        _model = nil;
+        _model = model;
+        
+        _eventName.text = model.eventName;
+        _eventLocation.text = model.eventLocation;
+        _distance.text = @"100km";
+        NSDateFormatter *formatter =[[NSDateFormatter alloc]init];
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.eventDateTime/1000];
+        [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+        NSString *dateString = [formatter stringFromDate:date];
+        _eventDateTime.text = [NSString stringWithFormat:@"%@",dateString];
+        _feeDesc.text = model.feeType.desc;
+        _eventDescription.text = model.eventDescription;
+        _nick.text = model.user.nick;
+        _constellation.text = model.user.constellation;
+        _age.text = [NSString stringWithFormat:@"%ld",model.user.age];
+        _showCount.text = [NSString stringWithFormat:@"%ld",model.showCount];
+        _candidateCount.text = [NSString stringWithFormat:@"%ld",model.candidateCount];
+        _commentCount.text = [NSString stringWithFormat:@"%ld",model.commentCount];
+        _credit.text = [NSString stringWithFormat:@"%ld",model.credit];
+        
+        [_userImage sd_setImageWithURL:[NSURL URLWithString:model.user.userImageUrl] placeholderImage:[UIImage imageNamed:@"DefaultAvatar"]];
+        
+    }
+}
+
 #pragma mark -- 求cell的高度 --
-//+ (CGFloat)getHeightForCellWithActivity:(TheaterModel *)activity {
-//    CGSize size = CGSizeMake([UIScreen mainScreen].bounds.size.width -40, 100000);
-//    NSDictionary *dic = @{NSFontAttributeName:[UIFont systemFontOfSize:14.0f]};
-//    
-//    // 计算locationLabel的文本高度
-//    CGRect titleLabel = [activity.address boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading|NSStringDrawingUsesDeviceMetrics|NSStringDrawingTruncatesLastVisibleLine attributes:dic context:nil];
-//    
-//    return 40 + 42 + titleLabel.size.height;
-//}
++ (CGFloat)getHeightForCellWithActivity:(YDateContentModel *)activity {
+    CGSize size = CGSizeMake([UIScreen mainScreen].bounds.size.width -155, 100000);
+    NSDictionary *nameDic = @{NSFontAttributeName:[UIFont systemFontOfSize:16.0f]};
+    
+    // 计算eventName的文本高度
+    CGRect nameLabel = [activity.eventName boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading|NSStringDrawingUsesDeviceMetrics|NSStringDrawingTruncatesLastVisibleLine attributes:nameDic context:nil];
+    
+    // 计算eventDescription的文本高度
+    CGSize size2 = CGSizeMake([UIScreen mainScreen].bounds.size.width -36, 100000);
+    NSDictionary *descDic = @{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]};
+    CGRect descLabel = [activity.eventName boundingRectWithSize:size2 options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading|NSStringDrawingUsesDeviceMetrics|NSStringDrawingTruncatesLastVisibleLine attributes:descDic context:nil];
+    
+    return 285 + nameLabel.size.height + descLabel.size.height;
+}
 
 @end

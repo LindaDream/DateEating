@@ -132,6 +132,33 @@
 - (EMChatroom *)leaveChatroom:(NSString *)aChatroomId
                         error:(EMError **)pError;
 
+/*!
+ *  \~chinese
+ *  获取聊天室详情
+ *  
+ *  同步方法，会阻塞当前线程
+ *
+ *  @param aChatroomId           聊天室ID
+ *  @param aIncludeMembersList   是否获取成员列表
+ *  @param pError                错误信息
+ *
+ *  @return    聊天室
+ *
+ *  \~english
+ *  Fetch chatroom's specification
+ *
+ *  Synchronization method, will block the current thread
+ *
+ *  @param aChatroomId           Chatroom id
+ *  @param aIncludeMembersList   Whether get member list
+ *  @param pError                Error
+ *
+ *  @return    Chatroom instance
+ */
+- (EMChatroom *)fetchChatroomInfo:(NSString *)aChatroomId
+               includeMembersList:(BOOL)aIncludeMembersList
+                            error:(EMError **)pError;
+
 #pragma mark - Async method
 
 /*!
@@ -195,4 +222,26 @@
                    success:(void (^)(EMChatroom *aRoom))aSuccessBlock
                    failure:(void (^)(EMError *aError))aFailureBlock;
 
+/*!
+ *  \~chinese
+ *  获取聊天室详情
+ *
+ *  @param aChatroomId           聊天室ID
+ *  @param aIncludeMembersList   是否获取成员列表
+ *  @param aSuccessBlock         成功的回调
+ *  @param aFailureBlock         失败的回调
+ *
+ *  \~english
+ *  Fetch chatroom's specification
+ *
+ *  @param aChatroomId           Chatroom id
+ *  @param aIncludeMembersList   Whether get member list
+ *  @param aSuccessBlock         The callback block of success
+ *  @param aFailureBlock         The callback block of failure
+ *
+ */
+- (void)asyncFetchChatroomInfo:(NSString *)aChatroomId
+            includeMembersList:(BOOL)aIncludeMembersList
+                       success:(void (^)(EMChatroom *aChatroom))aSuccessBlock
+                       failure:(void (^)(EMError *aError))aFailureBlock;
 @end

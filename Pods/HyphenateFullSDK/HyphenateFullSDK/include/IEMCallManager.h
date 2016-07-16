@@ -78,7 +78,7 @@
  *
  *  @result Error
  */
-- (EMError *)answerCall:(NSString *)aSessionId;
+- (EMError *)answerIncomingCall:(NSString *)aSessionId;
 
 /*!
  *  \~chinese 

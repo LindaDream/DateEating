@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YChatMessageModel.h"
 
 #define YChatTableViewCell_Indentify @"YChatTableViewCell_Indentify"
 @interface YChatTableViewCell : UITableViewCell
+
+@property (strong,nonatomic) YChatMessageModel *model;
+
++ (CGFloat)getHeightForCellWithActivity:(YChatMessageModel *)activity;
 
 @end

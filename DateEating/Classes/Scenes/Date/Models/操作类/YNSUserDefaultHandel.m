@@ -50,28 +50,53 @@ static YNSUserDefaultHandel *handle = nil;
 //basicCheck=0&city=010&multi=0&gender=0&time=0&age=0&constellation=0&occupation=0&start=0&size=20&apiVersion=2.9.0
 #pragma mark -- 存值 --
 - (NSInteger)basicCheck {
+    if (![[NSUserDefaults standardUserDefaults]integerForKey:@"basicCheck"]) {
+        return 0;
+    }
     return [[NSUserDefaults standardUserDefaults]integerForKey:@"basicCheck"];
 }
 
 - (NSInteger)city {
+    if (![[NSUserDefaults standardUserDefaults]integerForKey:@"city"]) {
+        return 0;
+    }
     return [[NSUserDefaults standardUserDefaults]integerForKey:@"city"];
 }
 - (NSInteger)multi {
+    if (![[NSUserDefaults standardUserDefaults]integerForKey:@"multi"]) {
+        return 0;
+    }
     return [[NSUserDefaults standardUserDefaults]integerForKey:@"multi"];
 }
 - (NSInteger)gender {
+    if (![[NSUserDefaults standardUserDefaults]integerForKey:@"gender"]) {
+        return 0;
+    }
     return [[NSUserDefaults standardUserDefaults]integerForKey:@"gender"];
 }
 - (NSInteger)time {
+    if (![[NSUserDefaults standardUserDefaults]integerForKey:@"time"]) {
+        return 0;
+    }
     return [[NSUserDefaults standardUserDefaults]integerForKey:@"time"];
 }
+
 - (NSInteger)age {
+    if (![[NSUserDefaults standardUserDefaults]integerForKey:@"age"]) {
+        return 0;
+    }
     return [[NSUserDefaults standardUserDefaults]integerForKey:@"age"];
 }
 - (NSInteger)constellation {
+    if (![[NSUserDefaults standardUserDefaults]integerForKey:@"constellation"]) {
+        return 0;
+    }
     return [[NSUserDefaults standardUserDefaults]integerForKey:@"constellation"];
 }
 - (NSInteger)occupation {
+    if (![[NSUserDefaults standardUserDefaults]integerForKey:@"occupation"]) {
+        return 0;
+    }
     return [[NSUserDefaults standardUserDefaults]integerForKey:@"occupation"];
 }
 

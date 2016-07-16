@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YDateContentModel.h"
 
 @class YDetailHeaderTableViewCell;
 @protocol YDetailHeaderTableViewCellDelegate <NSObject>
@@ -20,6 +21,8 @@
 #define YDetailHeaderTableViewCell_Identify @"YDetailHeaderTableViewCell_Identify"
 @interface YDetailHeaderTableViewCell : UITableViewCell
 
+@property (strong, nonatomic) YDateContentModel *model;
 
++ (CGFloat)getHeightForCellWithActivity:(YDateContentModel *)activity;
 
 @end

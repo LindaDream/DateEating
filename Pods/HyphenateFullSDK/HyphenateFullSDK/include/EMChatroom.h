@@ -51,13 +51,44 @@
 @property (nonatomic, copy, readonly) NSString *description;
 
 /*!
- *  \~chinese 
- *  聊天室的最大人数
+ *  \~chinese
+ *  聊天室的所有者，需要获取聊天室详情
+ *
+ *  聊天室的所有者只有一人
  *
  *  \~english
- *  The maximum number of members
+ *  Chatroom‘s owner, need to fetch chatroom's specification
+ *
+ *  A chatroom only has one owner
+ */
+@property (nonatomic, copy, readonly) NSString *owner;
+
+/*!
+ *  \~chinese 
+ *  聊天室的当前人数，如果没有获取聊天室详情将返回0
+ *
+ *  \~english
+ *  The current number of members, will return 0 if have not ever fetched chatroom's specification
+ */
+@property (nonatomic, readonly) NSInteger occupantsCount;
+
+/*!
+ *  \~chinese 
+ *  聊天室的最大人数，如果没有获取聊天室详情将返回0
+ *
+ *  \~english
+ *  The maximum number of members, will return 0 if have not ever fetched chatroom's specification
  */
 @property (nonatomic, readonly) NSInteger maxOccupantsCount;
+
+/*!
+ *  \~chinese
+ *  聊天室的成员列表，需要获取聊天室详情
+ *
+ *  \~english
+ *  Member list of chatroom, need to fetch chatroom's specification
+ */
+@property (nonatomic, copy, readonly) NSArray *occupants;
 
 /*!
  *  \~chinese

@@ -7,9 +7,10 @@
 //
 
 #import "YSeekConditionViewController.h"
-#import "YContionViewController.h"
+#import "YSelectionView.h"
 #import "Request_Url.h"
 #import "YNSUserDefaultHandel.h"
+#import <MJRefresh/UIScrollView+MJRefresh.h>
 
 @interface YSeekConditionViewController ()
 <
@@ -102,8 +103,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    YContionViewController *conditionList = [YContionViewController alertControllerWithTitle:@"请选择" message:nil preferredStyle:UIAlertControllerStyleAlert];
-    conditionList.listArray = self.listDic[@(indexPath.row)];
+    YSelectionView *conditionList = [[YSelectionView alloc]initWithFrame:self.view.bounds];
+    //conditionList.array = [NSMutableArray array];
+    conditionList.array = self.listDic[@(indexPath.row)];
     conditionList.choiceBlock = ^(NSString *string,NSInteger index) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         cell.detailTextLabel.text = string;
@@ -115,7 +117,7 @@
             [self.handle setOccupation:index];
         }
     };
-    [self presentViewController:conditionList animated:YES completion:nil];
+    [[[UIApplication sharedApplication]keyWindow]addSubview:conditionList];
 }
 
 - (void)didReceiveMemoryWarning {
