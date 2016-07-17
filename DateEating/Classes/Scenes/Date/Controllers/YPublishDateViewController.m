@@ -15,10 +15,10 @@
 #import "YTimePiker.h"
 #import "YRestaurantViewController.h"
 @interface YPublishDateViewController ()<
-    UITableViewDataSource,
-    UITableViewDelegate,
-    UIPickerViewDataSource,
-    UIPickerViewDelegate
+UITableViewDataSource,
+UITableViewDelegate,
+UIPickerViewDataSource,
+UIPickerViewDelegate
 >
 
 @property (weak, nonatomic) IBOutlet UITableView *dateTableView;
@@ -110,8 +110,8 @@ static NSString *const findeCellIdentifier = @"findeCell";
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }else{
                 cell.timeOrAddLabel.text = @"地点";
-                cell.addressLabel.text = self.addressStr;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.addressLabel.text = self.addressStr;
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }
             return cell;
@@ -142,7 +142,6 @@ static NSString *const findeCellIdentifier = @"findeCell";
         };
         [self.navigationController pushViewController:restaurantVC animated:YES];
     }
-
 }
 #pragma mark--cell上的按钮点击方法--
 - (void)selectAction:(UIButton *)btn{
@@ -224,8 +223,10 @@ static NSString *const findeCellIdentifier = @"findeCell";
     }else{
         UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:(UIAlertControllerStyleAlert)];
         UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            self.timeStr = self.dateStr;
             self.dateStr = @"".mutableCopy;
             [self.backView removeFromSuperview];
+            [self.dateTableView reloadData];
         }];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
             self.dateStr = @"".mutableCopy;
@@ -234,7 +235,7 @@ static NSString *const findeCellIdentifier = @"findeCell";
         [alertView addAction:doneAction];
         [self presentViewController:alertView animated:YES completion:nil];
     }
- }
+}
 #pragma mark--设置每列的宽度--
 -(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
     if (component == 0) {
@@ -254,13 +255,13 @@ static NSString *const findeCellIdentifier = @"findeCell";
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

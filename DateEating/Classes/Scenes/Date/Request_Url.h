@@ -26,5 +26,6 @@
 #define RestaurantList_URL(city) [NSString stringWithFormat:@"http://api.qingchifan.com/api/shop/getHotCaterShop.json?access_token=6916a7ab1f71e43ac4eadf40a51b4ab1630144C27312C61033B379CF31F801BA&city=%@&regions=",city]
 // 餐厅详情界面连接
 #define RestaurantDetail_URL(businessId) [NSString stringWithFormat:@"http://api.qingchifan.com/api/shop/findCaterShop.json?access_token=6916a7ab1f71e43ac4eadf40a51b4ab1630144C27312C61033B379CF31F801BA&businessId=%@&eventId=0&platform=1",businessId]
-
+// 餐厅列表界面的城市列表链接
+#define CityList_URL @"http://api.lanrenzhoumo.com/district/list/allcity?session_id=00004016b3e14bbea40c1aa1a14c2273a35352"
 #endif /* Request_Url_h */

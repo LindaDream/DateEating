@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE05FBE71D3BA16C00362EE1 /* YCityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE05FBE61D3BA16C00362EE1 /* YCityListViewController.m */; };
+		CE05FBEC1D3BA19B00362EE1 /* YCityListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE05FBE91D3BA19B00362EE1 /* YCityListModel.m */; };
+		CE05FBED1D3BA19B00362EE1 /* YCityTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE05FBEB1D3BA19B00362EE1 /* YCityTypeModel.m */; };
 		CE49790D1D34CACE0087FAF6 /* YLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE49790B1D34CACE0087FAF6 /* YLoginViewController.m */; };
 		CE49790E1D34CACE0087FAF6 /* YLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE49790C1D34CACE0087FAF6 /* YLoginViewController.xib */; };
 		CE4979101D34EA5F0087FAF6 /* guide_slide_2.png in Resources */ = {isa = PBXBuildFile; fileRef = CE49790F1D34EA5F0087FAF6 /* guide_slide_2.png */; };
@@ -442,6 +445,12 @@
 /* Begin PBXFileReference section */
 		54D591035C569F9FB750CE83 /* Pods-DateEating.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DateEating.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DateEating/Pods-DateEating.debug.xcconfig"; sourceTree = "<group>"; };
 		7C3E5E371EBA8BAE102B0DB4 /* libPods-DateEating.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DateEating.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE05FBE51D3BA16C00362EE1 /* YCityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCityListViewController.h; sourceTree = "<group>"; };
+		CE05FBE61D3BA16C00362EE1 /* YCityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCityListViewController.m; sourceTree = "<group>"; };
+		CE05FBE81D3BA19B00362EE1 /* YCityListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCityListModel.h; sourceTree = "<group>"; };
+		CE05FBE91D3BA19B00362EE1 /* YCityListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCityListModel.m; sourceTree = "<group>"; };
+		CE05FBEA1D3BA19B00362EE1 /* YCityTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCityTypeModel.h; sourceTree = "<group>"; };
+		CE05FBEB1D3BA19B00362EE1 /* YCityTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCityTypeModel.m; sourceTree = "<group>"; };
 		CE49790A1D34CACE0087FAF6 /* YLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YLoginViewController.h; path = DateEating/Classes/Scenes/Essence/Controllers/YLoginViewController.h; sourceTree = SOURCE_ROOT; };
 		CE49790B1D34CACE0087FAF6 /* YLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YLoginViewController.m; path = DateEating/Classes/Scenes/Essence/Controllers/YLoginViewController.m; sourceTree = SOURCE_ROOT; };
 		CE49790C1D34CACE0087FAF6 /* YLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YLoginViewController.xib; path = DateEating/Classes/Scenes/Essence/Controllers/YLoginViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -1161,6 +1170,8 @@
 		CE6913561D33CFDB001FE50B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CE05FBE51D3BA16C00362EE1 /* YCityListViewController.h */,
+				CE05FBE61D3BA16C00362EE1 /* YCityListViewController.m */,
 				CEE575751D3A7BF7008B2906 /* YRestaurantDetailViewController.h */,
 				CEE575761D3A7BF7008B2906 /* YRestaurantDetailViewController.m */,
 				CEE575771D3A7BF7008B2906 /* YRestaurantDetailViewController.xib */,
@@ -1184,6 +1195,10 @@
 		CE6913571D33CFDB001FE50B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CE05FBE81D3BA19B00362EE1 /* YCityListModel.h */,
+				CE05FBE91D3BA19B00362EE1 /* YCityListModel.m */,
+				CE05FBEA1D3BA19B00362EE1 /* YCityTypeModel.h */,
+				CE05FBEB1D3BA19B00362EE1 /* YCityTypeModel.m */,
 				CEE5757D1D3A7C25008B2906 /* YRestaurantDetailModel.h */,
 				CEE5757E1D3A7C25008B2906 /* YRestaurantDetailModel.m */,
 				CEE5757F1D3A7C25008B2906 /* YRestaurantListModel.h */,
@@ -2413,6 +2428,7 @@
 				D67A34671D3A829D00D5BA9D /* Foundation+Log.m in Sources */,
 				CED28D681D3793C900A468CF /* YPublishDateViewController.m in Sources */,
 				D6F0F3D71D3B49BE00D1EF81 /* EventView.m in Sources */,
+				CE05FBED1D3BA19B00362EE1 /* YCityTypeModel.m in Sources */,
 				D6B2A0E71D3A33D1002BB383 /* YCaterTableViewCell.m in Sources */,
 				D67A346A1D3A82EE00D5BA9D /* UIButton+YCategory.m in Sources */,
 				CED28D521D378A0300A468CF /* YPlayModel.m in Sources */,
@@ -2448,6 +2464,8 @@
 				D61D1B401D3874B500C36F84 /* YNetWorkRequestManager.m in Sources */,
 				D6F0F39A1D3B483400D1EF81 /* MealDetailsViewController.m in Sources */,
 				CE69131C1D33C95D001FE50B /* main.m in Sources */,
+				CE05FBEC1D3BA19B00362EE1 /* YCityListModel.m in Sources */,
+				CE05FBE71D3BA16C00362EE1 /* YCityListViewController.m in Sources */,
 				CED28D571D378A1C00A468CF /* AppDelegate.m in Sources */,
 				D6B2A0EF1D3A3DAE002BB383 /* YCaterDetail.m in Sources */,
 				CED28D501D378A0300A468CF /* YMealDetailsModel.m in Sources */,
