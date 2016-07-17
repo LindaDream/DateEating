@@ -11,6 +11,7 @@
 
 #import "UIView+XMGCategory.h"
 #import "UIBarButtonItem+XMGCategory.h"
+#import "UIButton+YCategory.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <UIImageView+WebCache.h>
@@ -19,7 +20,12 @@
 #import "Singleton.h"
 #import "YNetWorkRequestManager.h"
 #import "Request_Url.h"
+#import <SDCycleScrollView.h>
 #import <AFNetworking.h>
+#import "ViewMacro.h"
+#import "UrlMacro.h"
+#import <MJRefresh.h>
+
 
 #define kCachesPath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
 #ifdef DEBUG // 意思是如果是调试阶段 则用自定义的XMGLog(...)宏定义系统的NSLog(__VA_ARGS__)
@@ -33,6 +39,10 @@
 #define YRGBColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
 
 #define YRGBbg YRGBColor(223,223,223)
+
+// 宏定义屏幕宽高
+#define kWidth [UIScreen mainScreen].bounds.size.width
+#define kHeight [UIScreen mainScreen].bounds.size.height
 
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height

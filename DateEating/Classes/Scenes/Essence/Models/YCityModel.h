@@ -14,7 +14,7 @@
 @property (nonatomic, strong)NSString *name;
 @property (nonatomic, strong)NSMutableArray *tabs;
 
-
++ (void)parsesWithUrl:(NSString *)url successRequest:(successRequest)success failurRequest:(failureRequest)failure;
 @end
 
 

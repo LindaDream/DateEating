@@ -1,9 +1,9 @@
 //
-//  XMGEssenceViewController.h
-//  百思不得姐
+//  YViewController.h
+//  DateEating
 //
-//  Created by lanou3g on 16/5/6.
-//  Copyright © 2016年 春晓. All rights reserved.
+//  Created by lanou3g on 16/7/13.
+//  Copyright © 2016年 user. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

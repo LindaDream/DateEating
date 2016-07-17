@@ -35,4 +35,24 @@
     }
 }
 
++ (void)parsesWithUrl:(NSString *)url successRequest:(successRequest)success failurRequest:(failureRequest)failure{
+    
+    //NSMutableArray *mArr = [NSMutableArray array];
+    [YNetWorkRequestManager getRequestWithUrl:url successRequest:^(NSDictionary *dict) {
+        //NSLog(@"+++++++++++++%@",dict);
+        if(dict){
+            YMealDetailsModel *meal = [[YMealDetailsModel alloc] init];
+            [meal setValuesForKeysWithDictionary:dict[@"data"]];
+            //[mArr addObject:play];
+            success(meal);
+        }
+        
+    } failurRequest:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+    
+}
+
+
 @end

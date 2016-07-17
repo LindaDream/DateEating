@@ -33,4 +33,6 @@
 @property (nonatomic, strong)NSMutableArray *recommendAutomatic;
 @property (nonatomic, strong)NSString *shareUrl;
 
++ (void)parsesWithUrl:(NSString *)url successRequest:(successRequest)success failurRequest:(failureRequest)failure;
+
 @end

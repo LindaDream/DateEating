@@ -61,4 +61,29 @@
     }
 }
 
++ (void)parsesWithUrl:(NSString *)url successRequest:(successRequest)success failurRequest:(failureRequest)failure{
+    
+    NSMutableArray *mArr = [NSMutableArray array];
+    [YNetWorkRequestManager getRequestWithUrl:url successRequest:^(NSDictionary *dict) {
+        //NSLog(@"+++++++++++++%@",dict);
+        if(dict){
+            for (NSDictionary *dic in dict[@"data"][@"doc"]) {
+                
+                YPlayModel *play = [[YPlayModel alloc] init];
+                [play setValuesForKeysWithDictionary:dic];
+                play.nextPage = dict[@"data"][@"nextPage"];
+                play.rows = dict[@"data"][@"totalRows"];
+                [mArr addObject:play];
+            }
+            success(mArr);
+        }
+        
+    } failurRequest:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+    
+}
+
+
 @end
