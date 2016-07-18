@@ -26,6 +26,7 @@
 @property (nonatomic, strong)NSString *title;
 @property (nonatomic, assign)BOOL isShow;
 @property (strong,nonatomic) NSNumber *nextPage;
+@property (strong,nonatomic) NSNumber *page;
 @property (strong,nonatomic) NSString *rows;
 
 + (void)parsesWithUrl:(NSString *)url successRequest:(successRequest)success failurRequest:(failureRequest)failure;
