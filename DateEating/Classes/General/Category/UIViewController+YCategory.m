@@ -10,13 +10,16 @@
 #import "YPublishDateViewController.h"
 #import "YPublishPartyViewController.h"
 #import "YTabBar.h"
+#import "AppDelegate.h"
 @implementation UIViewController (YCategory)
 -(void)changeToNight{
-    [[self.view subviews] lastObject].backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    app.window.alpha = 0.6;
 }
 
 -(void)changeToDay{
-    [[self.view subviews] lastObject].backgroundColor = [UIColor whiteColor];
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    app.window.alpha = 1.0;
 }
 
 -(void)addDateBtnAndPartyBtn{

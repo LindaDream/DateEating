@@ -27,6 +27,15 @@
     [AVOSCloud setApplicationId:@"HG6nn22YGNtjgFvfVPpbdRaE-gzGzoHsz"
                       clientKey:@"Ce6WOl25IXT1Ck2RabzVh60k"];
     AVUser *currentUser = [AVUser currentUser];
+#pragma mark--地图--
+    // 要使用百度地图，请先启动BaiduMapManager
+    _mapManager = [[BMKMapManager alloc]init];
+    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
+    BOOL ret = [_mapManager start:@"RD4LGAjfG1ezkCyQ7HWqVzuzeHgAqiSA"  generalDelegate:nil];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
+
 #pragma mark--界面--
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor yellowColor];

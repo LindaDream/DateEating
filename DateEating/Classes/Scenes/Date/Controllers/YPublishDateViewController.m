@@ -34,7 +34,7 @@ UIPickerViewDelegate
 @property(strong,nonatomic)NSString *hourTmpStr;
 @property(strong,nonatomic)NSString *minuteTmpStr;
 @property(strong,nonatomic)NSString *timeStr;
-@property(strong,nonatomic)NSString *addressStr;
+
 @end
 
 // 设置重用标识符
@@ -57,6 +57,10 @@ static NSString *const findeCellIdentifier = @"findeCell";
 #pragma mark--返回方法--
 - (void)backAction{
     [self.navigationController popViewControllerAnimated:YES];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [self.dateTableView reloadData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -9,11 +9,14 @@
 #import "YRestaurantDetailViewController.h"
 #import "YRestaurantTableViewCell.h"
 #import "YRestaurantDetailModel.h"
+#import "YPublishDateViewController.h"
+#import "YMapViewController.h"
+#import "YAttentionViewController.h"
 #import <MessageUI/MFMessageComposeViewController.h>// 引用发送消息视图的头文件
 @interface YRestaurantDetailViewController ()<
-    UITableViewDataSource,
-    UITableViewDelegate,
-    MFMessageComposeViewControllerDelegate
+UITableViewDataSource,
+UITableViewDelegate,
+MFMessageComposeViewControllerDelegate
 >
 // 头部视图
 @property(strong,nonatomic)UIView *headView;
@@ -33,7 +36,9 @@
 @property(strong,nonatomic)UILabel *attentionLabel;
 // 判断关注按钮是否被点击
 @property(assign,nonatomic)BOOL isAttented;
-
+// 尾部视图
+@property(strong,nonatomic)UIView *footView;
+@property(strong,nonatomic)UIButton *footBtn;
 @property(strong,nonatomic)YRestaurantDetailModel *model;
 @property(strong,nonatomic)NSString *object;
 @end
@@ -48,33 +53,34 @@ static NSString *const restaurantCellIdentifier = @"restaurantCell";
     AVQuery *query = [AVQuery queryWithClassName:@"MyAttention"];
     [query whereKey:@"name" equalTo:self.nameStr];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (objects.count != 0) {
-                self.isAttented = NO;
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.attentionBtn setBackgroundImage:[UIImage imageNamed:@"guarantee_bg"] forState:(UIControlStateNormal)];
-                    self.attentionLabel.text = @"已关注";
-                    self.attentionLabel.textColor = [UIColor lightGrayColor];
-                    [self.attentionBtn addSubview:self.attentionLabel];
-                });
-            }else{
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.attentionBtn setBackgroundImage:[UIImage imageNamed:@"guarantee_red_bg"] forState:(UIControlStateNormal)];
-                    self.attentionLabel.backgroundColor = [UIColor whiteColor];
-                    self.attentionLabel.text = @"关注";
-                    self.attentionLabel.textColor = [UIColor colorWithRed:243/255.0 green:32/255.0 blue:37/255.0 alpha:1];
-                    [self.attentionBtn addSubview:self.attentionLabel];
-                });
-            }
+        if (objects.count != 0) {
+            self.isAttented = NO;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.attentionBtn setBackgroundImage:[UIImage imageNamed:@"guarantee_bg"] forState:(UIControlStateNormal)];
+                self.attentionLabel.text = @"已关注";
+                self.attentionLabel.textColor = [UIColor lightGrayColor];
+                [self.attentionBtn addSubview:self.attentionLabel];
+            });
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.attentionBtn setBackgroundImage:[UIImage imageNamed:@"guarantee_red_bg"] forState:(UIControlStateNormal)];
+                self.attentionLabel.backgroundColor = [UIColor whiteColor];
+                self.attentionLabel.text = @"关注";
+                self.attentionLabel.textColor = [UIColor colorWithRed:243/255.0 green:32/255.0 blue:37/255.0 alpha:1];
+                [self.attentionBtn addSubview:self.attentionLabel];
+            });
+        }
     }];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"餐厅详情";
     self.isAttented = YES;
     self.model = [YRestaurantDetailModel new];
     [self.restaurantTableView registerNib:[UINib nibWithNibName:@"YRestaurantTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:restaurantCellIdentifier];
     [self addHeadView];
-    // Do any additional setup after loading the view from its nib.
+    [self addFootView];
 }
 #pragma mark--数据解析--
 - (void)getData{
@@ -114,9 +120,13 @@ static NSString *const restaurantCellIdentifier = @"restaurantCell";
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        
+        YMapViewController *mapVC = [YMapViewController new];
+        mapVC.model = self.model;
+        [self.navigationController pushViewController:mapVC animated:YES];
     }else{
-        
+        YAttentionViewController *attentionListVC = [YAttentionViewController new];
+        attentionListVC.businessID = self.model.businessId;
+        [self.navigationController pushViewController:attentionListVC animated:YES];
     }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -177,6 +187,26 @@ static NSString *const restaurantCellIdentifier = @"restaurantCell";
     [self.headView addSubview:self.attentionBtn];
     
     [self.restaurantTableView setTableHeaderView:self.headView];
+}
+#pragma mark--尾部视图--
+- (void)addFootView{
+    self.footView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.height - 50, self.view.width, 50)];
+    self.footView.backgroundColor = [UIColor colorWithRed:243/255.0 green:32/255.0 blue:37/255.0 alpha:1];
+    self.footBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    self.footBtn.frame = CGRectMake(0, 0, self.footView.width, self.footView.height);
+    self.footBtn.backgroundColor = [UIColor colorWithRed:243/255.0 green:32/255.0 blue:37/255.0 alpha:1];
+    [self.footBtn setTitle:@"吃这家" forState:(UIControlStateNormal)];
+    [self.footBtn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+    [self.footBtn addTarget:self action:@selector(footBtnAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.footView addSubview:self.footBtn];
+    [self.view addSubview:self.footView];
+}
+#pragma mark--点击"吃这家"按钮方法实现--
+- (void)footBtnAction:(UIButton *)btn{
+    NSArray *vcArr = self.navigationController.viewControllers;
+    YPublishDateViewController *dateVC = (YPublishDateViewController *)[vcArr objectAtIndex:1];
+    dateVC.addressStr = self.nameStr;
+    [self.navigationController popToViewController:dateVC animated:YES];
 }
 #pragma mark--联系卖家--
 - (void)telAction:(UIButton *)telBtn{
@@ -250,13 +280,13 @@ static NSString *const restaurantCellIdentifier = @"restaurantCell";
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
