@@ -476,7 +476,7 @@
                                          appKey:@"578c9832e0f55a30cb003483"
                                       shareText:shareString
                                      shareImage:nil
-                                shareToSnsNames:@[UMShareToSina]
+                                shareToSnsNames:@[UMShareToSina,UMShareToTencent,UMShareToRenren,UMShareToDouban,UMShareToEmail,UMShareToSms]
                                        delegate:self];
     
 }

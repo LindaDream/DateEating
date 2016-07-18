@@ -523,7 +523,7 @@
     // 分享图片
     [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:self.model.mPicUrl];
     // 跳转分享界面
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:@"578c9832e0f55a30cb003483" shareText:shareString shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,nil] delegate:nil];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:@"578c9832e0f55a30cb003483" shareText:shareString shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToRenren,UMShareToDouban,UMShareToEmail,UMShareToSms,nil] delegate:nil];
     
 }
 
