@@ -382,18 +382,15 @@ static NSString *const cityCellId = @"cityCellId";
             }
 
             if ([__weakSelf.isMeal isEqualToString:@"美食"]) {
-                //[__weakSelf.mealArr removeAllObjects];
                 [__weakSelf requestMealWithCityId:__weakSelf.cityId categoryId:__weakSelf.categoryId page:@"1"];
                 
             }else{
-                //[__weakSelf.playArr removeAllObjects];
                 [__weakSelf requestPlayWithCityId:__weakSelf.cityId categoryId:__weakSelf.categoryId page:@"1"];
             
             }
             [__weakSelf.popView removeFromSuperview];
             
             __weakSelf.popView.center = CGPointMake(kWidth, 0);
-            //__weakSelf.isSelected = NO;
         };
         
     }else{
@@ -401,7 +398,7 @@ static NSString *const cityCellId = @"cityCellId";
         [_popView removeFromSuperview];
         
         _popView.center = CGPointMake(kWidth, 0);
-        //self.isSelected = NO;
+        
         
     }
     
@@ -427,10 +424,10 @@ static NSString *const cityCellId = @"cityCellId";
         self.segment.selectedSegmentIndex = scrollView.contentOffset.x / kWidth;
         if (self.segment.selectedSegmentIndex == 0) {
             self.isMeal = @"美食";
-            //[self requestMealWithCityId:self.cityId categoryId:self.categoryId];
+            
         }else{
             self.isMeal = @"玩乐";
-            //[self requestPlayWithCityId:self.cityId categoryId:self.categoryId];
+            
         }
 
     }
@@ -442,10 +439,10 @@ static NSString *const cityCellId = @"cityCellId";
     self.scroll.contentOffset = CGPointMake(kWidth * self.segment.selectedSegmentIndex, 0);
     if (self.segment.selectedSegmentIndex == 0) {
         self.isMeal = @"美食";
-        //[self requestMealWithCityId:self.cityId categoryId:self.categoryId];
+        
     }else{
         self.isMeal = @"玩乐";
-        //[self requestPlayWithCityId:self.cityId categoryId:self.categoryId];
+        
     }
     
 }

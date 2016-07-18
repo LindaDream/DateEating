@@ -22,6 +22,7 @@ PODS:
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
+  - UMengSocialCOM (5.2.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
@@ -30,6 +31,7 @@ DEPENDENCIES:
   - MJRefresh (~> 3.1.9)
   - SDCycleScrollView (~> 1.65)
   - SDWebImage (~> 3.8.1)
+  - UMengSocialCOM (~> 5.2.1)
 
 EXTERNAL SOURCES:
   HyphenateFullSDK:
@@ -47,7 +49,8 @@ SPEC CHECKSUMS:
   MJRefresh: bb72948c985914b0b5cecac573a2c69a8915fb02
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  UMengSocialCOM: 074c135ce349aa4c8848d3fb8458757bcb6ffb67
 
-PODFILE CHECKSUM: 680f61569c579788f8b5741276ae8fcb71f38477
+PODFILE CHECKSUM: 860d4eca0d227fda4b682cf674d94b6332ae7832
 
 COCOAPODS: 1.0.1

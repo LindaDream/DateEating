@@ -14,8 +14,12 @@
 #import "ContentView.h"
 #import "OtherEventView.h"
 #import "DDIndicator.h"
+#import <UMSocialData.h>
+#import <UMSocialSnsService.h>
+#import <UMSocialControllerService.h>
+#import "UMSocial.h"
 
-@interface MealDetailsViewController ()<SDCycleScrollViewDelegate, UIScrollViewDelegate, UIWebViewDelegate>
+@interface MealDetailsViewController ()<SDCycleScrollViewDelegate, UIScrollViewDelegate, UIWebViewDelegate, UMSocialUIDelegate>
 
 @property (nonatomic, strong) SDCycleScrollView *cycleScrollView;
 
@@ -460,20 +464,21 @@
 
 - (void)actionShareButton:(UIBarButtonItem *)button
 {
+    self.model.shareUrl = [NSString stringWithFormat:@"http://m.yhouse.com/meal/%@", self.ID];
+    // 分享字符串
+    NSString *shareString = [NSString stringWithFormat:@"【%@，%@！】%@ 简单的生活，纷繁的世界 #约起来#带你到别人的世界走走", self.model.title, self.model.viceTitle, self.model.shareUrl];
+    // 分享图片
+    [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:self.model.picUrl];
     
+    [UMSocialData defaultData].extConfig.title = shareString;
     
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"578c9832e0f55a30cb003483"
+                                      shareText:shareString
+                                     shareImage:nil
+                                shareToSnsNames:@[UMShareToSina]
+                                       delegate:self];
     
-//    self.model.shareUrl = [NSString stringWithFormat:@"http://m.yhouse.com/meal/%@", self.ID];
-//    // 分享字符串
-//    NSString *shareString = [NSString stringWithFormat:@"【%@，%@！】%@ 错落的时光里，纷繁的生活中，#时遗#带你体验简单的美好！", self.model.title, self.model.viceTitle, self.model.shareUrl];
-//    // 分享图片
-//    [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:self.model.picUrl];
-//    // 跳转分享界面
-//    [UMSocialSnsService presentSnsIconSheetView:self appKey:@"5631dd4be0f55a697c003d4f" shareText:shareString shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina, UMShareToWechatSession, UMShareToWechatTimeline,UMShareToRenren, UMShareToTencent, UMShareToDouban, nil] delegate:nil];
-//    NSLog(@"+++%@", self.model.shareUrl);
-//    // 微信分享设置
-//    [UMSocialData defaultData].extConfig.wechatSessionData.url = self.model.shareUrl;
-//    [UMSocialData defaultData].extConfig.wechatTimelineData.url = self.model.shareUrl;
 }
 
 - (NSString *)getTag
