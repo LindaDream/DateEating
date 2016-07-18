@@ -142,6 +142,7 @@ static NSString *const restaurantListCellIndentifier = @"restaurantListCell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YRestaurantDetailViewController *detailVC = [YRestaurantDetailViewController new];
+    detailVC.isDateView = self.isDateView;
     if (self.searchController.active) {
         for (YRestaurantListModel *model in self.dataArray) {
             if ([model.name isEqualToString:self.searchListArr[indexPath.row]]) {

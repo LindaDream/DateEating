@@ -34,7 +34,7 @@ UIPickerViewDelegate
 @property(strong,nonatomic)NSString *hourTmpStr;
 @property(strong,nonatomic)NSString *minuteTmpStr;
 @property(strong,nonatomic)NSString *timeStr;
-
+@property(assign,nonatomic)BOOL isDateView;
 @end
 
 // 设置重用标识符
@@ -140,6 +140,7 @@ static NSString *const findeCellIdentifier = @"findeCell";
         [self addPickerView];
     }else if(indexPath.section == 2 && indexPath.row == 2){
         YRestaurantViewController *restaurantVC = [YRestaurantViewController new];
+        restaurantVC.isDateView = self.isDateView;
         restaurantVC.passValueBlock = ^(NSString *addressStr){
             self.addressStr = addressStr;
             [self.dateTableView reloadData];

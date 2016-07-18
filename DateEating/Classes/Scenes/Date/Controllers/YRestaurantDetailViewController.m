@@ -12,6 +12,7 @@
 #import "YPublishDateViewController.h"
 #import "YMapViewController.h"
 #import "YAttentionViewController.h"
+#import "YPublishPartyViewController.h"
 #import <MessageUI/MFMessageComposeViewController.h>// 引用发送消息视图的头文件
 @interface YRestaurantDetailViewController ()<
 UITableViewDataSource,
@@ -204,9 +205,16 @@ static NSString *const restaurantCellIdentifier = @"restaurantCell";
 #pragma mark--点击"吃这家"按钮方法实现--
 - (void)footBtnAction:(UIButton *)btn{
     NSArray *vcArr = self.navigationController.viewControllers;
-    YPublishDateViewController *dateVC = (YPublishDateViewController *)[vcArr objectAtIndex:1];
-    dateVC.addressStr = self.nameStr;
-    [self.navigationController popToViewController:dateVC animated:YES];
+    if (self.isDateView) {
+        YPublishDateViewController *dateVC = (YPublishDateViewController *)[vcArr objectAtIndex:1];
+        dateVC.addressStr = self.nameStr;
+        [self.navigationController popToViewController:dateVC animated:YES];
+    }else{
+        YPublishPartyViewController *partyVC = (YPublishPartyViewController *)[vcArr objectAtIndex:1];
+        partyVC.addressStr = self.nameStr;
+        [self.navigationController popToViewController:partyVC animated:YES];
+    }
+
 }
 #pragma mark--联系卖家--
 - (void)telAction:(UIButton *)telBtn{
