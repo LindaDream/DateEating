@@ -7,4 +7,5 @@ pod 'SDWebImage', '~> 3.8.1'
 pod 'MJRefresh', '~> 3.1.9'
 pod 'SDCycleScrollView', '~> 1.65'
 pod 'UMengSocialCOM', '~> 5.2.1'
+pod 'BaiduMapKit'
 end

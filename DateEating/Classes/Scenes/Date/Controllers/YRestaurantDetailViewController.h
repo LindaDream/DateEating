@@ -14,4 +14,5 @@
 @property(strong,nonatomic)NSString *businessId;
 @property(strong,nonatomic)NSString *addressStr;
 @property(strong,nonatomic)NSString *nameStr;
+@property(assign,nonatomic)BOOL isDateView;
 @end

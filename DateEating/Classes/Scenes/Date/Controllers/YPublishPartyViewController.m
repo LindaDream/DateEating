@@ -13,6 +13,7 @@
 #import "YTimeOrAddressTableViewCell.h"
 #import "YFindeTableViewCell.h"
 #import "YTimePiker.h"
+#import "YRestaurantViewController.h"
 @interface YPublishPartyViewController ()<
     UITableViewDataSource,
     UITableViewDelegate,
@@ -38,6 +39,7 @@
 @property(strong,nonatomic)NSString *dateTmpStr;
 @property(strong,nonatomic)NSString *hourTmpStr;
 @property(strong,nonatomic)NSString *minuteTmpStr;
+@property(strong,nonatomic)NSString *timeStr;
 @end
 // 设置重用标识符
 static NSString *const themeCellIdentifier = @"themeCell";
@@ -60,7 +62,10 @@ static NSString *const systemCellIdentifier = @"systemCell";
 - (void)backAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [self.partyTableView reloadData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"发布聚会";
@@ -118,10 +123,12 @@ static NSString *const systemCellIdentifier = @"systemCell";
                 YTimeOrAddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:timeOrAddressCellIdentifier forIndexPath:indexPath];
                 if (indexPath.row == 1) {
                     cell.timeOrAddLabel.text = @"时间";
+                    cell.addressLabel.text = self.timeStr;
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 }else{
                     cell.timeOrAddLabel.text = @"地点";
+                    cell.addressLabel.text = self.addressStr;
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 }
@@ -172,7 +179,15 @@ static NSString *const systemCellIdentifier = @"systemCell";
             [self.view addSubview:self.countBackView];
         }else if (indexPath.section == 2 && indexPath.row == 1){
             [self addPickerView];
+        }else if (indexPath.section == 2 && indexPath.row == 2){
+            YRestaurantViewController *restaurantVC = [YRestaurantViewController new];
+            restaurantVC.passValueBlock = ^(NSString *addressStr){
+                self.addressStr = addressStr;
+                [self.partyTableView reloadData];
+            };
+            [self.navigationController pushViewController:restaurantVC animated:YES];
         }
+
     }else if (tableView == self.countView){
         [self.countBackView removeFromSuperview];
         self.count = self.countArray[indexPath.row];
@@ -277,8 +292,10 @@ static NSString *const systemCellIdentifier = @"systemCell";
     }else{
         UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:(UIAlertControllerStyleAlert)];
         UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            self.timeStr = self.dateStr;
             self.dateStr = @"".mutableCopy;
             [self.backView removeFromSuperview];
+            [self.partyTableView reloadData];
         }];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
             self.dateStr = @"".mutableCopy;
