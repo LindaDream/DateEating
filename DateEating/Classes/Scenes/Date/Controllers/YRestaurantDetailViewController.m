@@ -51,8 +51,12 @@ static NSString *const restaurantCellIdentifier = @"restaurantCell";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     [self getData];
-    AVQuery *query = [AVQuery queryWithClassName:@"MyAttention"];
-    [query whereKey:@"name" equalTo:self.nameStr];
+    // AND查询
+    AVQuery *nameQuery = [AVQuery queryWithClassName:@"MyAttention"];
+    [nameQuery whereKey:@"name" equalTo:self.nameStr];
+    AVQuery *userNameQuery = [AVQuery queryWithClassName:@"MyAttention"];
+    [userNameQuery whereKey:@"userName" equalTo:[AVUser currentUser].username];
+    AVQuery *query = [AVQuery andQueryWithSubqueries:[NSArray arrayWithObjects:nameQuery,userNameQuery, nil]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (objects.count != 0) {
             self.isAttented = NO;
@@ -252,8 +256,12 @@ static NSString *const restaurantCellIdentifier = @"restaurantCell";
         // 保存餐厅图片链接
         [object setObject:self.model.sPhotoUrl forKey:@"headImg"];
         
-        AVQuery *query = [AVQuery queryWithClassName:@"MyAttention"];
-        [query whereKey:@"name" equalTo:self.nameStr];
+        // AND查询
+        AVQuery *nameQuery = [AVQuery queryWithClassName:@"MyAttention"];
+        [nameQuery whereKey:@"name" equalTo:self.nameStr];
+        AVQuery *userNameQuery = [AVQuery queryWithClassName:@"MyAttention"];
+        [userNameQuery whereKey:@"userName" equalTo:[AVUser currentUser].username];
+        AVQuery *query = [AVQuery andQueryWithSubqueries:[NSArray arrayWithObjects:nameQuery,userNameQuery, nil]];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (objects.count == 0) {
                 [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
