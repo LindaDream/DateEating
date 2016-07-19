@@ -13,6 +13,7 @@
 #import "YTabBarController.h"
 #import <MessageUI/MessageUI.h>
 #import "YAttentionListViewController.h"
+#import "YCompleteViewController.h"
 @interface YMeViewController ()<
 UITableViewDataSource,
 UITableViewDelegate,
@@ -26,6 +27,7 @@ MFMailComposeViewControllerDelegate
 @property(strong,nonatomic)UILabel *nameLabel;
 @property(strong,nonatomic)UIButton *loginButton;
 @property(strong,nonatomic)UILabel *emailLabel;
+@property(strong,nonatomic)UIButton *completeBtn;
 @property(strong,nonatomic)UIImagePickerController *imagePicker;
 // 点击设置按钮后的覆盖视图
 @property(strong,nonatomic)UIView *coverView;
@@ -86,8 +88,10 @@ static NSString *const listCellIdentifier = @"listCell";
     NSDictionary *userInfo = [notification userInfo];
     NSNumber *num = [userInfo objectForKey:@"isClicked"];
     if (num.boolValue) {
+        self.meTableView.userInteractionEnabled = NO;
         [self addDateBtnAndPartyBtn];
     }else{
+        self.meTableView.userInteractionEnabled = YES;
         [self removeDateBtnAndPartyBtn];
     }
 }
@@ -146,7 +150,7 @@ static NSString *const listCellIdentifier = @"listCell";
     self.emailLabel.textColor = [UIColor colorWithRed:0.0 green:124.99/255.0 blue:29.62/255.0 alpha:1];
     [visualView addSubview:self.emailLabel];
     
-    // 设置登录按钮
+    // 设置登录、注销按钮
     self.loginButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     self.loginButton.frame = CGRectMake(CGRectGetMinX(self.emailLabel.frame) + 25, CGRectGetMaxY(self.emailLabel.frame) + 20, 50, 30);
     self.loginButton.backgroundColor = [UIColor clearColor];
@@ -154,6 +158,14 @@ static NSString *const listCellIdentifier = @"listCell";
     [self.loginButton addTarget:self action:@selector(loginAction:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.loginButton setTitle:@"登录" forState:(UIControlStateNormal)];
     [visualView addSubview:self.loginButton];
+    
+    // 完善资料
+    self.completeBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    self.completeBtn.frame = CGRectMake(self.headView.width - 90, self.loginButton.frame.origin.y, 80, 30);
+    [self.completeBtn setTitle:@"完善资料" forState:(UIControlStateNormal)];
+    [self.completeBtn setTitleColor:[UIColor colorWithRed:0.0 green:124.99/255.0 blue:29.62/255.0 alpha:1] forState:(UIControlStateNormal)];
+    [self.completeBtn addTarget:self action:@selector(completeAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    [visualView addSubview:self.completeBtn];
     
     [self.headView addSubview:backImgView];
     [self.meTableView setTableHeaderView:self.headView];
@@ -169,6 +181,11 @@ static NSString *const listCellIdentifier = @"listCell";
         [self.meTableView reloadData];
         [self addHeadView];
     }
+}
+#pragma mark--完善资料--
+- (void)completeAction:(UIButton *)btn{
+    YCompleteViewController *completeVC = [YCompleteViewController new];
+    [self.navigationController pushViewController:completeVC animated:YES];
 }
 #pragma mark--更换头像--
 - (void)changeAvtar{

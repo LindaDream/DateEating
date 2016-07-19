@@ -56,6 +56,11 @@
         addBtn.transform = CGAffineTransformRotate(addBtn.transform, -M_PI_4);
         
     }];
+    [[self.view subviews] lastObject].userInteractionEnabled = YES;
+    [self.tabBarController.tabBar.subviews objectAtIndex:2].userInteractionEnabled = YES;
+    [self.tabBarController.tabBar.subviews objectAtIndex:3].userInteractionEnabled = YES;
+    [self.tabBarController.tabBar.subviews objectAtIndex:4].userInteractionEnabled = YES;
+    [self.tabBarController.tabBar.subviews objectAtIndex:5].userInteractionEnabled = YES;
     [self.navigationController pushViewController:dateVC animated:YES];
 }
 - (void)addParty:(UIButton *)btn{
@@ -70,6 +75,11 @@
         addBtn.transform = CGAffineTransformRotate(addBtn.transform, -M_PI_4);
         
     }];
+    [[self.view subviews] lastObject].userInteractionEnabled = YES;
+    [self.tabBarController.tabBar.subviews objectAtIndex:2].userInteractionEnabled = YES;
+    [self.tabBarController.tabBar.subviews objectAtIndex:3].userInteractionEnabled = YES;
+    [self.tabBarController.tabBar.subviews objectAtIndex:4].userInteractionEnabled = YES;
+    [self.tabBarController.tabBar.subviews objectAtIndex:5].userInteractionEnabled = YES;
     [self.navigationController pushViewController:partyVC animated:YES];
 }
 -(void)removeDateBtnAndPartyBtn{

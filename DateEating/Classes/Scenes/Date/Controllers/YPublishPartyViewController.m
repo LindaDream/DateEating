@@ -14,11 +14,14 @@
 #import "YFindeTableViewCell.h"
 #import "YTimePiker.h"
 #import "YRestaurantViewController.h"
+#import "YCompleteViewController.h"
 @interface YPublishPartyViewController ()<
-    UITableViewDataSource,
-    UITableViewDelegate,
-    UIPickerViewDelegate,
-    UIPickerViewDataSource
+UITableViewDataSource,
+UITableViewDelegate,
+UIPickerViewDelegate,
+UIPickerViewDataSource,
+passConcreteValue,
+UITextFieldDelegate
 >
 // 判断cell上的按钮是否点击
 @property(assign,nonatomic)BOOL isSelected;
@@ -29,6 +32,7 @@
 @property(strong,nonatomic)UIView *headView;
 // 存放聚会人数选项的数组
 @property(strong,nonatomic)NSArray *countArray;
+// 聚会对象
 @property(strong,nonatomic)NSString *count;
 // 显示picker的背景视图
 @property(strong,nonatomic)UIView *backView;
@@ -39,7 +43,15 @@
 @property(strong,nonatomic)NSString *dateTmpStr;
 @property(strong,nonatomic)NSString *hourTmpStr;
 @property(strong,nonatomic)NSString *minuteTmpStr;
+// 聚会时间
 @property(strong,nonatomic)NSString *timeStr;
+// 聚会主题
+@property(strong,nonatomic)NSString *themeStr;
+// 聚会说明
+@property(strong,nonatomic)NSString *findStr;
+// 聚会花费
+@property(strong,nonatomic)NSString *concrete;
+
 @end
 // 设置重用标识符
 static NSString *const themeCellIdentifier = @"themeCell";
@@ -60,7 +72,41 @@ static NSString *const systemCellIdentifier = @"systemCell";
 }
 #pragma mark--返回方法--
 - (void)backAction{
-    [self.navigationController popViewControllerAnimated:YES];
+    if (nil != [[AVUser currentUser] objectForKey:@"age"] && nil != [[AVUser currentUser] objectForKey:@"gender"] && nil != [[AVUser currentUser] objectForKey:@"constellation"]) {
+        if (nil != self.timeStr && nil != self.themeStr && nil != self.addressStr && nil != self.findStr && nil != self.concrete && nil != self.count) {
+            // 发送publishDate通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"publishDate" object:nil userInfo:@{@"theme":self.themeStr,@"time":self.timeStr,@"address":self.addressStr,@"description":self.findStr}];
+            AVObject *object = [AVObject objectWithClassName:@"MyParty"];
+            [object setObject:[AVUser currentUser].username forKey:@"userName"];
+            [object setObject:self.themeStr forKey:@"theme"];
+            [object setObject:self.timeStr forKey:@"time"];
+            [object setObject:self.addressStr forKey:@"address"];
+            [object setObject:self.findStr forKey:@"description"];
+            [object setObject:self.count forKey:@"partyCount"];
+            [object setObject:self.concrete forKey:@"concrete"];
+            [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    NSLog(@"保存成功");
+                }
+            }];
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"提示" message:@"请完善约会信息!" preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            }];
+            [alertView addAction:doneAction];
+            [self presentViewController:alertView animated:YES completion:nil];
+        }
+    }else{
+        UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"提示" message:@"请先完善资料再来发布聚会!" preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            YCompleteViewController *completeVC = [YCompleteViewController new];
+            [self.navigationController pushViewController:completeVC animated:YES];
+        }];
+        [alertView addAction:doneAction];
+        [self presentViewController:alertView animated:YES completion:nil];
+    }
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
@@ -90,24 +136,31 @@ static NSString *const systemCellIdentifier = @"systemCell";
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == self.partyTableView) {
         if (section == 0) {
-            return 1;
+            return 2;
         }else if (section == 1){
             return 1;
         }
-        return 4;
+        return 3;
     }
     return 4;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == self.partyTableView) {
         if (indexPath.section == 0) {
-            YThemeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:themeCellIdentifier forIndexPath:indexPath];
-            cell.themeTF.placeholder = @"请输入聚会主题";
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
+            if (indexPath.row == 0) {
+                YThemeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:themeCellIdentifier forIndexPath:indexPath];
+                cell.themeTF.placeholder = @"请输入聚会主题";
+                self.themeStr = cell.themeTF.text;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            }else{
+                YFindeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:findeCellIdentifier forIndexPath:indexPath];
+                self.findStr = cell.findeTF.text;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            }
         }else if (indexPath.section == 1){
             YPartyCountTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:countCellIdentifier forIndexPath:indexPath];
-
             cell.countLabel.text = self.count;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -115,8 +168,7 @@ static NSString *const systemCellIdentifier = @"systemCell";
         }else{
             if (indexPath.row == 0) {
                 YConcreteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:concreteCellIdentifier forIndexPath:indexPath];
-                [cell.meBtn addTarget:self action:@selector(selectAction:) forControlEvents:(UIControlEventTouchUpInside)];
-                [cell.AABtn addTarget:self action:@selector(selectAction:) forControlEvents:(UIControlEventTouchUpInside)];
+                cell.delegate = self;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return cell;
             }else if (indexPath.row == 1 || indexPath.row == 2){
@@ -133,11 +185,6 @@ static NSString *const systemCellIdentifier = @"systemCell";
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 }
                 return cell;
-            }else{
-                YFindeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:findeCellIdentifier forIndexPath:indexPath];
-                cell.desTextView.text = @"请输入聚会简要说明";
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
             }
         }
     }else{
@@ -151,7 +198,7 @@ static NSString *const systemCellIdentifier = @"systemCell";
         [cell.contentView addSubview:lineView];
         return cell;
     }
-    
+    return nil;
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (tableView == self.partyTableView) {
@@ -187,13 +234,22 @@ static NSString *const systemCellIdentifier = @"systemCell";
             };
             [self.navigationController pushViewController:restaurantVC animated:YES];
         }
-
+        
     }else if (tableView == self.countView){
         [self.countBackView removeFromSuperview];
         self.count = self.countArray[indexPath.row];
         [self.partyTableView reloadData];
     }
     
+}
+#pragma mark--cell的代理方法实现--
+-(void)passConcreteValue:(NSString *)concrete cell:(YConcreteTableViewCell *)cell{
+    self.concrete = concrete;
+    if (!cell.isSelect) {
+        self.isSelected = YES;
+    }else{
+        self.isSelected = NO;
+    }
 }
 #pragma mark--添加头部视图--
 - (void)addHeadView{
@@ -206,16 +262,6 @@ static NSString *const systemCellIdentifier = @"systemCell";
     [self.headView addSubview:label];
     [self.headView addSubview:lineView];
     [self.countView setTableHeaderView:self.headView];
-}
-#pragma mark--cell上的按钮的点击方法--
-- (void)selectAction:(UIButton *)btn{
-    if (self.isSelected) {
-        [btn setBackgroundImage:[UIImage imageNamed:@"Selected"] forState:(UIControlStateNormal)];
-        self.isSelected = NO;
-    }else{
-        [btn setBackgroundImage:[UIImage imageNamed:@"notSelected"] forState:(UIControlStateNormal)];
-        self.isSelected = YES;
-    }
 }
 #pragma mark--touchBegin方法移除人数选择视图--
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -322,13 +368,13 @@ static NSString *const systemCellIdentifier = @"systemCell";
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

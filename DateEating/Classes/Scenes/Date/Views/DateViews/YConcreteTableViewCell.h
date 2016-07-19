@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+@class YConcreteTableViewCell;
+
+@protocol passConcreteValue <NSObject>
+
+- (void)passConcreteValue:(NSString *)concrete cell:(YConcreteTableViewCell *)cell;
+
+@end
 
 @interface YConcreteTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIButton *meBtn;
-@property (weak, nonatomic) IBOutlet UIButton *AABtn;
-
+@property(weak,nonatomic)id<passConcreteValue> delegate;
+@property(assign,nonatomic)BOOL isSelect;
 @end

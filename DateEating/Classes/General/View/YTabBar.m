@@ -51,11 +51,19 @@
             self.publishButton.transform = CGAffineTransformRotate(self.publishButton.transform, M_PI_4);
         }];
         self.isClicked = NO;
+        [self.subviews objectAtIndex:2].userInteractionEnabled = NO;
+        [self.subviews objectAtIndex:3].userInteractionEnabled = NO;
+        [self.subviews objectAtIndex:4].userInteractionEnabled = NO;
+        [self.subviews objectAtIndex:5].userInteractionEnabled = NO;
     }else{
         [UIView animateWithDuration:0.5 animations:^{
             self.publishButton.transform = CGAffineTransformRotate(self.publishButton.transform, -M_PI_4);
         }];
         self.isClicked = YES;
+        [self.subviews objectAtIndex:2].userInteractionEnabled = YES;
+        [self.subviews objectAtIndex:3].userInteractionEnabled = YES;
+        [self.subviews objectAtIndex:4].userInteractionEnabled = YES;
+        [self.subviews objectAtIndex:5].userInteractionEnabled = YES;
     }
 }
 - (void)layoutSubviews{

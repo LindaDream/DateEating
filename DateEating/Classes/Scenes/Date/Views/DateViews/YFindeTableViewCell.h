@@ -10,5 +10,6 @@
 
 @interface YFindeTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UITextView *desTextView;
+@property (weak, nonatomic) IBOutlet UITextField *findeTF;
+
 @end
