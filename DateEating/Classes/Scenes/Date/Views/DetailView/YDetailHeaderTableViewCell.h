@@ -15,6 +15,7 @@
 - (void)chatBtnDidClicked:(YDetailHeaderTableViewCell *)cell;
 - (void)restaurantBtnDidClicked:(YDetailHeaderTableViewCell *)cell;
 - (void)reportBtnDidClicked:(YDetailHeaderTableViewCell *)cell;
+- (void)userImageDidTap:(NSInteger)userId;
 
 @end
 

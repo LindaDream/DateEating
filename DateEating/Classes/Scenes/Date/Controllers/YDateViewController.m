@@ -16,13 +16,15 @@
 #import "YDateContentModel.h"
 #import <MJRefreshAutoNormalFooter.h>
 #import <MJRefreshNormalHeader.h>
+#import "YUserDetailViewController.h"
 
 @interface YDateViewController ()
 <
     UITableViewDataSource,
     UITableViewDelegate,
     UIScrollViewDelegate,
-    YSeekConditionViewControllerDelegate
+    YSeekConditionViewControllerDelegate,
+    YDateListTableViewCellDelegate
 >
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -262,6 +264,13 @@
     [self requestNearByDataWithUrl:0];
 }
 
+#pragma mark -- 点击头像跳转个人详情页 --
+- (void)clickedUserImage:(NSInteger)userId {
+    YUserDetailViewController *userDetailVC = [[YUserDetailViewController alloc]init];
+    userDetailVC.userId = userId;
+    [self.navigationController pushViewController:userDetailVC animated:YES];
+}
+
 - (void)tagClick{
     
     YLogFunc;
@@ -289,6 +298,7 @@
     }else {
         cell.model = self.nearByArray[indexPath.section];
     }
+    cell.delegate = self;
     return cell;
 }
 

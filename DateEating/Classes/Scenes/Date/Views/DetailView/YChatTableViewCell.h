@@ -10,10 +10,19 @@
 #import "YChatMessageModel.h"
 
 #define YChatTableViewCell_Indentify @"YChatTableViewCell_Indentify"
+
+@protocol YChatTableViewCellDelegate <NSObject>
+
+- (void)userImageDidTap:(NSInteger)userId;
+
+@end
+
 @interface YChatTableViewCell : UITableViewCell
 
 @property (strong,nonatomic) YChatMessageModel *model;
+@property (assign,nonatomic) id<YChatTableViewCellDelegate>delegate;
 
 + (CGFloat)getHeightForCellWithActivity:(YChatMessageModel *)activity;
+
 
 @end

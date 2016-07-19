@@ -13,13 +13,15 @@
 #import "Request_Url.h"
 #import "YChatMessageModel.h"
 #import "YCaterViewController.h"
+#import "YUserDetailViewController.h"
 
 @interface YDetailViewController ()
 <
     UITableViewDataSource,
     UITableViewDelegate,
     UIScrollViewDelegate,
-    YDetailHeaderTableViewCellDelegate
+    YDetailHeaderTableViewCellDelegate,
+    YChatTableViewCellDelegate
 >
 
 
@@ -83,10 +85,17 @@
 
 #pragma mark -- 餐厅详情按钮代理 --
 - (void)restaurantBtnDidClicked:(YDetailHeaderTableViewCell *)cell {
-    YCaterViewController *caterVC = [[YCaterViewController alloc]init];
-    caterVC.businessId = cell.model.caterBusinessId;
-    [self.navigationController pushViewController:caterVC animated:YES];
+//    YCaterViewController *caterVC = [[YCaterViewController alloc]init];
+//    caterVC.businessId = cell.model.caterBusinessId;
+//    [self.navigationController pushViewController:caterVC animated:YES];
 }
+// 点击头像的代理方法
+- (void)userImageDidTap:(NSInteger)userId {
+    YUserDetailViewController *userDetailVC = [[YUserDetailViewController alloc]init];
+    userDetailVC.userId = userId;
+    [self.navigationController pushViewController:userDetailVC animated:YES];
+}
+
 
 
 #pragma mark -- tableview 实现的代理方法 --
@@ -108,6 +117,7 @@
     } else {
         YChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:YChatTableViewCell_Indentify forIndexPath:indexPath];
         cell.model = self.MessageArray[indexPath.row];
+        cell.delegate = self;
         return cell;
     }
 }
