@@ -14,8 +14,12 @@
 #import "ContentView.h"
 #import "OtherEventView.h"
 #import "DDIndicator.h"
+#import <UMSocialData.h>
+#import <UMSocialSnsService.h>
+#import <UMSocialControllerService.h>
+#import "UMSocial.h"
 
-@interface MealDetailsViewController ()<SDCycleScrollViewDelegate, UIScrollViewDelegate, UIWebViewDelegate>
+@interface MealDetailsViewController ()<SDCycleScrollViewDelegate, UIScrollViewDelegate, UIWebViewDelegate, UMSocialUIDelegate>
 
 @property (nonatomic, strong) SDCycleScrollView *cycleScrollView;
 
@@ -37,6 +41,11 @@
 @property (nonatomic, strong)UIView *BGView;
 @property (nonatomic, assign)BOOL isOnce;
 @property (nonatomic, assign)BOOL isBuild;
+
+// 是否已收藏
+@property (assign,nonatomic) BOOL isCollection;
+@property (strong,nonatomic) NSString *objId;
+
 
 @end
 
@@ -63,7 +72,8 @@
     [self setUpData];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStateChange) name:kReachabilityChangedNotification object:nil];
     //self.navigationController.navigationBar.translucent = NO;
-    //[self setNavigationStyle];
+    [self setNavigationStyle];
+    self.isCollection = YES;
     self.isOnce = NO;
     
 }
@@ -331,45 +341,48 @@
 //    }
 //}
 
-- (void)actioncollection:(UIBarButtonItem *)button
+- (void)actionCollection:(UIBarButtonItem *)button
 {
     
-    
-//    Reachability *conn = [Reachability reachabilityForInternetConnection];
-//    if ([conn currentReachabilityStatus] != NotReachable) {
-//        //        NSLog(@攻略:有网络");
-//        AVUser *currentUser = [AVUser currentUser];
-//        if (currentUser != nil) {
-//            if ([self isHave]) {
-//                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您已经收藏过了" preferredStyle:UIAlertControllerStyleAlert];
-//                [self presentViewController:alertController animated:YES completion:nil];
-//                [self performSelector:@selector(dismiss:) withObject:alertController afterDelay:0.5];
-//            } else {
-//                NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:self.model.ID, @"ID", self.model.title, @"title", nil];
-//                [currentUser addObject:dic forKey:@"meal"];
-//                [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//                    NSLog(@"%@", [currentUser objectForKey:@"meal"]);
-//                    [currentUser saveInBackground];
-//                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"收藏成功" preferredStyle:UIAlertControllerStyleAlert];
-//                    [self presentViewController:alertController animated:YES completion:nil];
-//                    [self performSelector:@selector(dismiss:) withObject:alertController afterDelay:5];
-//                }];
-//            }
-//        } else {
-//            UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"LoginAndRegister" bundle:nil];
-//            UIViewController *loginVC = [storyBoard instantiateInitialViewController];
-//            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionUserLogin:) name:@"USERISLOGIN" object:nil];
-//            [self presentViewController:loginVC animated:YES completion:nil];
-//        }
-//
-//    } else {
-//        //        NSLog(@"没有网络");
-//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"收藏失败 请您检查是否为网络原因" preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction *say = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
-//        [alertController addAction:say];
-//        [self presentViewController:alertController animated:YES completion:nil];
-////        [self performSelector:@selector(dismiss:) withObject:alertController afterDelay:0.5];
-//    }
+    AVObject *object = [AVObject objectWithClassName:@"MyMealCollection"];
+    if (self.isCollection) {
+        
+        // 保存当前用户名
+        [object setObject:[AVUser currentUser].username forKey:@"userName"];
+        
+        // 保存ID
+        [object setObject:self.ID forKey:@"ID"];
+        
+        // 保存title
+        [object setObject:self.model.title forKey:@"title"];
+        
+        AVQuery *query = [AVQuery queryWithClassName:@"MyMealCollection"];
+        [query whereKey:@"ID" equalTo:self.ID];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (objects.count == 0) {
+                [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (succeeded) {
+                        [self showAlertViewWithMessage:(@"收藏成功")];
+                        [[NSUserDefaults standardUserDefaults] setObject:object.objectId forKey:self.ID];
+                    }
+                }];
+            }else{
+                [self showAlertViewWithMessage:(@"您已收藏,不可重复收藏,如果想取消收藏，请再次点击")];
+            }
+        }];
+        self.isCollection = NO;
+    }else{
+        
+        // 删除收藏的数据
+        // 执行 CQL 语句实现删除一个 MyAttention 对象
+        self.objId = [[NSUserDefaults standardUserDefaults] objectForKey:self.ID];
+        NSLog(@"%@",self.objId);
+        [AVQuery doCloudQueryInBackgroundWithCQL:[NSString stringWithFormat:@"delete from MyMealCollection where objectId='%@'",self.objId] callback:^(AVCloudQueryResult *result, NSError *error) {
+            [self showAlertViewWithMessage:(@"取消收藏成功")];
+        }];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:self.ID];
+        self.isCollection = YES;
+    }
 }
 
 - (BOOL)isHave
@@ -438,35 +451,34 @@
     self.navigationItem.title = self.model.title;
     
     // 分享
-    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Share_img"] style:UIBarButtonItemStylePlain target:self action:@selector(actionShareButton:)];
-    [shareButton setTintColor:[UIColor whiteColor]];
-    shareButton.imageInsets = UIEdgeInsetsMake(3, 3, 3, 3);
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"share"] style:UIBarButtonItemStylePlain target:self action:@selector(actionShareButton:)];
     
     // 收藏
-    UIBarButtonItem *shouCangButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"shoucang.png"] style:UIBarButtonItemStylePlain target:self action:@selector(actioncollection:)];
-    [shouCangButton setTintColor:[UIColor whiteColor]];
-    shouCangButton.imageInsets = UIEdgeInsetsMake(3, 21, 3, -15);
+    UIBarButtonItem *shouCangButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"favorite"] style:UIBarButtonItemStylePlain target:self action:@selector(actionCollection:)];
+    
+    shouCangButton.imageInsets = UIEdgeInsetsMake(0, 0, 0, -30);
     self.navigationItem.rightBarButtonItems = @[shareButton, shouCangButton];
     
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(actionLeftButton)];
-    [leftButton setTintColor:[UIColor whiteColor]];
-    self.navigationItem.leftBarButtonItem = leftButton;
-    self.navigationItem.leftBarButtonItem.imageInsets = UIEdgeInsetsMake(3, 3, 3, 3);
+    
 }
 
 - (void)actionShareButton:(UIBarButtonItem *)button
 {
-//    self.model.shareUrl = [NSString stringWithFormat:@"http://m.yhouse.com/meal/%@", self.ID];
-//    // 分享字符串
-//    NSString *shareString = [NSString stringWithFormat:@"【%@，%@！】%@ 错落的时光里，纷繁的生活中，#时遗#带你体验简单的美好！", self.model.title, self.model.viceTitle, self.model.shareUrl];
-//    // 分享图片
-//    [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:self.model.picUrl];
-//    // 跳转分享界面
-//    [UMSocialSnsService presentSnsIconSheetView:self appKey:@"5631dd4be0f55a697c003d4f" shareText:shareString shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina, UMShareToWechatSession, UMShareToWechatTimeline,UMShareToRenren, UMShareToTencent, UMShareToDouban, nil] delegate:nil];
-//    NSLog(@"+++%@", self.model.shareUrl);
-//    // 微信分享设置
-//    [UMSocialData defaultData].extConfig.wechatSessionData.url = self.model.shareUrl;
-//    [UMSocialData defaultData].extConfig.wechatTimelineData.url = self.model.shareUrl;
+    self.model.shareUrl = [NSString stringWithFormat:@"http://m.yhouse.com/meal/%@", self.ID];
+    // 分享字符串
+    NSString *shareString = [NSString stringWithFormat:@"【%@，%@！】%@ 简单的生活，纷繁的世界 #约起来#带你到别人的世界走走", self.model.title, self.model.viceTitle, self.model.shareUrl];
+    // 分享图片
+    [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:self.model.picUrl];
+    
+    [UMSocialData defaultData].extConfig.title = shareString;
+    
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"578c9832e0f55a30cb003483"
+                                      shareText:shareString
+                                     shareImage:nil
+                                shareToSnsNames:@[UMShareToSina,UMShareToTencent,UMShareToRenren,UMShareToDouban,UMShareToEmail,UMShareToSms]
+                                       delegate:self];
+    
 }
 
 - (NSString *)getTag

@@ -10,6 +10,8 @@
 #import "YTabBarController.h"
 #import "YOpenViewController.h"
 #import <EMSDK.h>
+#import <UMSocial.h>
+#import <UMSocialSinaSSOHandler.h>
 @interface AppDelegate ()
 
 @end
@@ -27,15 +29,15 @@
     [AVOSCloud setApplicationId:@"HG6nn22YGNtjgFvfVPpbdRaE-gzGzoHsz"
                       clientKey:@"Ce6WOl25IXT1Ck2RabzVh60k"];
     AVUser *currentUser = [AVUser currentUser];
-#pragma mark--地图--
-    // 要使用百度地图，请先启动BaiduMapManager
-    _mapManager = [[BMKMapManager alloc]init];
-    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
-    BOOL ret = [_mapManager start:@"RD4LGAjfG1ezkCyQ7HWqVzuzeHgAqiSA"  generalDelegate:nil];
-    if (!ret) {
-        NSLog(@"manager start failed!");
-    }
-
+#pragma mark--友盟--
+    //设置友盟社会化组件appkey
+    [UMSocialData setAppKey:@"578c9832e0f55a30cb003483"];
+    //打开新浪微博的SSO开关，设置新浪微博回调地址，这里必须要和你在新浪微博后台设置的回调地址一致。需要 #import "UMSocialSinaSSOHandler.h"
+    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"2678684558"
+                                              secret:@"236429818c65a5241e5cd04f3c739c04"
+                                         RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    
+    
 #pragma mark--界面--
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor yellowColor];
@@ -49,6 +51,15 @@
     }
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    if (result == FALSE) {
+        //调用其他SDK，例如支付宝SDK等
+    }
+    return result;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

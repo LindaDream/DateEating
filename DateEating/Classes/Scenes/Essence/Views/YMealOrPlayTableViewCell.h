@@ -23,6 +23,9 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *categoryIconImageView;
 
+@property (weak, nonatomic) IBOutlet UIView *backView;
+
+
 @property (strong,nonatomic) YMealModel *meal;
 
 @property (strong,nonatomic) YPlayModel *play;
