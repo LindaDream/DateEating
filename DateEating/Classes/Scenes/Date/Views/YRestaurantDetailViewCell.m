@@ -18,7 +18,7 @@
         _model = nil;
         _model = model;
     }
-    [self.photoImgView setImageWithURL:[NSURL URLWithString:model.sPhotoUrl] placeholderImage:[UIImage imageNamed:@"DateLogo.jpg"]];
+    [self.photoImgView sd_setImageWithURL:[NSURL URLWithString:model.sPhotoUrl] placeholderImage:[UIImage imageNamed:@"DateLogo.jpg"]];
     self.nameLabel.text = model.name;
     self.priceLabel.text = [NSString stringWithFormat:@"人均￥%@元",model.avgPrice];
     self.addressLabel.text = model.regionsStr;

@@ -67,11 +67,19 @@
         _credit.text = [NSString stringWithFormat:@"%ld",model.credit];
         
         [_userImage sd_setImageWithURL:[NSURL URLWithString:model.user.userImageUrl] placeholderImage:[UIImage imageNamed:@"DefaultAvatar"]];
+        [_userImage addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)]];
         
     }
 }
 
 #pragma mark -- 按钮事件 --
+// 点击图片
+- (void)tapAction:(UITapGestureRecognizer *)tap {
+    if (_delegate && [_delegate respondsToSelector:@selector(userImageDidTap:)]) {
+        [_delegate userImageDidTap:self.model.userId];
+    }
+}
+
 // 聊天按钮
 - (IBAction)chatBtnAction:(id)sender {
     if (_delegate && [_delegate respondsToSelector:@selector(chatBtnDidClicked:)]) {

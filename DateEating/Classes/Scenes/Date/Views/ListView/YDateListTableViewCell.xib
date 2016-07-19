@@ -22,6 +22,7 @@
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="head_img.png" translatesAutoresizingMaskIntoConstraints="NO" id="UPA-ZS-oU4">
                         <rect key="frame" x="10" y="15" width="60" height="60"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="NpX-V8-cpD"/>
                             <constraint firstAttribute="width" constant="60" id="uo4-YC-wJ2"/>

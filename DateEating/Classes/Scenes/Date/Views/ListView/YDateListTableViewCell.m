@@ -43,7 +43,6 @@
     if (_model != model) {
         _model = nil;
         _model = model;
-        
         _eventName.text = model.eventName;
         _eventLocation.text = model.eventLocation;
         _eventDescription.text = model.eventDescription;
@@ -60,7 +59,14 @@
         _candidateCount.text = [NSString stringWithFormat:@"%ld",model.candidateCount];
         _commentCount.text = [NSString stringWithFormat:@"%ld",model.commentCount];
         [_userImage sd_setImageWithURL:[NSURL URLWithString:model.user.userImageUrl] placeholderImage:[UIImage imageNamed:@"DefaultAvatar"]];
+        [_userImage addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)]];
+        _userImage.userInteractionEnabled = YES;
     }
 }
 
+- (void)tapAction:(id)sender {
+    if (_delegate && [_delegate respondsToSelector:@selector(clickedUserImage:)]) {
+        [_delegate clickedUserImage:self.model.userId];
+    }
+}
 @end
