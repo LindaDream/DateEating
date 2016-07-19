@@ -11,4 +11,5 @@ typedef void(^passAddress)(NSString *addressStr);
 
 @interface YRestaurantViewController : UITableViewController
 @property(copy,nonatomic)passAddress passValueBlock;
+@property(assign,nonatomic)BOOL isDateView;
 @end

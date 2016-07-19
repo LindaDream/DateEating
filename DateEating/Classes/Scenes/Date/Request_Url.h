@@ -29,7 +29,12 @@
 // 餐厅列表界面的城市列表链接
 #define CityList_URL @"http://api.lanrenzhoumo.com/district/list/allcity?session_id=00004016b3e14bbea40c1aa1a14c2273a35352"
 
+
 // 个人信息详情链接
 #define UserDetailRequest_Url(userId) [NSString stringWithFormat:@"http://api.qingchifan.com/api/user/v2/getUserBusinessInfo.json?access_token=6916a7ab1f71e43ac4eadf40a51b4ab1AD09063BB2436532A103098481B9ADF2&visitUserId=%ld",userId]
+
+
+// 关注餐厅的人的列表连接
+#define AttentionList_URL(businessID) [NSString stringWithFormat:@"http://api.qingchifan.com/api/shop/getShopLikeUser.json?access_token=6916a7ab1f71e43ac4eadf40a51b4ab1AD09063BB2436532A103098481B9ADF2&businessId=%@&platform=1&start=0&size=25",businessID]
 
 #endif /* Request_Url_h */

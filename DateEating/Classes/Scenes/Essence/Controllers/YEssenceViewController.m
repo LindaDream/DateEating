@@ -54,10 +54,14 @@
 @property (strong,nonatomic) NSString *categoryId;
 // 判断是上啦还是下拉
 @property (strong,nonatomic) NSString *howRefresh;
-// 美食页请求数据的页码
+// 美食页请求下数据的页码
 @property (strong,nonatomic) NSNumber *mealPage;
-// 玩乐页请求数据的页码
+// 美食页请求数据的页码
+@property (strong,nonatomic) NSNumber *mealNextPage;
+// 玩乐页请求下数据的页码
 @property (strong,nonatomic) NSNumber *playPage;
+// 玩乐页请求数据的页码
+@property (strong,nonatomic) NSNumber *playNextPage;
 // 数据总条数
 @property (strong,nonatomic) NSString *rows;
 
@@ -92,24 +96,21 @@ static NSString *const cityCellId = @"cityCellId";
     // 设置导航栏右侧按钮
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImage:@"MainTagSubIcon" heightImage:@"MainTagSubIconClick" target:self action:@selector(rightClick)];
     
-    // 测试视图（要删掉）
-    self.VC = [[UIView alloc] initWithFrame:self.view.frame];
-    self.VC.backgroundColor = [UIColor whiteColor];
-    //[self.view addSubview:self.VC];
+    
     
     // 初始化isSelected等
     self.isSelected = NO;
     self.isMeal = @"美食";
     self.categoryId = @"";
-    self.cityId = 3;
-    self.mealPage = @(1);
-    self.playPage = @(1);
+    self.cityId = 1;
+    self.mealNextPage = @(1);
+    self.playNextPage = @(1);
     // 初始化数组
     self.mealArr = [NSMutableArray array];
     self.playArr = [NSMutableArray array];
     // 刚加载时请求数据
-    [self requestMealWithCityId:self.cityId categoryId:self.categoryId page:[NSString stringWithFormat:@"%d",self.mealPage.intValue]];
-    [self requestPlayWithCityId:self.cityId categoryId:self.categoryId page:[NSString stringWithFormat:@"%d",self.playPage.intValue]];
+    [self requestMealWithCityId:self.cityId categoryId:self.categoryId page:[NSString stringWithFormat:@"%d",self.mealNextPage.intValue]];
+    [self requestPlayWithCityId:self.cityId categoryId:self.categoryId page:[NSString stringWithFormat:@"%d",self.playNextPage.intValue]];
     [self requestCity];
     
     // 注册cell
@@ -142,13 +143,13 @@ static NSString *const cityCellId = @"cityCellId";
     // 上啦加载
     self.mealTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         weakSelf.howRefresh = @"上拉加载";
-        [weakSelf requestMealWithCityId:weakSelf.cityId categoryId:weakSelf.categoryId page:[NSString stringWithFormat:@"%d",weakSelf.mealPage.intValue]];
+        [weakSelf requestMealWithCityId:weakSelf.cityId categoryId:weakSelf.categoryId page:[NSString stringWithFormat:@"%d",weakSelf.mealNextPage.intValue]];
         [weakSelf.mealTableView.mj_footer endRefreshing];
         
     }];
     self.playTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         weakSelf.howRefresh = @"上拉加载";
-        [weakSelf requestPlayWithCityId:weakSelf.cityId categoryId:weakSelf.categoryId page:[NSString stringWithFormat:@"%d",weakSelf.playPage.intValue]];
+        [weakSelf requestPlayWithCityId:weakSelf.cityId categoryId:weakSelf.categoryId page:[NSString stringWithFormat:@"%d",weakSelf.playNextPage.intValue]];
         [weakSelf.playTableView.mj_footer endRefreshing];
     }];
     
@@ -178,23 +179,68 @@ static NSString *const cityCellId = @"cityCellId";
 
 // 请求美食界面的数据
 - (void)requestMealWithCityId:(NSInteger)cityId categoryId:(NSString *)categoryId page:(NSString *)page{
-
+    NSLog(@"%ld",cityId);
     // 拼接路径
     NSString *mealStr = kMealUrl(cityId,categoryId,page);
-    //NSString *mealStr = @"https://api.yhouse.com/m/meal/list?cityId=3&categoryId=&page=1&pageSize=20";
-    
     // 为两个数组赋值
     [YMealModel parsesWithUrl:mealStr successRequest:^(id dict) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            if (self.isSelected || [self.howRefresh isEqualToString:@"下拉刷新"]){
+            self.mealNextPage = ((YMealModel *)((NSArray *)dict).lastObject).nextPage;
+            self.mealPage = ((YMealModel *)((NSArray *)dict).lastObject).page;
+            
+            NSInteger ID = ((YMealModel *)((NSArray *)dict).lastObject).ID;
+            
+            if (self.isSelected) {// 如果用类型搜索
+                // 清空数组
                 [self.mealArr removeAllObjects];
+                
+                if (self.mealPage.intValue == self.mealNextPage.intValue) {// 只有一页
+                    [self.mealArr addObjectsFromArray:dict];
+                    [self.mealTableView reloadData];
+                    [self showAlertViewWithMessage:@"只有一页"];
+                }else if(!self.mealPage){
+                    [self.mealArr addObjectsFromArray:dict];
+                    [self.mealTableView reloadData];
+                }else{
+                    [self.mealArr addObjectsFromArray:dict];
+                    [self.mealTableView reloadData];
+                }
+                self.isSelected = NO;
+                
+            }else if ([self.howRefresh isEqualToString:@"下拉加载"]) {// 如果下拉刷新
+                // 清空数组
+                [self.mealArr removeAllObjects];
+                
+                if (self.mealPage.intValue == self.mealNextPage.intValue) {// 只有一页
+                    [self.mealArr addObjectsFromArray:dict];
+                    [self.mealTableView reloadData];
+                    [self showAlertViewWithMessage:@"只有一页"];
+                }else{
+                    [self.mealArr addObjectsFromArray:dict];
+                    [self.mealTableView reloadData];
+                }
+                
+                
+            }else{// 普通加载
+                if(self.cityId != cityId){// 换城市
+                    self.cityId = cityId;
+                    [self.mealArr removeAllObjects];
+                    [self.mealArr addObjectsFromArray:dict];
+                    [self.mealTableView reloadData];
+                }else{
+                    if (((YMealModel *)(self.mealArr).lastObject).ID != ID) {// 判断是否加载到最后一页
+                        [self.mealArr addObjectsFromArray:dict];
+                        [self.mealTableView reloadData];
+                    }else {
+                        [self showAlertViewWithMessage:@"已经加载到最后一页"];
+                    }
+                }
             }
+            
+            
 
-            [self.mealArr addObjectsFromArray:dict];
-            self.mealPage = ((YMealModel *)self.mealArr.lastObject).nextPage;
-            [self.mealTableView reloadData];
         });
         
     } failurRequest:^(NSError *error) {
@@ -214,28 +260,60 @@ static NSString *const cityCellId = @"cityCellId";
     [YPlayModel parsesWithUrl:playStr successRequest:^(id dict) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (self.isSelected || [self.howRefresh isEqualToString:@"下拉刷新"]) {
+            self.playNextPage = ((YPlayModel *)((NSArray *)dict).lastObject).nextPage;
+            self.playPage = ((YPlayModel *)((NSArray *)dict).lastObject).page;
+            NSLog(@"%@ %@",self.playPage,dict);
+            NSInteger ID = ((YPlayModel *)((NSArray *)dict).lastObject).ID;
+
+            if (self.isSelected) {// 如果用类型搜索
+                // 清空数组
                 [self.playArr removeAllObjects];
+                
+                if (self.playPage.intValue == self.playNextPage.intValue) {// 只有一页
+                    [self.playArr addObjectsFromArray:dict];
+                    [self.playTableView reloadData];
+                    [self showAlertViewWithMessage:@"只有一页"];
+                }else if(!self.playPage){
+                    [self.playArr addObjectsFromArray:dict];
+                    [self.playTableView reloadData];
+                }else{
+                    [self.playArr addObjectsFromArray:dict];
+                    [self.playTableView reloadData];
+                }
+                self.isSelected = NO;
+                
+            }else if ([self.howRefresh isEqualToString:@"下拉加载"]) {// 如果下拉刷新
+                // 清空数组
+                [self.playArr removeAllObjects];
+                
+                if (self.playPage.intValue == self.playNextPage.intValue) {// 只有一页
+                    [self.playArr addObjectsFromArray:dict];
+                    [self.playTableView reloadData];
+                    [self showAlertViewWithMessage:@"只有一页"];
+                }else{
+                    [self.playArr addObjectsFromArray:dict];
+                    [self.playTableView reloadData];
+                }
+
+            
+            }else{// 普通加载
+                if(self.cityId != cityId){// 换城市
+                    self.cityId = cityId;
+                    [self.playArr removeAllObjects];
+                    [self.playArr addObjectsFromArray:dict];
+                    [self.playTableView reloadData];
+                }else{
+                    if (((YPlayModel *)(self.playArr).lastObject).ID != ID) {// 判断是否加载到最后一页
+                        [self.playArr addObjectsFromArray:dict];
+                        [self.playTableView reloadData];
+                    }else {
+                        [self showAlertViewWithMessage:@"已经加载到最后一页"];
+                    }
+                }
+                
             }
-//            if ([self.howRefresh isEqualToString:@"上拉加载"]) {
-//                for (YPlayModel *play in dict) {
-//                    if (play.ID == ) {
-//                        <#statements#>
-//                    }
-//                }
-//            }
             
             
-            NSNumber *nextPage = ((YMealModel *)((NSArray *)dict).lastObject).nextPage;
-//            if ([self.playPage compare:nextPage] == 0) {
-//                NSLog(@"已经是最后一条了");
-//            }else{
-                [self.playArr addObjectsFromArray:dict];
-                self.playPage = nextPage;
-            NSNumber *p = ((YMealModel *)self.playArr.lastObject).nextPage;
-            NSLog(@"nextPage = %@ p = %@",self.playPage,p);
-            //}
-            [self.playTableView reloadData];
         });
         
     } failurRequest:^(NSError *error) {
@@ -304,18 +382,15 @@ static NSString *const cityCellId = @"cityCellId";
             }
 
             if ([__weakSelf.isMeal isEqualToString:@"美食"]) {
-                //[__weakSelf.mealArr removeAllObjects];
                 [__weakSelf requestMealWithCityId:__weakSelf.cityId categoryId:__weakSelf.categoryId page:@"1"];
                 
             }else{
-                //[__weakSelf.playArr removeAllObjects];
                 [__weakSelf requestPlayWithCityId:__weakSelf.cityId categoryId:__weakSelf.categoryId page:@"1"];
             
             }
             [__weakSelf.popView removeFromSuperview];
             
             __weakSelf.popView.center = CGPointMake(kWidth, 0);
-            __weakSelf.isSelected = NO;
         };
         
     }else{
@@ -323,7 +398,7 @@ static NSString *const cityCellId = @"cityCellId";
         [_popView removeFromSuperview];
         
         _popView.center = CGPointMake(kWidth, 0);
-        self.isSelected = NO;
+        
         
     }
     
@@ -349,10 +424,10 @@ static NSString *const cityCellId = @"cityCellId";
         self.segment.selectedSegmentIndex = scrollView.contentOffset.x / kWidth;
         if (self.segment.selectedSegmentIndex == 0) {
             self.isMeal = @"美食";
-            //[self requestMealWithCityId:self.cityId categoryId:self.categoryId];
+            
         }else{
             self.isMeal = @"玩乐";
-            //[self requestPlayWithCityId:self.cityId categoryId:self.categoryId];
+            
         }
 
     }
@@ -364,10 +439,10 @@ static NSString *const cityCellId = @"cityCellId";
     self.scroll.contentOffset = CGPointMake(kWidth * self.segment.selectedSegmentIndex, 0);
     if (self.segment.selectedSegmentIndex == 0) {
         self.isMeal = @"美食";
-        //[self requestMealWithCityId:self.cityId categoryId:self.categoryId];
+        
     }else{
         self.isMeal = @"玩乐";
-        //[self requestPlayWithCityId:self.cityId categoryId:self.categoryId];
+        
     }
     
 }
@@ -420,7 +495,7 @@ static NSString *const cityCellId = @"cityCellId";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (tableView == self.mealTableView || tableView == self.playTableView) {
-        return 189;
+        return 222;
     }else{
         return 50;
     }
@@ -432,8 +507,6 @@ static NSString *const cityCellId = @"cityCellId";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (tableView == self.mealTableView) {
-        
-
         
         MealDetailsViewController *mealVC = [[MealDetailsViewController alloc] init];
         
@@ -448,8 +521,6 @@ static NSString *const cityCellId = @"cityCellId";
         
     }else if (tableView == self.playTableView) {
         
-        
-        
         PlayDetailsViewControllerViewController *playVC = [[PlayDetailsViewControllerViewController alloc] init];
         if ([self.playArr count] != 0) {
             YPlayModel *model = self.playArr[indexPath.row];
@@ -461,16 +532,29 @@ static NSString *const cityCellId = @"cityCellId";
         
         
     }else{
-        self.cityId = ((YCityModel *)self.cityArr[indexPath.row]).baseCityId;
+        NSInteger cityId = ((YCityModel *)self.cityArr[indexPath.row]).baseCityId;
         self.navigationItem.leftBarButtonItem.title = ((YCityModel *)self.cityArr[indexPath.row]).name;
         self.managerView.x = 0;
-        [self requestMealWithCityId:self.cityId categoryId:self.categoryId page:@"1"];
-        [self requestPlayWithCityId:self.cityId categoryId:self.categoryId page:@"1"];
+        [self requestMealWithCityId:cityId categoryId:self.categoryId page:@"1"];
+        //[self requestPlayWithCityId:cityId categoryId:self.categoryId page:@"1"];
     }
     
 }
 
 
+// 弹框
+- (void)showAlertViewWithMessage:(NSString *)message
+{
+    UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    // 1秒后回收
+    [self performSelector:@selector(dismissAlertView:) withObject:alertView afterDelay:1.5];
+    [self presentViewController:alertView animated:YES completion:nil];
+}
+- (void)dismissAlertView:(UIAlertController *)alertView
+{
+    [alertView dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 /*

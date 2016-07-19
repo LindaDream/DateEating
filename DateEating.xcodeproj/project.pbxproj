@@ -10,6 +10,16 @@
 		CE05FBE71D3BA16C00362EE1 /* YCityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE05FBE61D3BA16C00362EE1 /* YCityListViewController.m */; };
 		CE05FBEC1D3BA19B00362EE1 /* YCityListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE05FBE91D3BA19B00362EE1 /* YCityListModel.m */; };
 		CE05FBED1D3BA19B00362EE1 /* YCityTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE05FBEB1D3BA19B00362EE1 /* YCityTypeModel.m */; };
+		CE289D021D3CBBC300FE8CB1 /* ic_sex_boy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE289CFE1D3CBBC300FE8CB1 /* ic_sex_boy@2x.png */; };
+		CE289D031D3CBBC300FE8CB1 /* ic_sex_boy@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE289CFF1D3CBBC300FE8CB1 /* ic_sex_boy@3x.png */; };
+		CE289D041D3CBBC300FE8CB1 /* ic_sex_girl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE289D001D3CBBC300FE8CB1 /* ic_sex_girl@2x.png */; };
+		CE289D051D3CBBC300FE8CB1 /* ic_sex_girl@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE289D011D3CBBC300FE8CB1 /* ic_sex_girl@3x.png */; };
+		CE289D081D3CBBFB00FE8CB1 /* YAttentionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE289D071D3CBBFB00FE8CB1 /* YAttentionViewController.m */; };
+		CE289D0B1D3CBC2700FE8CB1 /* YAttentionListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE289D0A1D3CBC2700FE8CB1 /* YAttentionListModel.m */; };
+		CE289D101D3CBC4F00FE8CB1 /* YAttentionListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE289D0E1D3CBC4F00FE8CB1 /* YAttentionListViewCell.m */; };
+		CE289D111D3CBC4F00FE8CB1 /* YAttentionListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE289D0F1D3CBC4F00FE8CB1 /* YAttentionListViewCell.xib */; };
+		CE289D141D3CBD0200FE8CB1 /* YMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE289D131D3CBD0200FE8CB1 /* YMapViewController.m */; };
+		CE289D161D3CBEFB00FE8CB1 /* mine_clear.png in Resources */ = {isa = PBXBuildFile; fileRef = CE289D151D3CBEFB00FE8CB1 /* mine_clear.png */; };
 		CE49790D1D34CACE0087FAF6 /* YLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE49790B1D34CACE0087FAF6 /* YLoginViewController.m */; };
 		CE49790E1D34CACE0087FAF6 /* YLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE49790C1D34CACE0087FAF6 /* YLoginViewController.xib */; };
 		CE4979101D34EA5F0087FAF6 /* guide_slide_2.png in Resources */ = {isa = PBXBuildFile; fileRef = CE49790F1D34EA5F0087FAF6 /* guide_slide_2.png */; };
@@ -470,6 +480,20 @@
 		CE05FBE91D3BA19B00362EE1 /* YCityListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCityListModel.m; sourceTree = "<group>"; };
 		CE05FBEA1D3BA19B00362EE1 /* YCityTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCityTypeModel.h; sourceTree = "<group>"; };
 		CE05FBEB1D3BA19B00362EE1 /* YCityTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCityTypeModel.m; sourceTree = "<group>"; };
+		CE289CFE1D3CBBC300FE8CB1 /* ic_sex_boy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_sex_boy@2x.png"; sourceTree = "<group>"; };
+		CE289CFF1D3CBBC300FE8CB1 /* ic_sex_boy@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_sex_boy@3x.png"; sourceTree = "<group>"; };
+		CE289D001D3CBBC300FE8CB1 /* ic_sex_girl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_sex_girl@2x.png"; sourceTree = "<group>"; };
+		CE289D011D3CBBC300FE8CB1 /* ic_sex_girl@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_sex_girl@3x.png"; sourceTree = "<group>"; };
+		CE289D061D3CBBFB00FE8CB1 /* YAttentionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAttentionViewController.h; sourceTree = "<group>"; };
+		CE289D071D3CBBFB00FE8CB1 /* YAttentionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAttentionViewController.m; sourceTree = "<group>"; };
+		CE289D091D3CBC2700FE8CB1 /* YAttentionListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAttentionListModel.h; sourceTree = "<group>"; };
+		CE289D0A1D3CBC2700FE8CB1 /* YAttentionListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAttentionListModel.m; sourceTree = "<group>"; };
+		CE289D0D1D3CBC4F00FE8CB1 /* YAttentionListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAttentionListViewCell.h; sourceTree = "<group>"; };
+		CE289D0E1D3CBC4F00FE8CB1 /* YAttentionListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAttentionListViewCell.m; sourceTree = "<group>"; };
+		CE289D0F1D3CBC4F00FE8CB1 /* YAttentionListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YAttentionListViewCell.xib; sourceTree = "<group>"; };
+		CE289D121D3CBD0200FE8CB1 /* YMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMapViewController.h; sourceTree = "<group>"; };
+		CE289D131D3CBD0200FE8CB1 /* YMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMapViewController.m; sourceTree = "<group>"; };
+		CE289D151D3CBEFB00FE8CB1 /* mine_clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mine_clear.png; sourceTree = "<group>"; };
 		CE49790A1D34CACE0087FAF6 /* YLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YLoginViewController.h; path = DateEating/Classes/Scenes/Essence/Controllers/YLoginViewController.h; sourceTree = SOURCE_ROOT; };
 		CE49790B1D34CACE0087FAF6 /* YLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YLoginViewController.m; path = DateEating/Classes/Scenes/Essence/Controllers/YLoginViewController.m; sourceTree = SOURCE_ROOT; };
 		CE49790C1D34CACE0087FAF6 /* YLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YLoginViewController.xib; path = DateEating/Classes/Scenes/Essence/Controllers/YLoginViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -1027,6 +1051,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CE289D0C1D3CBC4F00FE8CB1 /* AttentionListViews */ = {
+			isa = PBXGroup;
+			children = (
+				CE289D0D1D3CBC4F00FE8CB1 /* YAttentionListViewCell.h */,
+				CE289D0E1D3CBC4F00FE8CB1 /* YAttentionListViewCell.m */,
+				CE289D0F1D3CBC4F00FE8CB1 /* YAttentionListViewCell.xib */,
+			);
+			path = AttentionListViews;
+			sourceTree = "<group>";
+		};
 		CE69130E1D33C95D001FE50B = {
 			isa = PBXGroup;
 			children = (
@@ -1157,6 +1191,11 @@
 		CE6913531D33CFDB001FE50B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CE289D151D3CBEFB00FE8CB1 /* mine_clear.png */,
+				CE289CFE1D3CBBC300FE8CB1 /* ic_sex_boy@2x.png */,
+				CE289CFF1D3CBBC300FE8CB1 /* ic_sex_boy@3x.png */,
+				CE289D001D3CBBC300FE8CB1 /* ic_sex_girl@2x.png */,
+				CE289D011D3CBBC300FE8CB1 /* ic_sex_girl@3x.png */,
 				D6F0F3191D3B464400D1EF81 /* Images */,
 				CEE5755B1D3A7ACA008B2906 /* chizhejia_red@2x.png */,
 				CEE5755C1D3A7ACA008B2906 /* DateLogo.jpg */,
@@ -1219,6 +1258,10 @@
 		CE6913561D33CFDB001FE50B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CE289D121D3CBD0200FE8CB1 /* YMapViewController.h */,
+				CE289D131D3CBD0200FE8CB1 /* YMapViewController.m */,
+				CE289D061D3CBBFB00FE8CB1 /* YAttentionViewController.h */,
+				CE289D071D3CBBFB00FE8CB1 /* YAttentionViewController.m */,
 				CE05FBE51D3BA16C00362EE1 /* YCityListViewController.h */,
 				CE05FBE61D3BA16C00362EE1 /* YCityListViewController.m */,
 				CEE575751D3A7BF7008B2906 /* YRestaurantDetailViewController.h */,
@@ -1245,6 +1288,8 @@
 		CE6913571D33CFDB001FE50B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CE289D091D3CBC2700FE8CB1 /* YAttentionListModel.h */,
+				CE289D0A1D3CBC2700FE8CB1 /* YAttentionListModel.m */,
 				CE05FBE81D3BA19B00362EE1 /* YCityListModel.h */,
 				CE05FBE91D3BA19B00362EE1 /* YCityListModel.m */,
 				CE05FBEA1D3BA19B00362EE1 /* YCityTypeModel.h */,
@@ -1273,6 +1318,7 @@
 		CE6913581D33CFDB001FE50B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CE289D0C1D3CBC4F00FE8CB1 /* AttentionListViews */,
 				CEE575831D3A7C59008B2906 /* YRestaurantDetailViewCell.h */,
 				CEE575841D3A7C59008B2906 /* YRestaurantDetailViewCell.m */,
 				CEE575851D3A7C59008B2906 /* YRestaurantDetailViewCell.xib */,
@@ -2109,6 +2155,7 @@
 				D6F0F3921D3B464400D1EF81 /* supper.png in Resources */,
 				D66E5AD51D33DE84003DED51 /* navigationButtonReturnClick.png in Resources */,
 				D66E5AC91D33DE84003DED51 /* mine-sun-icon@2x.png in Resources */,
+				CE289D161D3CBEFB00FE8CB1 /* mine_clear.png in Resources */,
 				D66E5AC51D33DE84003DED51 /* mine-sun-icon-click.png in Resources */,
 				D6BDD0271D3CFF95000DC251 /* YHeaderTableViewCell.xib in Resources */,
 				D6F0F35A1D3B464400D1EF81 /* bantouming02.jpg in Resources */,
@@ -2193,6 +2240,7 @@
 				D6F0F3661D3B464400D1EF81 /* iconfont-fanhuilunkuo.png in Resources */,
 				D66E5A8A1D33DE84003DED51 /* playButtonPause.png in Resources */,
 				D66E5A601D33DE84003DED51 /* cell-content-line@2x.png in Resources */,
+				CE289D111D3CBC4F00FE8CB1 /* YAttentionListViewCell.xib in Resources */,
 				D66E5B011D33DE84003DED51 /* tabBar_friendTrends_click_icon@3x.png in Resources */,
 				D6B2A0FF1D3A56B4002BB383 /* locationCell@2x.png in Resources */,
 				CEE5756F1D3A7ACA008B2906 /* locationCell@2x.png in Resources */,
@@ -2290,6 +2338,7 @@
 				CE69132A1D33C95D001FE50B /* LaunchScreen.storyboard in Resources */,
 				CED28D741D37942B00A468CF /* event_single@2x.png in Resources */,
 				D66E5ACD1D33DE84003DED51 /* nav_coin_icon@3x.png in Resources */,
+				CE289D041D3CBBC300FE8CB1 /* ic_sex_girl@2x.png in Resources */,
 				D66E5A831D33DE84003DED51 /* mainCellShareClick@2x.png in Resources */,
 				D66E5A5F1D33DE84003DED51 /* cell-content-line.png in Resources */,
 				CED28D691D3793C900A468CF /* YPublishDateViewController.xib in Resources */,
@@ -2320,6 +2369,7 @@
 				D66E5AB31D33DE84003DED51 /* MainTagSubIcon@3x.png in Resources */,
 				D61D1B271D3871BC00C36F84 /* eventBgManContent_@2x.png in Resources */,
 				D66E5AD61D33DE84003DED51 /* navigationButtonReturnClick@2x.png in Resources */,
+				CE289D031D3CBBC300FE8CB1 /* ic_sex_boy@3x.png in Resources */,
 				D66E5A7B1D33DE84003DED51 /* mainCellCommentClick@2x.png in Resources */,
 				D6B2A0E81D3A33D1002BB383 /* YCaterTableViewCell.xib in Resources */,
 				D61D1B2D1D3871BC00C36F84 /* head_img.png in Resources */,
@@ -2361,6 +2411,7 @@
 				D61D1B481D38C3E500C36F84 /* guarantee_bg@2x.png in Resources */,
 				CEF341F51D348DFC007C3640 /* Yes.png in Resources */,
 				D66E5AA31D33DE84003DED51 /* FollowBtnClickBg.png in Resources */,
+				CE289D021D3CBBC300FE8CB1 /* ic_sex_boy@2x.png in Resources */,
 				D6F0F3711D3B464400D1EF81 /* mine_wish_food.png in Resources */,
 				D66E5ABF1D33DE84003DED51 /* mine-setting-icon-click.png in Resources */,
 				D6F0F3591D3B464400D1EF81 /* bantouming.jpg in Resources */,
@@ -2385,6 +2436,7 @@
 				D66E5A991D33DE84003DED51 /* see-big-picture@2x.png in Resources */,
 				D66E5AEF1D33DE84003DED51 /* pushguidebot@2x.png in Resources */,
 				D66E5AA71D33DE84003DED51 /* friendsTrend_login_click.png in Resources */,
+				CE289D051D3CBBC300FE8CB1 /* ic_sex_girl@3x.png in Resources */,
 				D61D1B321D3871BC00C36F84 /* leisure_off@2x.png in Resources */,
 				D6F0F3681D3B464400D1EF81 /* launchScreen.png in Resources */,
 				D66E5A8B1D33DE84003DED51 /* playButtonPause@2x.png in Resources */,
@@ -2519,8 +2571,10 @@
 				CEE575901D3A7D81008B2906 /* YAttentionViewCell.m in Sources */,
 				D6BDD0261D3CFF95000DC251 /* YHeaderTableViewCell.m in Sources */,
 				D61D1AF11D38717B00C36F84 /* YSeekConditionViewController.m in Sources */,
+				CE289D0B1D3CBC2700FE8CB1 /* YAttentionListModel.m in Sources */,
 				D6F0F3A11D3B491100D1EF81 /* EventModel.m in Sources */,
 				D66E597A1D33DBA1003DED51 /* YEssenceViewController.m in Sources */,
+				CE289D141D3CBD0200FE8CB1 /* YMapViewController.m in Sources */,
 				D61D1B021D3871A500C36F84 /* YChatTableViewCell.m in Sources */,
 				D61D1B061D3871A500C36F84 /* YDateListTableViewCell.m in Sources */,
 				CEF341F01D3483D1007C3640 /* YRegisterViewController.m in Sources */,
@@ -2548,9 +2602,11 @@
 				D67A346A1D3A82EE00D5BA9D /* UIButton+YCategory.m in Sources */,
 				CED28D521D378A0300A468CF /* YPlayModel.m in Sources */,
 				D6F0F3D41D3B49BE00D1EF81 /* CategoryButton.m in Sources */,
+				CE289D081D3CBBFB00FE8CB1 /* YAttentionViewController.m in Sources */,
 				CEE575891D3A7C59008B2906 /* YRestaurantDetailViewCell.m in Sources */,
 				D6F0F3D81D3B49BE00D1EF81 /* MealView.m in Sources */,
 				D66E59801D33DBF1003DED51 /* YDateViewController.m in Sources */,
+				CE289D101D3CBC4F00FE8CB1 /* YAttentionListViewCell.m in Sources */,
 				CE49790D1D34CACE0087FAF6 /* YLoginViewController.m in Sources */,
 				D66E59991D33DD20003DED51 /* YNavigationController.m in Sources */,
 				D6F0F3DC1D3B49BE00D1EF81 /* YPopView.m in Sources */,

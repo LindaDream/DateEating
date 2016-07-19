@@ -12,8 +12,10 @@
 #import "ContentView.h"
 #import "OtherEventView.h"
 #import "YPlayModel.h"
+#import <UMSocialControllerService.h>
+#import "UMSocial.h"
 
-@interface PlayDetailsViewControllerViewController ()
+@interface PlayDetailsViewControllerViewController ()<UMSocialUIDelegate>
 
 @property (nonatomic, strong)EventView *myEventView;
 @property (nonatomic, strong)NSURLSessionDataTask *myTask;
@@ -31,6 +33,10 @@
 @property (nonatomic, strong)UIView *BGView;
 @property (nonatomic, assign)BOOL isOnce;
 @property (nonatomic, assign)BOOL isBuild;
+
+// 是否收藏
+@property (assign,nonatomic) BOOL isCollection;
+@property (strong,nonatomic) NSString *objId;
 
 @end
 
@@ -57,9 +63,9 @@
     self.modelArray = [NSMutableArray array];
     [self addSubView];
     [self setUpData];
-//    [self addRightButton];
+
     [self setNavigationStyle];
-    //[self setLeftNavigationStyle];
+    self.isCollection = YES;
     self.isOnce = NO;
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStateChange) name:kReachabilityChangedNotification object:nil];
     
@@ -360,11 +366,6 @@
 }
 
 
-- (void)addRightButton
-{
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"收藏" style:UIBarButtonItemStylePlain target:self action:@selector(actioncollection:)];
-    self.navigationItem.rightBarButtonItem = rightButton;
-}
 
 - (void)setNavigationStyle
 {
@@ -372,71 +373,59 @@
     self.navigationItem.title = self.model.title;
     
     // 分享
-    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Share_img"] style:UIBarButtonItemStylePlain target:self action:@selector(actionShareButton:)];
-    [shareButton setTintColor:[UIColor whiteColor]];
-    shareButton.imageInsets = UIEdgeInsetsMake(3, 3, 3, 3);
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"share"] style:UIBarButtonItemStylePlain target:self action:@selector(actionShareButton:)];
+    
     
     // 收藏
-    UIBarButtonItem *shouCangButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"shoucang.png"] style:UIBarButtonItemStylePlain target:self action:@selector(actioncollection:)];
-    [shouCangButton setTintColor:[UIColor whiteColor]];
-    shouCangButton.imageInsets = UIEdgeInsetsMake(3, 21, 3, -15);
+    UIBarButtonItem *shouCangButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"favorite"] style:UIBarButtonItemStylePlain target:self action:@selector(actionCollection:)];
+    
+    shouCangButton.imageInsets = UIEdgeInsetsMake(0, 0, 0, -30);
     self.navigationItem.rightBarButtonItems = @[shareButton, shouCangButton];
 }
 
 
-- (void)actioncollection:(UIBarButtonItem *)button
+- (void)actionCollection:(UIBarButtonItem *)button
 {
-//    Reachability *conn = [Reachability reachabilityForInternetConnection];
-//    if ([conn currentReachabilityStatus] != NotReachable) {
-//        AVUser *currentUser = [AVUser currentUser];
-//        if (currentUser != nil) {
-//            if (self.isWhat == YES) {
-//                if ([self isHave]) {
-//                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您已经收藏过了" preferredStyle:UIAlertControllerStyleAlert];
-//                    [self presentViewController:alertController animated:YES completion:nil];
-//                    [self performSelector:@selector(dismiss:) withObject:alertController afterDelay:0.5];
-//                } else {
-//                    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:self.model.ID, @"ID", self.model.title, @"title", nil];
-//                    [currentUser addObject:dic forKey:@"play"];
-//                    [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//                        [currentUser saveInBackground];
-//                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"收藏成功" preferredStyle:UIAlertControllerStyleAlert];
-//                        [self presentViewController:alertController animated:YES completion:nil];
-//                        [self performSelector:@selector(dismiss:) withObject:alertController afterDelay:0.5];
-//                    }];
-//                }
-//            } else {
-//                if ([self isHave]) {
-//                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"您已经收藏过了" preferredStyle:UIAlertControllerStyleAlert];
-//                    [self presentViewController:alertController animated:YES completion:nil];
-//                    [self performSelector:@selector(dismiss:) withObject:alertController afterDelay:0.5];
-//                } else {
-//                    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:self.model.ID, @"ID", self.model.title, @"title", nil];
-//                    [currentUser addObject:dic forKey:@"life"];
-//                    [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//                        [currentUser saveInBackground];
-//                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"收藏成功" preferredStyle:UIAlertControllerStyleAlert];
-//                        [self presentViewController:alertController animated:YES completion:nil];
-//                        [self performSelector:@selector(dismiss:) withObject:alertController afterDelay:0.5];
-//                    }];
-//                }
-//            }
-//            
-//            
-//        } else {
-//            UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"LoginAndRegister" bundle:nil];
-//            UIViewController *loginVC = [storyBoard instantiateInitialViewController];
-//            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionUserLogin:) name:@"USERISLOGIN" object:nil];
-//            [self presentViewController:loginVC animated:YES completion:nil];
-//        }
-//
-//    } else {
-//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"收藏失败 请您检查是否为网络原因" preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction *say = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
-//        [alertController addAction:say];
-//        [self presentViewController:alertController animated:YES completion:nil];
-//    }
-//
+    
+    AVObject *object = [AVObject objectWithClassName:@"MyPlayCollection"];
+    if (self.isCollection) {
+        
+        // 保存当前用户名
+        [object setObject:[AVUser currentUser].username forKey:@"userName"];
+        
+        // 保存ID
+        [object setObject:self.ID forKey:@"ID"];
+        
+        // 保存title
+        [object setObject:self.model.title forKey:@"title"];
+        
+        AVQuery *query = [AVQuery queryWithClassName:@"MyPlayCollection"];
+        [query whereKey:@"ID" equalTo:self.ID];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (objects.count == 0) {
+                [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (succeeded) {
+                        [self showAlertViewWithMessage:(@"收藏成功")];
+                        [[NSUserDefaults standardUserDefaults] setObject:object.objectId forKey:self.ID];
+                    }
+                }];
+            }else{
+                [self showAlertViewWithMessage:(@"您已收藏,不可重复收藏,如果想取消收藏，请再次点击")];
+            }
+        }];
+        self.isCollection = NO;
+    }else{
+
+        // 删除收藏的数据
+        // 执行 CQL 语句实现删除一个 MyAttention 对象
+        self.objId = [[NSUserDefaults standardUserDefaults] objectForKey:self.ID];
+        NSLog(@"%@",self.objId);
+        [AVQuery doCloudQueryInBackgroundWithCQL:[NSString stringWithFormat:@"delete from MyPlayCollection where objectId='%@'",self.objId] callback:^(AVCloudQueryResult *result, NSError *error) {
+            [self showAlertViewWithMessage:(@"取消收藏成功")];
+        }];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:self.ID];
+        self.isCollection = YES;
+    }
 }
 
 - (BOOL)isHave
@@ -530,15 +519,12 @@
 - (void)actionShareButton:(UIBarButtonItem *)button
 {
     // 分享字符串
-//    NSString *shareString = [NSString stringWithFormat:@"【 %@ 】%@ 错落的时光里，纷繁的生活中，#时遗#带你体验简单的美好！", self.model.title, self.model.openUrl];
-//    // 分享图片
-//    [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:self.model.mPicUrl];
-//    // 跳转分享界面
-//    [UMSocialSnsService presentSnsIconSheetView:self appKey:@"5631dd4be0f55a697c003d4f" shareText:shareString shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina, UMShareToWechatSession, UMShareToWechatTimeline,UMShareToRenren, UMShareToTencent, UMShareToDouban, nil] delegate:nil];
-//    
-//    // 微信分享设置
-//    [UMSocialData defaultData].extConfig.wechatSessionData.url = self.model.openUrl;
-//    [UMSocialData defaultData].extConfig.wechatTimelineData.url = self.model.openUrl;
+    NSString *shareString = [NSString stringWithFormat:@"【 %@ 】%@ 简单的生活，纷繁的世界 #约起来#带你到别人的世界走走", self.model.title, self.model.openUrl];
+    // 分享图片
+    [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:self.model.mPicUrl];
+    // 跳转分享界面
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:@"578c9832e0f55a30cb003483" shareText:shareString shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent,UMShareToRenren,UMShareToDouban,UMShareToEmail,UMShareToSms,nil] delegate:nil];
+    
 }
 
 //- (void)networkStateChange
@@ -555,14 +541,6 @@
 //    }
 //}
 
-- (void)setLeftNavigationStyle
-{
-    self.navigationController.navigationBar.hidden = NO;
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(actionLeftButton)];
-    [leftButton setTintColor:[UIColor whiteColor]];
-    self.navigationItem.leftBarButtonItem = leftButton;
-    self.navigationItem.leftBarButtonItem.imageInsets = UIEdgeInsetsMake(3, 3, 3, 3);
-}
 
 - (void)actionLeftButton
 {
