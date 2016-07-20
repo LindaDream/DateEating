@@ -42,6 +42,7 @@ MFMessageComposeViewControllerDelegate
 @property(strong,nonatomic)UIButton *footBtn;
 @property(strong,nonatomic)YRestaurantDetailModel *model;
 @property(strong,nonatomic)NSString *object;
+@property(assign,nonatomic)CLLocationDistance distance;
 @end
 
 static NSString *const restaurantCellIdentifier = @"restaurantCell";
@@ -51,8 +52,12 @@ static NSString *const restaurantCellIdentifier = @"restaurantCell";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     [self getData];
-    AVQuery *query = [AVQuery queryWithClassName:@"MyAttention"];
-    [query whereKey:@"name" equalTo:self.nameStr];
+    // AND查询
+    AVQuery *nameQuery = [AVQuery queryWithClassName:@"MyAttention"];
+    [nameQuery whereKey:@"name" equalTo:self.nameStr];
+    AVQuery *userNameQuery = [AVQuery queryWithClassName:@"MyAttention"];
+    [userNameQuery whereKey:@"userName" equalTo:[AVUser currentUser].username];
+    AVQuery *query = [AVQuery andQueryWithSubqueries:[NSArray arrayWithObjects:nameQuery,userNameQuery, nil]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (objects.count != 0) {
             self.isAttented = NO;
@@ -87,8 +92,9 @@ static NSString *const restaurantCellIdentifier = @"restaurantCell";
 - (void)getData{
     NSString *urlStr = [RestaurantDetail_URL(self.businessId) stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     [YRestaurantDetailModel parsesWithUrl:urlStr successRequest:^(id dict) {
+        self.model = dict;
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.model = dict;
+            self.distance = [self distanceToTarget:self.model.latitude log:self.model.longitude];
             [self.restaurantTableView reloadData];
             [self addHeadView];
         });
@@ -110,7 +116,7 @@ static NSString *const restaurantCellIdentifier = @"restaurantCell";
     cell.frame = rect;
     if (indexPath.section == 0) {
         cell.imgView.image = [UIImage imageNamed:@"locationCell"];
-        cell.desLabel.text = self.model.address;
+        cell.desLabel.text = [NSString stringWithFormat:@"%@(%.2fkm)",self.model.address,self.distance];
     }else{
         cell.imgView.image = [UIImage imageNamed:@"mine_restaurant"];
         cell.desLabel.text = [NSString stringWithFormat:@"关注此餐厅的人(%ld)",self.count];
@@ -252,8 +258,12 @@ static NSString *const restaurantCellIdentifier = @"restaurantCell";
         // 保存餐厅图片链接
         [object setObject:self.model.sPhotoUrl forKey:@"headImg"];
         
-        AVQuery *query = [AVQuery queryWithClassName:@"MyAttention"];
-        [query whereKey:@"name" equalTo:self.nameStr];
+        // AND查询
+        AVQuery *nameQuery = [AVQuery queryWithClassName:@"MyAttention"];
+        [nameQuery whereKey:@"name" equalTo:self.nameStr];
+        AVQuery *userNameQuery = [AVQuery queryWithClassName:@"MyAttention"];
+        [userNameQuery whereKey:@"userName" equalTo:[AVUser currentUser].username];
+        AVQuery *query = [AVQuery andQueryWithSubqueries:[NSArray arrayWithObjects:nameQuery,userNameQuery, nil]];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (objects.count == 0) {
                 [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

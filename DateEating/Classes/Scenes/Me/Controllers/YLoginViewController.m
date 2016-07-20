@@ -33,8 +33,8 @@
             [self presentViewController:tabBarVC animated:YES completion:nil];
         } else if(error.code == 210){
             UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"提示" message:@"用户名与密码不匹配!" preferredStyle:(UIAlertControllerStyleAlert)];
-            UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-                [self dismissViewControllerAnimated:YES completion:nil];
+            UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
+                //[self dismissViewControllerAnimated:YES completion:nil];
             }];
             [alertView addAction:doneAction];
             [self presentViewController:alertView animated:YES completion:nil];

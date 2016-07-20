@@ -108,8 +108,10 @@
     NSDictionary *userInfo = [notification userInfo];
     NSNumber *num = [userInfo objectForKey:@"isClicked"];
     if (num.boolValue) {
+        self.scrollView.userInteractionEnabled = NO;
         [self addDateBtnAndPartyBtn];
     }else{
+        self.scrollView.userInteractionEnabled = YES;
         [self removeDateBtnAndPartyBtn];
     }
 }

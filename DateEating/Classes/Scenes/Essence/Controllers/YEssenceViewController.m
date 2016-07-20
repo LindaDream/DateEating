@@ -170,8 +170,10 @@ static NSString *const cityCellId = @"cityCellId";
     NSDictionary *userInfo = [notification userInfo];
     NSNumber *num = [userInfo objectForKey:@"isClicked"];
     if (num.boolValue) {
+        self.managerView.userInteractionEnabled = NO;
         [self addDateBtnAndPartyBtn];
     }else{
+        self.managerView.userInteractionEnabled = YES;
         [self removeDateBtnAndPartyBtn];
     }
 }

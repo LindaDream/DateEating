@@ -14,11 +14,15 @@
 #import "YFindeTableViewCell.h"
 #import "YTimePiker.h"
 #import "YRestaurantViewController.h"
+#import "YCompleteViewController.h"
 @interface YPublishDateViewController ()<
 UITableViewDataSource,
 UITableViewDelegate,
 UIPickerViewDataSource,
-UIPickerViewDelegate
+UIPickerViewDelegate,
+passObjectValue,
+passConcreteValue,
+UITextFieldDelegate
 >
 
 @property (weak, nonatomic) IBOutlet UITableView *dateTableView;
@@ -28,13 +32,22 @@ UIPickerViewDelegate
 @property(strong,nonatomic)UIView *backView;
 // picker视图
 @property(strong,nonatomic)UIPickerView *pickerView;
-@property(strong,nonatomic)NSMutableString *dateStr;
+@property(strong,nonatomic)NSString *dateStr;
 @property(strong,nonatomic)NSString *message;
 @property(strong,nonatomic)NSString *dateTmpStr;
 @property(strong,nonatomic)NSString *hourTmpStr;
 @property(strong,nonatomic)NSString *minuteTmpStr;
+// 约会时间
 @property(strong,nonatomic)NSString *timeStr;
 @property(assign,nonatomic)BOOL isDateView;
+// 约会主题
+@property(strong,nonatomic)NSString *themeStr;
+// 约会说明
+@property(strong,nonatomic)NSMutableString *findStr;
+// 约会对象
+@property(strong,nonatomic)NSString *dateObj;
+// 约会花费
+@property(strong,nonatomic)NSString *concrete;
 @end
 
 // 设置重用标识符
@@ -56,7 +69,41 @@ static NSString *const findeCellIdentifier = @"findeCell";
 }
 #pragma mark--返回方法--
 - (void)backAction{
-    [self.navigationController popViewControllerAnimated:YES];
+    NSLog(@"%@",self.findStr);
+    if (nil != [[AVUser currentUser] objectForKey:@"age"] && nil != [[AVUser currentUser] objectForKey:@"gender"] && nil != [[AVUser currentUser] objectForKey:@"constellation"]) {
+        if (nil != self.timeStr && nil != self.themeStr && nil != self.addressStr && nil != self.findStr && nil != self.concrete && nil != self.dateObj){
+            // 发送publishDate通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"publishDate" object:nil userInfo:@{@"theme":self.themeStr,@"time":self.timeStr,@"address":self.addressStr,@"description":self.findStr}];
+            AVObject *object = [AVObject objectWithClassName:@"MyDate"];
+            [object setObject:[AVUser currentUser].username forKey:@"userName"];
+            [object setObject:self.themeStr forKey:@"theme"];
+            [object setObject:self.dateObj forKey:@"dateObject"];
+            [object setObject:self.concrete forKey:@"concrete"];
+            [object setObject:self.timeStr forKey:@"time"];
+            [object setObject:self.addressStr forKey:@"address"];
+            [object setObject:self.findStr forKey:@"description"];
+            [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    NSLog(@"保存成功");
+                }
+            }];
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"提示" message:@"请完善约会信息!" preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            }];
+            [alertView addAction:doneAction];
+            [self presentViewController:alertView animated:YES completion:nil];
+        }
+    }else{
+        UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"提示" message:@"请先完善资料再来发布约会!" preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            YCompleteViewController *completeVC = [YCompleteViewController new];
+            [self.navigationController pushViewController:completeVC animated:YES];
+        }];
+        [alertView addAction:doneAction];
+        [self presentViewController:alertView animated:YES completion:nil];
+    }
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
@@ -80,29 +127,36 @@ static NSString *const findeCellIdentifier = @"findeCell";
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
-        return 1;
+        return 2;
     }else if (section == 1){
         return 1;
     }
-    return 4;
+    return 3;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        YThemeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:themeCellIdentifier forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
+        if (indexPath.row == 0) {
+            YThemeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:themeCellIdentifier forIndexPath:indexPath];
+            self.themeStr = cell.themeTF.text;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }else{
+            YFindeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:findeCellIdentifier forIndexPath:indexPath];
+            self.findStr = cell.findeTF.text;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
     }else if (indexPath.section == 1){
         YObjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:objectCellIdentifier forIndexPath:indexPath];
-        [cell.girlBtn addTarget:self action:@selector(selectAction:) forControlEvents:(UIControlEventTouchUpInside)];
-        [cell.manBtn addTarget:self action:@selector(selectAction:) forControlEvents:(UIControlEventTouchUpInside)];
-        [cell.anyBtn addTarget:self action:@selector(selectAction:) forControlEvents:(UIControlEventTouchUpInside)];
+        cell.objDelegate = self;
+        cell.isSelected = self.isSelected;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else{
         if (indexPath.row == 0) {
             YConcreteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:concreteCellIdentifier forIndexPath:indexPath];
-            [cell.meBtn addTarget:self action:@selector(selectAction:) forControlEvents:(UIControlEventTouchUpInside)];
-            [cell.AABtn addTarget:self action:@selector(selectAction:) forControlEvents:(UIControlEventTouchUpInside)];
+            cell.delegate = self;
+            cell.isSelect = self.isSelected;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }else if (indexPath.row == 1 || indexPath.row == 2){
@@ -119,12 +173,9 @@ static NSString *const findeCellIdentifier = @"findeCell";
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }
             return cell;
-        }else{
-            YFindeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:findeCellIdentifier forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
         }
     }
+    return nil;
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (section == 0) {
@@ -148,14 +199,21 @@ static NSString *const findeCellIdentifier = @"findeCell";
         [self.navigationController pushViewController:restaurantVC animated:YES];
     }
 }
-#pragma mark--cell上的按钮点击方法--
-- (void)selectAction:(UIButton *)btn{
-    if (self.isSelected) {
-        [btn setBackgroundImage:[UIImage imageNamed:@"Selected"] forState:(UIControlStateNormal)];
-        self.isSelected = NO;
-    }else{
-        [btn setBackgroundImage:[UIImage imageNamed:@"notSelected"] forState:(UIControlStateNormal)];
+#pragma mark--cell上的代理方法--
+-(void)passConcreteValue:(NSString *)concrete cell:(YConcreteTableViewCell *)cell{
+    self.concrete = concrete;
+    if (!cell.isSelect) {
         self.isSelected = YES;
+    }else{
+        self.isSelected = NO;
+    }
+}
+-(void)passObject:(NSString *)dateObj cell:(YObjectTableViewCell *)cell{
+    self.dateObj = dateObj;
+    if (!cell.isSelected) {
+        self.isSelected = YES;
+    }else{
+        self.isSelected = NO;
     }
 }
 #pragma mark--搭建picker视图--
