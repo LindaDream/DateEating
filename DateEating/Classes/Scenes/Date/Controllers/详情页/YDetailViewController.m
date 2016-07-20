@@ -12,7 +12,7 @@
 #import "YNetWorkRequestManager.h"
 #import "Request_Url.h"
 #import "YChatMessageModel.h"
-#import "YCaterViewController.h"
+#import "YRestaurantDetailViewController.h"
 #import "YUserDetailViewController.h"
 
 @interface YDetailViewController ()
@@ -85,9 +85,13 @@
 
 #pragma mark -- 餐厅详情按钮代理 --
 - (void)restaurantBtnDidClicked:(YDetailHeaderTableViewCell *)cell {
-//    YCaterViewController *caterVC = [[YCaterViewController alloc]init];
-//    caterVC.businessId = cell.model.caterBusinessId;
-//    [self.navigationController pushViewController:caterVC animated:YES];
+    YRestaurantDetailViewController *detailVC = [[YRestaurantDetailViewController alloc]init];
+    //detailVC.count = self.model.caterUserCount;
+    detailVC.businessId = self.model.caterBusinessId;
+    detailVC.addressStr = self.model.eventAddress;
+    detailVC.nameStr = self.model.eventLocation;
+    
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 // 点击头像的代理方法
 - (void)userImageDidTap:(NSInteger)userId {

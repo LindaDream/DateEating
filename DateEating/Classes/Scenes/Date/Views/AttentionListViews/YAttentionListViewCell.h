@@ -8,7 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "YAttentionListModel.h"
+
+@protocol YAttentionListViewCellDelegate <NSObject>
+
+- (void)didTapTheUserImage:(NSInteger)userId;
+
+@end
+
 @interface YAttentionListViewCell : UITableViewCell
+@property (strong,nonatomic) id<YAttentionListViewCellDelegate>delegate;
+
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;

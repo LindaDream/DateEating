@@ -66,6 +66,10 @@
 @property (assign, nonatomic) NSInteger rankNumber;
 @property (assign, nonatomic) NSInteger recentContact;
 
+// 自己的数据
+@property (strong, nonatomic) NSString *dateTime;       // 约会时间（字符串格式）
+@property (strong, nonatomic) UIImage *img;
+
 + (NSMutableArray *)getDateContentListWithDic:(NSDictionary *)dict;
 
 @end

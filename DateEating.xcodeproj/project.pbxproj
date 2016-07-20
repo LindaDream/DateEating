@@ -451,6 +451,11 @@
 		D6F20D9B1D3DB6C10082E398 /* mine_hobby_movie@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6F20D971D3DB6C10082E398 /* mine_hobby_movie@2x.png */; };
 		D6F20D9C1D3DB6C10082E398 /* mine_hobby_restaurant@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6F20D981D3DB6C10082E398 /* mine_hobby_restaurant@2x.png */; };
 		D6F20D9D1D3DB6C10082E398 /* mine_hobby_travel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6F20D991D3DB6C10082E398 /* mine_hobby_travel@2x.png */; };
+		D6F20D9F1D3E204D0082E398 /* locationcell@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6F20D9E1D3E204D0082E398 /* locationcell@3x.png */; };
+		D6F20DA61D3E272E0082E398 /* NaviList_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6F20DA41D3E272E0082E398 /* NaviList_@2x.png */; };
+		D6F20DA71D3E272E0082E398 /* NaviList@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6F20DA51D3E272E0082E398 /* NaviList@2x.png */; };
+		D6F20DAB1D3E2C910082E398 /* YCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F20DA91D3E2C910082E398 /* YCityTableViewController.m */; };
+		D6F20DAC1D3E2C910082E398 /* YCityTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6F20DAA1D3E2C910082E398 /* YCityTableViewController.xib */; };
 		FE46A951A5D2154F93613B74 /* libPods-DateEating.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C3E5E371EBA8BAE102B0DB4 /* libPods-DateEating.a */; };
 /* End PBXBuildFile section */
 
@@ -1014,6 +1019,12 @@
 		D6F20D971D3DB6C10082E398 /* mine_hobby_movie@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mine_hobby_movie@2x.png"; sourceTree = "<group>"; };
 		D6F20D981D3DB6C10082E398 /* mine_hobby_restaurant@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mine_hobby_restaurant@2x.png"; sourceTree = "<group>"; };
 		D6F20D991D3DB6C10082E398 /* mine_hobby_travel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mine_hobby_travel@2x.png"; sourceTree = "<group>"; };
+		D6F20D9E1D3E204D0082E398 /* locationcell@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationcell@3x.png"; sourceTree = "<group>"; };
+		D6F20DA41D3E272E0082E398 /* NaviList_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NaviList_@2x.png"; sourceTree = "<group>"; };
+		D6F20DA51D3E272E0082E398 /* NaviList@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NaviList@2x.png"; sourceTree = "<group>"; };
+		D6F20DA81D3E2C910082E398 /* YCityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCityTableViewController.h; sourceTree = "<group>"; };
+		D6F20DA91D3E2C910082E398 /* YCityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCityTableViewController.m; sourceTree = "<group>"; };
+		D6F20DAA1D3E2C910082E398 /* YCityTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YCityTableViewController.xib; sourceTree = "<group>"; };
 		DDA8A0284974FF03CB93EF6B /* Pods-DateEating.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DateEating.release.xcconfig"; path = "Pods/Target Support Files/Pods-DateEating/Pods-DateEating.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1544,6 +1555,9 @@
 		D61D1B081D3871BC00C36F84 /* Date */ = {
 			isa = PBXGroup;
 			children = (
+				D6F20DA41D3E272E0082E398 /* NaviList_@2x.png */,
+				D6F20DA51D3E272E0082E398 /* NaviList@2x.png */,
+				D6F20D9E1D3E204D0082E398 /* locationcell@3x.png */,
 				D6F20D961D3DB6C10082E398 /* mine_hobby_hobby@2x.png */,
 				D6F20D971D3DB6C10082E398 /* mine_hobby_movie@2x.png */,
 				D6F20D981D3DB6C10082E398 /* mine_hobby_restaurant@2x.png */,
@@ -1858,6 +1872,9 @@
 				D6B2A0D51D39E9F7002BB383 /* YCaterViewController.h */,
 				D6B2A0D61D39E9F7002BB383 /* YCaterViewController.m */,
 				D6B2A0D71D39E9F7002BB383 /* YCaterViewController.xib */,
+				D6F20DA81D3E2C910082E398 /* YCityTableViewController.h */,
+				D6F20DA91D3E2C910082E398 /* YCityTableViewController.m */,
+				D6F20DAA1D3E2C910082E398 /* YCityTableViewController.xib */,
 			);
 			name = CaterDetail;
 			sourceTree = "<group>";
@@ -2212,12 +2229,14 @@
 				D66E5A631D33DE84003DED51 /* cellFollowClickIcon@3x.png in Resources */,
 				D66E5ADD1D33DE84003DED51 /* publish-audio@3x.png in Resources */,
 				D66E5AC11D33DE84003DED51 /* mine-setting-icon-click@3x.png in Resources */,
+				D6F20DAC1D3E2C910082E398 /* YCityTableViewController.xib in Resources */,
 				D66E5AF71D33DE84003DED51 /* tabbar-light.png in Resources */,
 				D66E5AAC1D33DE84003DED51 /* friendsRecommentIcon-click@2x.png in Resources */,
 				D66E5AD41D33DE84003DED51 /* navigationButtonReturn@3x.png in Resources */,
 				D66E5B0D1D33DE84003DED51 /* tabBar_new_click_icon@3x.png in Resources */,
 				D66E5AB21D33DE84003DED51 /* MainTagSubIcon@2x.png in Resources */,
 				CEE575911D3A7D81008B2906 /* YAttentionViewCell.xib in Resources */,
+				D6F20D9F1D3E204D0082E398 /* locationcell@3x.png in Resources */,
 				CEE575691D3A7ACA008B2906 /* DateLogo.jpg in Resources */,
 				D66E5B101D33DE84003DED51 /* tabBar_new_icon@3x.png in Resources */,
 				D66E5A981D33DE84003DED51 /* see-big-picture.png in Resources */,
@@ -2400,6 +2419,7 @@
 				D66E5A9E1D33DE84003DED51 /* video-play.png in Resources */,
 				CED28D6B1D3793C900A468CF /* YPublishPartyViewController.xib in Resources */,
 				D66E5A8C1D33DE84003DED51 /* playButtonPause@3x.png in Resources */,
+				D6F20DA71D3E272E0082E398 /* NaviList@2x.png in Resources */,
 				D66E5A7D1D33DE84003DED51 /* mainCellDing@2x.png in Resources */,
 				D66E5A7C1D33DE84003DED51 /* mainCellDing.png in Resources */,
 				D66E5AC81D33DE84003DED51 /* mine-sun-icon.png in Resources */,
@@ -2477,6 +2497,7 @@
 				D66E5ADC1D33DE84003DED51 /* publish-audio@2x.png in Resources */,
 				D6F0F37B1D3B464400D1EF81 /* placeholder_image.png in Resources */,
 				CEE081921D3658B90052A1D4 /* mine_save.png in Resources */,
+				D6F20DA61D3E272E0082E398 /* NaviList_@2x.png in Resources */,
 				D66E5AA51D33DE84003DED51 /* friendsTrend_login.png in Resources */,
 				D6F0F35F1D3B464400D1EF81 /* discovery_img.png in Resources */,
 				D66E5AFD1D33DE84003DED51 /* tabBar_essence_icon@2x.png in Resources */,
@@ -2629,6 +2650,7 @@
 				D61D1AEF1D38717B00C36F84 /* YDetailViewController.m in Sources */,
 				CE4979541D3514E10087FAF6 /* YClearTableViewCell.m in Sources */,
 				D66E59981D33DD20003DED51 /* UIView+XMGCategory.m in Sources */,
+				D6F20DAB1D3E2C910082E398 /* YCityTableViewController.m in Sources */,
 				CE4979171D34EA900087FAF6 /* YOpenViewController.m in Sources */,
 				D66E59971D33DD20003DED51 /* UIBarButtonItem+XMGCategory.m in Sources */,
 				D6BDD01A1D3C8D52000DC251 /* YHobbyTableViewCell.m in Sources */,

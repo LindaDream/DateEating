@@ -25,8 +25,8 @@ static YNSUserDefaultHandel *handle = nil;
 - (void)setBasicCheck:(NSInteger)basicCheck {
     [[NSUserDefaults standardUserDefaults]setInteger:basicCheck forKey:@"basicCheck"];
 }
-- (void)setCity:(NSInteger)city {
-    [[NSUserDefaults standardUserDefaults]setInteger:city forKey:@"city"];
+- (void)setCity:(NSDictionary *)city {
+    [[NSUserDefaults standardUserDefaults]setObject:city forKey:@"city"];
 }
 - (void)setMulti:(NSInteger)multi {
     [[NSUserDefaults standardUserDefaults]setInteger:multi forKey:@"multi"];
@@ -56,11 +56,11 @@ static YNSUserDefaultHandel *handle = nil;
     return [[NSUserDefaults standardUserDefaults]integerForKey:@"basicCheck"];
 }
 
-- (NSInteger)city {
-    if (![[NSUserDefaults standardUserDefaults]integerForKey:@"city"]) {
-        return 0;
+- (NSDictionary *)city {
+    if (![[NSUserDefaults standardUserDefaults]objectForKey:@"city"]) {
+        return @{@"北京":@010};
     }
-    return [[NSUserDefaults standardUserDefaults]integerForKey:@"city"];
+    return [[NSUserDefaults standardUserDefaults]objectForKey:@"city"];
 }
 - (NSInteger)multi {
     if (![[NSUserDefaults standardUserDefaults]integerForKey:@"multi"]) {

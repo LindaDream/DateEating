@@ -8,7 +8,12 @@
 
 #import "YAttentionViewController.h"
 #import "YAttentionListViewCell.h"
+#import "YUserDetailViewController.h"
+
 @interface YAttentionViewController ()
+<
+    YAttentionListViewCellDelegate
+>
 
 @property(strong,nonatomic)NSArray *attentionArray;
 
@@ -35,6 +40,14 @@ static NSString *const attentionListCellIdentifier = @"attentionListCell";
             
         }];
 }
+
+// 点击头像跳转的代理回调
+- (void)didTapTheUserImage:(NSInteger)userId {
+    YUserDetailViewController *userDetailVC = [[YUserDetailViewController alloc]init];
+    userDetailVC.userId = userId;
+    [self.navigationController pushViewController:userDetailVC animated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -55,6 +68,7 @@ static NSString *const attentionListCellIdentifier = @"attentionListCell";
     YAttentionListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:attentionListCellIdentifier forIndexPath:indexPath];
     NSLog(@"%@",self.attentionArray);
     YAttentionListModel *model = self.attentionArray[indexPath.row];
+    cell.delegate = self;
     cell.model = model;
     return cell;
 }
