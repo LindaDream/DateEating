@@ -13,23 +13,22 @@
 + (instancetype)sharedYNSUserDefaultHandel;
 
 - (void)setBasicCheck:(NSInteger)basicCheck;
-- (void)setCity:(NSInteger)city;
 - (void)setMulti:(NSInteger)multi;
 - (void)setGender:(NSInteger)gender;
 - (void)setTime:(NSInteger)time;
 - (void)setAge:(NSInteger)age;
 - (void)setConstellation:(NSInteger)constellation;
 - (void)setOccupation:(NSInteger)occupation;
+- (void)setCity:(NSDictionary *)city;
 
 - (NSInteger)basicCheck;
-- (NSInteger)city;
 - (NSInteger)multi;
 - (NSInteger)gender;
 - (NSInteger)time;
 - (NSInteger)age;
 - (NSInteger)constellation;
 - (NSInteger)occupation;
-
+- (NSDictionary *)city;
 
 - (void)synchronize;
 - (void)reSetCondition;

@@ -161,7 +161,7 @@
     if (section == 0) {
         return 2;
     } else if (section == 1) {
-        if (self.userDetail.event != nil) {
+        if (self.userDetail.event.user != nil) {
             return 2;
         } else {
             return 1;
@@ -184,7 +184,7 @@
             return cell;
         }
     } else if(indexPath.section == 1) {
-        if (self.userDetail.event != nil) {
+        if (self.userDetail.event.user != nil) {
             if (indexPath.row == 0) {
                 YDateListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:YDateListTableViewCell_Identify forIndexPath:indexPath];
                 cell.model = self.userDetail.event;
@@ -239,7 +239,7 @@
             return [YImageTableViewCell getHeightForCell:self.imageUrlArray.count];
         }
     } else if(indexPath.section == 1){
-        if (self.userDetail.event != nil) {
+        if (self.userDetail.event.user != nil) {
             if (indexPath.row == 0) {
                 return 200;
             } else {

@@ -45,7 +45,7 @@ static NSString *const restaurantListCellIndentifier = @"restaurantListCell";
     self.searchController.searchResultsUpdater = self;
 }
 #pragma mark--设置导航栏--
-- (void)setNavigationBar{
+- (void)setNavigationBar {
     // 设置城市按钮
     UIButton *cityBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width - 50, 0, 40, 30)];
     [cityBtn addTarget:self action:@selector(cityListAction:) forControlEvents:(UIControlEventTouchUpInside)];
