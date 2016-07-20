@@ -14,12 +14,13 @@
 #import <MessageUI/MessageUI.h>
 #import "YAttentionListViewController.h"
 #import "YCompleteViewController.h"
+#import "YMyPublishViewController.h"
 @interface YMeViewController ()<
-UITableViewDataSource,
-UITableViewDelegate,
-UINavigationControllerDelegate,
-UIImagePickerControllerDelegate,
-MFMailComposeViewControllerDelegate
+    UITableViewDataSource,
+    UITableViewDelegate,
+    UINavigationControllerDelegate,
+    UIImagePickerControllerDelegate,
+    MFMailComposeViewControllerDelegate
 >
 @property(strong,nonatomic)UITableView *meTableView;
 @property(strong,nonatomic)UIView *headView;
@@ -367,11 +368,13 @@ static NSString *const listCellIdentifier = @"listCell";
     if (tableView == self.meTableView) {
         if (indexPath.row == 0) {
             if ([AVUser currentUser]) {
-                
+                YMyPublishViewController *publishListVC = [YMyPublishViewController new];
+                [self.navigationController pushViewController:publishListVC animated:YES];
             }else{
                 YLoginViewController *loginVC = [YLoginViewController new];
                 [self presentViewController:loginVC animated:YES completion:nil];
             }
+
         }else if (indexPath.row == 1) {
             if ([AVUser currentUser]) {
                 YAttentionListViewController *attentionListVC = [YAttentionListViewController new];

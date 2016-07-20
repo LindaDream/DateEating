@@ -24,8 +24,6 @@
 		CE4979171D34EA900087FAF6 /* YOpenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4979151D34EA900087FAF6 /* YOpenViewController.m */; };
 		CE4979181D34EA900087FAF6 /* YOpenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE4979161D34EA900087FAF6 /* YOpenViewController.xib */; };
 		CE49791A1D34EF400087FAF6 /* head_img.png in Resources */ = {isa = PBXBuildFile; fileRef = CE4979191D34EF400087FAF6 /* head_img.png */; };
-		CE4979541D3514E10087FAF6 /* YClearTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4979521D3514E10087FAF6 /* YClearTableViewCell.m */; };
-		CE4979551D3514E10087FAF6 /* YClearTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE4979531D3514E10087FAF6 /* YClearTableViewCell.xib */; };
 		CE49795C1D3515170087FAF6 /* YActionUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4979571D3515170087FAF6 /* YActionUserModel.m */; };
 		CE49795D1D3515170087FAF6 /* YDateContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4979591D3515170087FAF6 /* YDateContentModel.m */; };
 		CE49795E1D3515170087FAF6 /* YFeeTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE49795B1D3515170087FAF6 /* YFeeTypeModel.m */; };
@@ -98,10 +96,16 @@
 		CEE5758A1D3A7C59008B2906 /* YRestaurantDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE575851D3A7C59008B2906 /* YRestaurantDetailViewCell.xib */; };
 		CEE5758B1D3A7C59008B2906 /* YRestaurantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE575871D3A7C59008B2906 /* YRestaurantTableViewCell.m */; };
 		CEE5758C1D3A7C59008B2906 /* YRestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE575881D3A7C59008B2906 /* YRestaurantTableViewCell.xib */; };
-		CEE575901D3A7D81008B2906 /* YAttentionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE5758E1D3A7D81008B2906 /* YAttentionViewCell.m */; };
-		CEE575911D3A7D81008B2906 /* YAttentionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE5758F1D3A7D81008B2906 /* YAttentionViewCell.xib */; };
 		CEE575951D3A7F12008B2906 /* YTimeOrAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE575931D3A7F12008B2906 /* YTimeOrAddressTableViewCell.m */; };
 		CEE575961D3A7F12008B2906 /* YTimeOrAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE575941D3A7F12008B2906 /* YTimeOrAddressTableViewCell.xib */; };
+		CEF06C9E1D3F568D00943754 /* YMyPublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF06C9C1D3F568D00943754 /* YMyPublishViewController.m */; };
+		CEF06C9F1D3F568D00943754 /* YMyPublishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF06C9D1D3F568D00943754 /* YMyPublishViewController.xib */; };
+		CEF06CA41D3F570B00943754 /* YDateOrPartyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF06CA21D3F570B00943754 /* YDateOrPartyTableViewCell.m */; };
+		CEF06CA51D3F570B00943754 /* YDateOrPartyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF06CA31D3F570B00943754 /* YDateOrPartyTableViewCell.xib */; };
+		CEF06CAC1D3F576F00943754 /* YAttentionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF06CA71D3F576F00943754 /* YAttentionViewCell.m */; };
+		CEF06CAD1D3F576F00943754 /* YAttentionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF06CA81D3F576F00943754 /* YAttentionViewCell.xib */; };
+		CEF06CAE1D3F576F00943754 /* YClearTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF06CAA1D3F576F00943754 /* YClearTableViewCell.m */; };
+		CEF06CAF1D3F576F00943754 /* YClearTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF06CAB1D3F576F00943754 /* YClearTableViewCell.xib */; };
 		CEF341F31D348443007C3640 /* login_background_i5@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEF341F21D348443007C3640 /* login_background_i5@2x.jpg */; };
 		CEF341F51D348DFC007C3640 /* Yes.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF341F41D348DFC007C3640 /* Yes.png */; };
 		D61D1AEF1D38717B00C36F84 /* YDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D61D1AE91D38717B00C36F84 /* YDetailViewController.m */; };
@@ -501,9 +505,6 @@
 		CE4979151D34EA900087FAF6 /* YOpenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOpenViewController.m; sourceTree = "<group>"; };
 		CE4979161D34EA900087FAF6 /* YOpenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YOpenViewController.xib; sourceTree = "<group>"; };
 		CE4979191D34EF400087FAF6 /* head_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head_img.png; sourceTree = "<group>"; };
-		CE4979511D3514E10087FAF6 /* YClearTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YClearTableViewCell.h; path = DateEating/Classes/Scenes/Me/Views/YClearTableViewCell.h; sourceTree = SOURCE_ROOT; };
-		CE4979521D3514E10087FAF6 /* YClearTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YClearTableViewCell.m; path = DateEating/Classes/Scenes/Me/Views/YClearTableViewCell.m; sourceTree = SOURCE_ROOT; };
-		CE4979531D3514E10087FAF6 /* YClearTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YClearTableViewCell.xib; path = DateEating/Classes/Scenes/Me/Views/YClearTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		CE4979561D3515170087FAF6 /* YActionUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YActionUserModel.h; sourceTree = "<group>"; };
 		CE4979571D3515170087FAF6 /* YActionUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YActionUserModel.m; sourceTree = "<group>"; };
 		CE4979581D3515170087FAF6 /* YDateContentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDateContentModel.h; sourceTree = "<group>"; };
@@ -610,12 +611,21 @@
 		CEE575861D3A7C59008B2906 /* YRestaurantTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRestaurantTableViewCell.h; sourceTree = "<group>"; };
 		CEE575871D3A7C59008B2906 /* YRestaurantTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRestaurantTableViewCell.m; sourceTree = "<group>"; };
 		CEE575881D3A7C59008B2906 /* YRestaurantTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YRestaurantTableViewCell.xib; sourceTree = "<group>"; };
-		CEE5758D1D3A7D81008B2906 /* YAttentionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YAttentionViewCell.h; path = DateEating/Classes/Scenes/Me/Views/YAttentionViewCell.h; sourceTree = SOURCE_ROOT; };
-		CEE5758E1D3A7D81008B2906 /* YAttentionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YAttentionViewCell.m; path = DateEating/Classes/Scenes/Me/Views/YAttentionViewCell.m; sourceTree = SOURCE_ROOT; };
-		CEE5758F1D3A7D81008B2906 /* YAttentionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YAttentionViewCell.xib; path = DateEating/Classes/Scenes/Me/Views/YAttentionViewCell.xib; sourceTree = SOURCE_ROOT; };
 		CEE575921D3A7F12008B2906 /* YTimeOrAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTimeOrAddressTableViewCell.h; sourceTree = "<group>"; };
 		CEE575931D3A7F12008B2906 /* YTimeOrAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTimeOrAddressTableViewCell.m; sourceTree = "<group>"; };
 		CEE575941D3A7F12008B2906 /* YTimeOrAddressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YTimeOrAddressTableViewCell.xib; sourceTree = "<group>"; };
+		CEF06C9B1D3F568D00943754 /* YMyPublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMyPublishViewController.h; sourceTree = "<group>"; };
+		CEF06C9C1D3F568D00943754 /* YMyPublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMyPublishViewController.m; sourceTree = "<group>"; };
+		CEF06C9D1D3F568D00943754 /* YMyPublishViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YMyPublishViewController.xib; sourceTree = "<group>"; };
+		CEF06CA11D3F570B00943754 /* YDateOrPartyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDateOrPartyTableViewCell.h; sourceTree = "<group>"; };
+		CEF06CA21D3F570B00943754 /* YDateOrPartyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDateOrPartyTableViewCell.m; sourceTree = "<group>"; };
+		CEF06CA31D3F570B00943754 /* YDateOrPartyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YDateOrPartyTableViewCell.xib; sourceTree = "<group>"; };
+		CEF06CA61D3F576F00943754 /* YAttentionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAttentionViewCell.h; sourceTree = "<group>"; };
+		CEF06CA71D3F576F00943754 /* YAttentionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAttentionViewCell.m; sourceTree = "<group>"; };
+		CEF06CA81D3F576F00943754 /* YAttentionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YAttentionViewCell.xib; sourceTree = "<group>"; };
+		CEF06CA91D3F576F00943754 /* YClearTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YClearTableViewCell.h; sourceTree = "<group>"; };
+		CEF06CAA1D3F576F00943754 /* YClearTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YClearTableViewCell.m; sourceTree = "<group>"; };
+		CEF06CAB1D3F576F00943754 /* YClearTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YClearTableViewCell.xib; sourceTree = "<group>"; };
 		CEF341F21D348443007C3640 /* login_background_i5@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "login_background_i5@2x.jpg"; path = "../login_background_i5@2x.jpg"; sourceTree = "<group>"; };
 		CEF341F41D348DFC007C3640 /* Yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yes.png; sourceTree = "<group>"; };
 		D61D1AE81D38717B00C36F84 /* YDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDetailViewController.h; sourceTree = "<group>"; };
@@ -1419,9 +1429,9 @@
 		CE6913611D33CFDB001FE50B /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				CEF06CA01D3F570B00943754 /* Views */,
 				CE9D35021D3E087000CAE063 /* Controllers */,
 				CE6913631D33CFDB001FE50B /* Models */,
-				CE6913641D33CFDB001FE50B /* Views */,
 			);
 			name = Me;
 			path = Mine;
@@ -1434,22 +1444,12 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		CE6913641D33CFDB001FE50B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				CEE5758D1D3A7D81008B2906 /* YAttentionViewCell.h */,
-				CEE5758E1D3A7D81008B2906 /* YAttentionViewCell.m */,
-				CEE5758F1D3A7D81008B2906 /* YAttentionViewCell.xib */,
-				CE4979511D3514E10087FAF6 /* YClearTableViewCell.h */,
-				CE4979521D3514E10087FAF6 /* YClearTableViewCell.m */,
-				CE4979531D3514E10087FAF6 /* YClearTableViewCell.xib */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		CE9D35021D3E087000CAE063 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CEF06C9B1D3F568D00943754 /* YMyPublishViewController.h */,
+				CEF06C9C1D3F568D00943754 /* YMyPublishViewController.m */,
+				CEF06C9D1D3F568D00943754 /* YMyPublishViewController.xib */,
 				CE9D35151D3E08B900CAE063 /* YMeViewController.h */,
 				CE9D35161D3E08B900CAE063 /* YMeViewController.m */,
 				CE9D35031D3E087000CAE063 /* YAttentionListViewController.h */,
@@ -1499,6 +1499,23 @@
 			);
 			path = PartyViews;
 			sourceTree = "<group>";
+		};
+		CEF06CA01D3F570B00943754 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CEF06CA61D3F576F00943754 /* YAttentionViewCell.h */,
+				CEF06CA71D3F576F00943754 /* YAttentionViewCell.m */,
+				CEF06CA81D3F576F00943754 /* YAttentionViewCell.xib */,
+				CEF06CA91D3F576F00943754 /* YClearTableViewCell.h */,
+				CEF06CAA1D3F576F00943754 /* YClearTableViewCell.m */,
+				CEF06CAB1D3F576F00943754 /* YClearTableViewCell.xib */,
+				CEF06CA11D3F570B00943754 /* YDateOrPartyTableViewCell.h */,
+				CEF06CA21D3F570B00943754 /* YDateOrPartyTableViewCell.m */,
+				CEF06CA31D3F570B00943754 /* YDateOrPartyTableViewCell.xib */,
+			);
+			name = Views;
+			path = DateEating/Classes/Scenes/Me/Views;
+			sourceTree = SOURCE_ROOT;
 		};
 		D61D1AE51D38717B00C36F84 /* 详情页 */ = {
 			isa = PBXGroup;
@@ -2159,8 +2176,10 @@
 				D66E5AB41D33DE84003DED51 /* MainTagSubIconClick.png in Resources */,
 				CEE5758C1D3A7C59008B2906 /* YRestaurantTableViewCell.xib in Resources */,
 				D6B2A0FC1D3A56B4002BB383 /* mine_join@3x.png in Resources */,
+				CEF06C9F1D3F568D00943754 /* YMyPublishViewController.xib in Resources */,
 				D66E5A731D33DE84003DED51 /* mainCellBackground@2x.png in Resources */,
 				D66E5AD21D33DE84003DED51 /* navigationButtonReturn.png in Resources */,
+				CEF06CA51D3F570B00943754 /* YDateOrPartyTableViewCell.xib in Resources */,
 				D6F0F3921D3B464400D1EF81 /* supper.png in Resources */,
 				D66E5AD51D33DE84003DED51 /* navigationButtonReturnClick.png in Resources */,
 				D66E5AC91D33DE84003DED51 /* mine-sun-icon@2x.png in Resources */,
@@ -2227,7 +2246,6 @@
 				D66E5AD41D33DE84003DED51 /* navigationButtonReturn@3x.png in Resources */,
 				D66E5B0D1D33DE84003DED51 /* tabBar_new_click_icon@3x.png in Resources */,
 				D66E5AB21D33DE84003DED51 /* MainTagSubIcon@2x.png in Resources */,
-				CEE575911D3A7D81008B2906 /* YAttentionViewCell.xib in Resources */,
 				CEE575691D3A7ACA008B2906 /* DateLogo.jpg in Resources */,
 				D66E5B101D33DE84003DED51 /* tabBar_new_icon@3x.png in Resources */,
 				D66E5A981D33DE84003DED51 /* see-big-picture.png in Resources */,
@@ -2291,7 +2309,6 @@
 				D6F0F3641D3B464400D1EF81 /* good_wine.png in Resources */,
 				D66E5AF81D33DE84003DED51 /* tabbar-light@2x.png in Resources */,
 				D66E5A711D33DE84003DED51 /* imageBackground@3x.png in Resources */,
-				CE4979551D3514E10087FAF6 /* YClearTableViewCell.xib in Resources */,
 				D61D1B221D3871BC00C36F84 /* DefaultAvatar@2x.png in Resources */,
 				D66E5AA21D33DE84003DED51 /* FollowBtnBg@2x.png in Resources */,
 				D61D1B251D3871BC00C36F84 /* event_desc_icon@3x.png in Resources */,
@@ -2354,6 +2371,7 @@
 				D66E5B151D33DE84003DED51 /* tabBar_publish_icon@2x.png in Resources */,
 				D61D1B2E1D3871BC00C36F84 /* ic_sex_boy@2x.png in Resources */,
 				D6F0F3811D3B464400D1EF81 /* register_user.png in Resources */,
+				CEF06CAF1D3F576F00943754 /* YClearTableViewCell.xib in Resources */,
 				D66E5A6D1D33DE84003DED51 /* defaultUserIcon@2x.png in Resources */,
 				D66E5A661D33DE84003DED51 /* cellFollowDisableIcon@3x.png in Resources */,
 				D66E5A6B1D33DE84003DED51 /* common-gif@2x.png in Resources */,
@@ -2491,6 +2509,7 @@
 				D6F0F35F1D3B464400D1EF81 /* discovery_img.png in Resources */,
 				D66E5AFD1D33DE84003DED51 /* tabBar_essence_icon@2x.png in Resources */,
 				CED374F71D37DBD60039709F /* YPartyCountTableViewCell.xib in Resources */,
+				CEF06CAD1D3F576F00943754 /* YAttentionViewCell.xib in Resources */,
 				D6F0F36F1D3B464400D1EF81 /* mine_shezhi.png in Resources */,
 				D66E5AEC1D33DE84003DED51 /* publish-video@3x.png in Resources */,
 				D66E5B051D33DE84003DED51 /* tabBar_me_click_icon.png in Resources */,
@@ -2578,7 +2597,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6BDCFF61D3C72A5000DC251 /* YUserDetailViewController.m in Sources */,
-				CEE575901D3A7D81008B2906 /* YAttentionViewCell.m in Sources */,
 				D6BDD0261D3CFF95000DC251 /* YHeaderTableViewCell.m in Sources */,
 				D61D1AF11D38717B00C36F84 /* YSeekConditionViewController.m in Sources */,
 				CE289D0B1D3CBC2700FE8CB1 /* YAttentionListModel.m in Sources */,
@@ -2601,8 +2619,10 @@
 				CE49795E1D3515170087FAF6 /* YFeeTypeModel.m in Sources */,
 				CEE5757A1D3A7BF7008B2906 /* YRestaurantDetailViewController.m in Sources */,
 				CED374F61D37DBD60039709F /* YPartyCountTableViewCell.m in Sources */,
+				CEF06CAC1D3F576F00943754 /* YAttentionViewCell.m in Sources */,
 				D67A34671D3A829D00D5BA9D /* Foundation+Log.m in Sources */,
 				CED28D681D3793C900A468CF /* YPublishDateViewController.m in Sources */,
+				CEF06CA41D3F570B00943754 /* YDateOrPartyTableViewCell.m in Sources */,
 				D6F0F3D71D3B49BE00D1EF81 /* EventView.m in Sources */,
 				CE05FBED1D3BA19B00362EE1 /* YCityTypeModel.m in Sources */,
 				D6BDD0151D3C8D11000DC251 /* YDescTableViewCell.m in Sources */,
@@ -2619,6 +2639,7 @@
 				D66E59801D33DBF1003DED51 /* YDateViewController.m in Sources */,
 				CE289D101D3CBC4F00FE8CB1 /* YAttentionListViewCell.m in Sources */,
 				D66E59991D33DD20003DED51 /* YNavigationController.m in Sources */,
+				CEF06C9E1D3F568D00943754 /* YMyPublishViewController.m in Sources */,
 				D6F0F3DC1D3B49BE00D1EF81 /* YPopView.m in Sources */,
 				D6BDD00A1D3C8700000DC251 /* YVideo.m in Sources */,
 				CEE575821D3A7C25008B2906 /* YRestaurantListModel.m in Sources */,
@@ -2637,10 +2658,10 @@
 				CE9D350F1D3E087000CAE063 /* YCompleteViewController.m in Sources */,
 				D61D1B521D38E8CC00C36F84 /* YSelectionTableViewCell.m in Sources */,
 				D61D1AEF1D38717B00C36F84 /* YDetailViewController.m in Sources */,
-				CE4979541D3514E10087FAF6 /* YClearTableViewCell.m in Sources */,
 				D66E59981D33DD20003DED51 /* UIView+XMGCategory.m in Sources */,
 				CE4979171D34EA900087FAF6 /* YOpenViewController.m in Sources */,
 				D66E59971D33DD20003DED51 /* UIBarButtonItem+XMGCategory.m in Sources */,
+				CEF06CAE1D3F576F00943754 /* YClearTableViewCell.m in Sources */,
 				D6BDD01A1D3C8D52000DC251 /* YHobbyTableViewCell.m in Sources */,
 				D6B2A0F21D3A3DCA002BB383 /* YCater.m in Sources */,
 				CED374F21D37DBD60039709F /* YThemeTableViewCell.m in Sources */,

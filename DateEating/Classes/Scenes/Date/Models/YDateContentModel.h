@@ -58,7 +58,8 @@
 @property (strong, nonatomic) YActionUserModel *user;   // 活动发起者的详细信息
 @property (assign, nonatomic) NSInteger userId;         // 活动发起者id
 @property (assign, nonatomic) NSInteger visitorState;   // 访问状态
-
+@property (strong, nonatomic) NSString *dateTime;       // 约会时间（字符串格式）
+@property (strong, nonatomic) UIImage *img;
 // 活动详情页多出来的数据
 @property (assign, nonatomic) NSInteger dayChatCount;
 @property (assign, nonatomic) NSInteger guarantee;
