@@ -137,37 +137,10 @@
 }
 
 #pragma mark -- 从自己的服务器获取数据 --
-//- (void)getData{
-//    AVQuery *query = [AVQuery queryWithClassName:@"MyDate"];
-//    [query whereKey:@"userName" equalTo:[AVUser currentUser].username];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        for (AVObject *obj in objects) {
-//            NSDictionary *dict = [NSDictionary new];
-//            dict = [obj dictionaryForObject];
-//            YDateContentModel *model = [YDateContentModel new];
-//            model.eventName = [dict objectForKey:@"theme"];
-//            model.eventLocation = [dict objectForKey:@"address"];
-//            // 约会时间
-//            model.dateTime = [dict objectForKey:@"time"];
-//            if ([[dict objectForKey:@"concrete"] isEqualToString:@"我请客"]) {
-//                model.fee = 0;
-//            }else{
-//                model.fee = 1;
-//            }
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                NSLog(@"%@234234234234",model);
-//                [self.ourServerData addObject:model];
-//                [self.hotTableView reloadData];
-//            });
-//        }
-//    }];
-//}
-
 - (void)getData:(NSString *)className{
     AVQuery *query = [AVQuery queryWithClassName:className];
     [query whereKey:@"userName" equalTo:[AVUser currentUser].username];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSLog(@"%ld",objects.count);
         if (objects.count != 0) {
             for (AVObject *object in objects) {
                 NSDictionary *dict = [object dictionaryForObject];
@@ -208,8 +181,8 @@
 #pragma mark -- 数据查询 --
 - (void)requestHotDataWithDic:(NSDictionary *)dic start:(NSInteger)start {
     __weak YDateViewController *dateVC = self;
-    NSNumber *city = dic[@"city"];
-    [YNetWorkRequestManager getRequestWithUrl:HotRequest_Url(city.integerValue,[_handle multi], [_handle gender], [_handle time], [_handle age], [_handle constellation], [_handle occupation], start) successRequest:^(id dict) {
+    NSString *city = dic[@"city"];
+    [YNetWorkRequestManager getRequestWithUrl:HotRequest_Url(@"010",[_handle multi], [_handle gender], [_handle time], [_handle age], [_handle constellation], [_handle occupation], start) successRequest:^(id dict) {
         NSNumber *count = dict[@"data"][@"total"];
         dateVC.hotCount = count.integerValue;
         if (dateVC.isHotDown) {
