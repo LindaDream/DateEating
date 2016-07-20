@@ -134,7 +134,7 @@
     }
     if (_delegate && [_delegate respondsToSelector:@selector(didSelectCity:)]) {
         [_delegate didSelectCity:cityModel];
-        NSDictionary *dic = @{cityModel.city_name:[NSString stringWithFormat:@"%ld",cityModel.city_id]};
+        NSDictionary *dic = @{cityModel.city_name:[NSNumber numberWithInteger:cityModel.city_id]};
         [[NSUserDefaults standardUserDefaults]setObject:dic forKey:@"city"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }

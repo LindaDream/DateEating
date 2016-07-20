@@ -58,7 +58,7 @@ static YNSUserDefaultHandel *handle = nil;
 
 - (NSDictionary *)city {
     if (![[NSUserDefaults standardUserDefaults]objectForKey:@"city"]) {
-        return @{@"北京":@"010"};
+        return @{@"北京":@010};
     }
     return [[NSUserDefaults standardUserDefaults]objectForKey:@"city"];
 }
