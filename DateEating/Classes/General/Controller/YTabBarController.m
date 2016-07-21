@@ -61,7 +61,7 @@
 
 #pragma mark -- 初始化子控制器
 - (void)setupChildVc:(UIViewController *)vc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage{
-
+    
     // 设置文字和图片
     vc.navigationItem.title = title;
     vc.tabBarItem.title = title;

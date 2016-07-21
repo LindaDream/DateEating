@@ -262,7 +262,7 @@ static NSString *const cityCellId = @"cityCellId";
         dispatch_async(dispatch_get_main_queue(), ^{
             self.playNextPage = ((YPlayModel *)((NSArray *)dict).lastObject).nextPage;
             self.playPage = ((YPlayModel *)((NSArray *)dict).lastObject).page;
-            NSLog(@"%@ %@",self.playPage,dict);
+            //NSLog(@"%@ %@",self.playPage,dict);
             NSInteger ID = ((YPlayModel *)((NSArray *)dict).lastObject).ID;
 
             if (self.isSelected) {// 如果用类型搜索
@@ -327,7 +327,7 @@ static NSString *const cityCellId = @"cityCellId";
     // 为两个数组赋值
     [YCityModel parsesWithUrl:kCityIDUrl successRequest:^(id dict) {
         self.cityArr = dict;
-        NSLog(@"=============%@",self.cityArr);
+        //NSLog(@"=============%@",self.cityArr);
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.cityTableView reloadData];
         });
@@ -375,7 +375,7 @@ static NSString *const cityCellId = @"cityCellId";
         // 点击btn触发的事件
         __weak typeof(self) __weakSelf = self;
         self.popView.ba = ^(NSInteger tag){
-            NSLog(@"点击了btn的tag = %ld",tag);
+            //NSLog(@"点击了btn的tag = %ld",tag);
             __weakSelf.categoryId = [NSString stringWithFormat:@"%ld",tag];
             if (tag == 0) {
                 __weakSelf.categoryId = @"";
@@ -459,7 +459,7 @@ static NSString *const cityCellId = @"cityCellId";
     if (tableView == self.mealTableView) {
         return self.mealArr.count;
     }else if (tableView == self.playTableView) {
-        NSLog(@"%ld",self.playArr.count);
+        //NSLog(@"%ld",self.playArr.count);
         return self.playArr.count;
     }else {
         return self.cityArr.count;

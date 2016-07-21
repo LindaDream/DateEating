@@ -51,6 +51,7 @@ static NSString *const listCellIdentifier = @"listCell";
         self.emailLabel.text = [AVUser currentUser].email;
         [self.loginButton setTitle:@"注销" forState:(UIControlStateNormal)];
         AVFile *file = [[AVUser currentUser] objectForKey:@"avatar"];
+
         [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.headImgView.image = [UIImage imageWithData:data];

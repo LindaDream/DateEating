@@ -32,7 +32,7 @@
                     [cityModel setValuesForKeysWithDictionary:tempDic];
                     [tmpArr addObject:cityModel];
                 }
-                NSLog(@"%@",tmpArr);
+                //NSLog(@"%@",tmpArr);
                 [model setValue:tmpArr forKey:@"city_list"];
                 [mArr addObject:model];
             }

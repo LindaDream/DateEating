@@ -82,7 +82,7 @@
     dispatch_async(myQueue, ^{
         
         NSString *urlString = [[kPlayDetailsUrlOne stringByAppendingString:self.ID] stringByAppendingString:kPlayDetailsUrlTwo];
-        NSLog(@"%@",urlString);
+        //NSLog(@"%@",urlString);
         NSURL *newUrl = [NSURL URLWithString:urlString];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:newUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
         [request setHTTPMethod:@"GET"];
@@ -164,7 +164,7 @@
                     NSRange newRange = {i, (j - i + 1)};
                     NSString *str = [string substringWithRange:newRange];
                     if ([str rangeOfString:@"<img src="].location != NSNotFound) {
-                        NSLog(@"%@", str);
+                        //NSLog(@"%@", str);
                     } else {
                         string = [string stringByReplacingOccurrencesOfString:str withString:@""];
                         i = 0;
@@ -388,7 +388,7 @@
 {
     
     AVObject *object = [AVObject objectWithClassName:@"MyPlayCollection"];
-    if (self.isCollection) {
+    if (self.isCollection == YES) {
         
         // 保存当前用户名
         [object setObject:[AVUser currentUser].username forKey:@"userName"];
@@ -419,7 +419,7 @@
         // 删除收藏的数据
         // 执行 CQL 语句实现删除一个 MyAttention 对象
         self.objId = [[NSUserDefaults standardUserDefaults] objectForKey:self.ID];
-        NSLog(@"%@",self.objId);
+        //NSLog(@"%@",self.objId);
         [AVQuery doCloudQueryInBackgroundWithCQL:[NSString stringWithFormat:@"delete from MyPlayCollection where objectId='%@'",self.objId] callback:^(AVCloudQueryResult *result, NSError *error) {
             [self showAlertViewWithMessage:(@"取消收藏成功")];
         }];

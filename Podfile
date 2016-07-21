@@ -8,4 +8,5 @@ pod 'MJRefresh', '~> 3.1.9'
 pod 'SDCycleScrollView', '~> 1.65'
 pod 'UMengSocialCOM', '~> 5.2.1'
 pod 'BaiduMapKit'
+pod 'SVProgressHUD', '~> 2.0.3'
 end
