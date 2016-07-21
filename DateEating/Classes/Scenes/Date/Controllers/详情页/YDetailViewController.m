@@ -14,6 +14,11 @@
 #import "YChatMessageModel.h"
 #import "YRestaurantDetailViewController.h"
 #import "YUserDetailViewController.h"
+#import <UMSocialData.h>
+#import <UMSocialSnsService.h>
+#import <UMSocialControllerService.h>
+#import "UMSocial.h"
+#import "YCaterDetail.h"
 
 @interface YDetailViewController ()
 <
@@ -21,7 +26,8 @@
     UITableViewDelegate,
     UIScrollViewDelegate,
     YDetailHeaderTableViewCellDelegate,
-    YChatTableViewCellDelegate
+    YChatTableViewCellDelegate,
+    UMSocialUIDelegate
 >
 
 
@@ -46,6 +52,7 @@
     [self.tableview registerNib:[UINib nibWithNibName:@"YChatTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:YChatTableViewCell_Indentify];
     // 请求数据
     [self getRequestData];
+    [UMSocialConfig setSupportedInterfaceOrientations:UIInterfaceOrientationMaskLandscape];
 }
 
 // 懒加载
@@ -76,6 +83,21 @@
 #pragma mark -- 分享按钮的响应事件 --
 - (void)shareBtnAction:(UIBarButtonItem *)item {
     
+    
+    NSString *url = [NSString stringWithFormat:@"http://www.qingchifan.com/event/detail/%ld", self.model.ID];
+    // 分享字符串
+    NSString *shareString = [NSString stringWithFormat:@"【%@，%@！】%@ 简单的生活，纷繁的世界 #约起来#带你到别人的世界走走", self.model.user.nick, self.model.eventName, url];
+    // 分享图片
+    [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:self.model.caterPhotoUrl];
+    
+    [UMSocialData defaultData].extConfig.title = shareString;
+    
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"578c9832e0f55a30cb003483"
+                                      shareText:shareString
+                                     shareImage:nil
+                                shareToSnsNames:@[UMShareToSina,UMShareToTencent,UMShareToRenren,UMShareToDouban,UMShareToEmail,UMShareToSms]
+                                       delegate:self];
 }
 
 #pragma mark -- 收藏操作 --
@@ -85,13 +107,23 @@
 
 #pragma mark -- 餐厅详情按钮代理 --
 - (void)restaurantBtnDidClicked:(YDetailHeaderTableViewCell *)cell {
-    YRestaurantDetailViewController *detailVC = [[YRestaurantDetailViewController alloc]init];
-    //detailVC.count = self.model.caterUserCount;
-    detailVC.businessId = self.model.caterBusinessId;
-    detailVC.addressStr = self.model.eventAddress;
-    detailVC.nameStr = self.model.eventLocation;
+        YCaterDetail *detail = [[YCaterDetail alloc]init];
+        NSLog(@"%@",self.model.caterBusinessId);
+        [YNetWorkRequestManager getRequestWithUrl:CaterDetailRequest_Url(self.model.caterBusinessId) successRequest:^(id dict) {
+            NSDictionary *modelDic = dict[@"data"];
+            [detail setValuesForKeysWithDictionary:modelDic];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                YRestaurantDetailViewController *detailVC = [[YRestaurantDetailViewController alloc]init];
+                detailVC.count = detail.caterUserCount;
+                detailVC.businessId = detail.cater.businessId;
+                detailVC.addressStr = detail.cater.address;
+                detailVC.nameStr = detail.cater.name;
+                [self.navigationController pushViewController:detailVC animated:YES];
+            });
+        } failurRequest:^(NSError *error) {
+            
+        }];
     
-    [self.navigationController pushViewController:detailVC animated:YES];
 }
 // 点击头像的代理方法
 - (void)userImageDidTap:(NSInteger)userId {

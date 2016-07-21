@@ -16,12 +16,12 @@
 #import "YRestaurantViewController.h"
 #import "YCompleteViewController.h"
 @interface YPublishPartyViewController ()<
-UITableViewDataSource,
-UITableViewDelegate,
-UIPickerViewDelegate,
-UIPickerViewDataSource,
-passConcreteValue,
-UITextFieldDelegate
+    UITableViewDataSource,
+    UITableViewDelegate,
+    UIPickerViewDelegate,
+    UIPickerViewDataSource,
+    passConcreteValue,
+    UITextFieldDelegate
 >
 // 判断cell上的按钮是否点击
 @property(assign,nonatomic)BOOL isSelected;
@@ -84,6 +84,7 @@ static NSString *const systemCellIdentifier = @"systemCell";
             [object setObject:self.findStr forKey:@"description"];
             [object setObject:self.count forKey:@"partyCount"];
             [object setObject:self.concrete forKey:@"concrete"];
+            [object setObject:self.businessID forKey:@"businessID"];
             [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
                     NSLog(@"保存成功");
@@ -228,8 +229,9 @@ static NSString *const systemCellIdentifier = @"systemCell";
             [self addPickerView];
         }else if (indexPath.section == 2 && indexPath.row == 2){
             YRestaurantViewController *restaurantVC = [YRestaurantViewController new];
-            restaurantVC.passValueBlock = ^(NSString *addressStr){
+            restaurantVC.passValueBlock = ^(NSString *addressStr,NSString *businessID){
                 self.addressStr = addressStr;
+                self.businessID = businessID;
                 [self.partyTableView reloadData];
             };
             [self.navigationController pushViewController:restaurantVC animated:YES];

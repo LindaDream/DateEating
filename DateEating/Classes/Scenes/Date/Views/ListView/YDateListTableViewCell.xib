@@ -209,8 +209,74 @@
                             <constraint firstAttribute="height" constant="1" id="n1i-cX-eH2"/>
                         </constraints>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oPy-8B-2VG">
+                        <rect key="frame" x="250" y="-15" width="50" height="50"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_ranking_credit.png" translatesAutoresizingMaskIntoConstraints="NO" id="CxJ-Rq-sbw">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Pb1-w8-phL"/>
+                                    <constraint firstAttribute="height" constant="50" id="rcH-wi-IFE"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="信用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rph-Qz-DFG">
+                                <rect key="frame" x="15" y="14" width="20" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="10" id="FeS-BG-fGA"/>
+                                    <constraint firstAttribute="width" constant="20" id="chd-iN-mSo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41e-NN-mnc">
+                                <rect key="frame" x="16" y="26" width="18" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="10" id="cfe-l2-dFa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Rph-Qz-DFG" firstAttribute="centerX" secondItem="oPy-8B-2VG" secondAttribute="centerX" id="7gT-o3-tqy"/>
+                            <constraint firstItem="41e-NN-mnc" firstAttribute="centerY" secondItem="oPy-8B-2VG" secondAttribute="centerY" id="9Z1-PF-uf9"/>
+                            <constraint firstItem="CxJ-Rq-sbw" firstAttribute="centerX" secondItem="oPy-8B-2VG" secondAttribute="centerX" id="Aol-16-coS"/>
+                            <constraint firstItem="41e-NN-mnc" firstAttribute="centerX" secondItem="oPy-8B-2VG" secondAttribute="centerX" id="DE8-6M-Dmi"/>
+                            <constraint firstItem="41e-NN-mnc" firstAttribute="centerX" secondItem="oPy-8B-2VG" secondAttribute="centerX" id="Evu-Pd-GSH"/>
+                            <constraint firstAttribute="width" constant="50" id="GTa-zd-cGT"/>
+                            <constraint firstItem="Rph-Qz-DFG" firstAttribute="top" secondItem="oPy-8B-2VG" secondAttribute="top" constant="14" id="HrP-np-9nS"/>
+                            <constraint firstItem="41e-NN-mnc" firstAttribute="centerY" secondItem="oPy-8B-2VG" secondAttribute="centerY" id="LwS-Vn-sU8"/>
+                            <constraint firstItem="41e-NN-mnc" firstAttribute="centerY" secondItem="oPy-8B-2VG" secondAttribute="centerY" id="PpK-Vh-GSe"/>
+                            <constraint firstItem="Rph-Qz-DFG" firstAttribute="centerY" secondItem="oPy-8B-2VG" secondAttribute="centerY" id="TBq-vc-ds0"/>
+                            <constraint firstItem="Rph-Qz-DFG" firstAttribute="centerX" secondItem="oPy-8B-2VG" secondAttribute="centerX" id="ZZ5-rP-Olm"/>
+                            <constraint firstItem="Rph-Qz-DFG" firstAttribute="centerX" secondItem="oPy-8B-2VG" secondAttribute="centerX" id="be3-xb-CQa"/>
+                            <constraint firstItem="Rph-Qz-DFG" firstAttribute="centerY" secondItem="oPy-8B-2VG" secondAttribute="centerY" id="cf1-a3-A96"/>
+                            <constraint firstAttribute="bottom" secondItem="41e-NN-mnc" secondAttribute="bottom" constant="14" id="gdu-ZX-UNa"/>
+                            <constraint firstAttribute="height" constant="50" id="lNy-XR-p4L"/>
+                            <constraint firstItem="41e-NN-mnc" firstAttribute="centerX" secondItem="Rph-Qz-DFG" secondAttribute="centerX" id="zRJ-Gr-85w"/>
+                            <constraint firstItem="CxJ-Rq-sbw" firstAttribute="centerY" secondItem="oPy-8B-2VG" secondAttribute="centerY" id="zgQ-ks-TJo"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="cf1-a3-A96"/>
+                                <exclude reference="TBq-vc-ds0"/>
+                                <exclude reference="7gT-o3-tqy"/>
+                                <exclude reference="be3-xb-CQa"/>
+                                <exclude reference="zRJ-Gr-85w"/>
+                                <exclude reference="Evu-Pd-GSH"/>
+                                <exclude reference="9Z1-PF-uf9"/>
+                                <exclude reference="LwS-Vn-sU8"/>
+                                <exclude reference="PpK-Vh-GSe"/>
+                            </mask>
+                        </variation>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="oPy-8B-2VG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="-15" id="0A3-gf-K0V"/>
+                    <constraint firstAttribute="trailing" secondItem="oPy-8B-2VG" secondAttribute="trailing" constant="20" id="15P-WJ-GXy"/>
                     <constraint firstItem="kv8-0J-Oip" firstAttribute="leading" secondItem="UPA-ZS-oU4" secondAttribute="trailing" constant="10" id="3zb-JK-TcR"/>
                     <constraint firstItem="8Hq-pf-1rE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="6pK-hs-6os"/>
                     <constraint firstItem="K7u-cp-QwN" firstAttribute="leading" secondItem="Fyo-8d-csH" secondAttribute="trailing" constant="10" id="7eD-tZ-BvY"/>
@@ -265,6 +331,7 @@
                 <outlet property="cellIndex" destination="42L-88-rZ6" id="kgw-UO-wj2"/>
                 <outlet property="commentCount" destination="6AQ-jq-84F" id="YNH-iw-9l1"/>
                 <outlet property="constellation" destination="Dal-Ua-ogH" id="Ni5-ge-R0c"/>
+                <outlet property="credit" destination="41e-NN-mnc" id="Do8-jb-rDn"/>
                 <outlet property="distance" destination="08c-Da-mk4" id="g4R-c3-Vdy"/>
                 <outlet property="eventDateTime" destination="Fyo-8d-csH" id="Nrv-a1-lyj"/>
                 <outlet property="eventDescription" destination="cci-vD-82n" id="g5v-Ba-QQM"/>
@@ -275,10 +342,11 @@
                 <outlet property="showCount" destination="XEN-6s-tXw" id="3fs-hU-KEE"/>
                 <outlet property="userImage" destination="UPA-ZS-oU4" id="0oc-JM-1RH"/>
             </connections>
-            <point key="canvasLocation" x="355" y="419.5"/>
+            <point key="canvasLocation" x="297" y="404.5"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="event_ranking_credit.png" width="51" height="51"/>
         <image name="guide_btn_logres.png" width="320" height="70"/>
         <image name="head_img.png" width="80" height="81"/>
         <image name="leisure_off.png" width="9" height="9"/>

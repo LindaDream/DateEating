@@ -27,6 +27,7 @@
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YTR-dt-zCo">
                                     <rect key="frame" x="210" y="279" width="151" height="128"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="sectionIndexBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <connections>
                                         <outlet property="dataSource" destination="-1" id="186-h3-DOw"/>
                                         <outlet property="delegate" destination="-1" id="bgD-Vj-BFf"/>
@@ -35,12 +36,14 @@
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ruy-Q8-6Jk">
                                     <rect key="frame" x="24" y="273" width="129" height="128"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="sectionIndexBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <connections>
                                         <outlet property="dataSource" destination="-1" id="BZg-Pc-P2v"/>
                                         <outlet property="delegate" destination="-1" id="Nfw-Bv-wNS"/>
                                     </connections>
                                 </tableView>
                             </subviews>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="YTR-dt-zCo" secondAttribute="bottom" id="4e6-tu-khR"/>
                                 <constraint firstItem="YTR-dt-zCo" firstAttribute="leading" secondItem="ruy-Q8-6Jk" secondAttribute="trailing" id="BZN-T8-ACx"/>
@@ -75,7 +78,7 @@
                 <constraint firstAttribute="bottom" secondItem="S4N-G4-fea" secondAttribute="bottom" constant="49" id="R0a-Wh-oxT"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-            <point key="canvasLocation" x="355" y="184"/>
+            <point key="canvasLocation" x="477" y="167"/>
         </view>
     </objects>
 </document>

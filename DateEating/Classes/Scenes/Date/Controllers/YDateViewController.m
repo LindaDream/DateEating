@@ -79,7 +79,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dateView:) name:@"DateButtonClicked" object:nil];
     // 设置navigtationbar的头视图
     [self setNavigationBar];
-    
     // 设置上拉加载下拉刷新
     [self refrushData];
     
@@ -88,7 +87,7 @@
     [self.nearbyTableView registerNib:[UINib nibWithNibName:@"YDateListTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:YDateListTableViewCell_Identify];
     // 数据请求
     [self getData:@"MyDate"];
-    [self getData:@"asf"];
+    [self getData:@"MyParty"];
     [self requestHotDataWithDic:[_handle city] start:0];
     [self requestNearByDataWithUrl:0];
     
@@ -137,37 +136,15 @@
 }
 
 #pragma mark -- 从自己的服务器获取数据 --
-//- (void)getData{
-//    AVQuery *query = [AVQuery queryWithClassName:@"MyDate"];
-//    [query whereKey:@"userName" equalTo:[AVUser currentUser].username];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        for (AVObject *obj in objects) {
-//            NSDictionary *dict = [NSDictionary new];
-//            dict = [obj dictionaryForObject];
-//            YDateContentModel *model = [YDateContentModel new];
-//            model.eventName = [dict objectForKey:@"theme"];
-//            model.eventLocation = [dict objectForKey:@"address"];
-//            // 约会时间
-//            model.dateTime = [dict objectForKey:@"time"];
-//            if ([[dict objectForKey:@"concrete"] isEqualToString:@"我请客"]) {
-//                model.fee = 0;
-//            }else{
-//                model.fee = 1;
-//            }
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                NSLog(@"%@234234234234",model);
-//                [self.ourServerData addObject:model];
-//                [self.hotTableView reloadData];
-//            });
-//        }
-//    }];
-//}
-
 - (void)getData:(NSString *)className{
+    __weak YDateViewController *dateVC = self;
     AVQuery *query = [AVQuery queryWithClassName:className];
     [query whereKey:@"userName" equalTo:[AVUser currentUser].username];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSLog(@"%ld",objects.count);
+        if (dateVC.isHotDown) {
+            [dateVC.ourServerData removeAllObjects];
+            dateVC.isHotDown = NO;
+        }
         if (objects.count != 0) {
             for (AVObject *object in objects) {
                 NSDictionary *dict = [object dictionaryForObject];
@@ -181,7 +158,9 @@
                     model.fee = 1;
                 }
                 model.eventDescription = [dict objectForKey:@"description"];
-                model.user.nick = [AVUser currentUser].username;
+                model.caterBusinessId = [dict objectForKey:@"businessID"];
+                model.user = [[YActionUserModel alloc]init];
+                [model.user setValue:[AVUser currentUser].username forKey:@"nick"];
                 model.user.gender = [[[AVUser currentUser] objectForKey:@"gender"] integerValue];
                 model.user.constellation = [[AVUser currentUser] objectForKey:@"constellation"];
                 AVFile *file = [[AVUser currentUser] objectForKey:@"avatar"];
@@ -209,7 +188,7 @@
 - (void)requestHotDataWithDic:(NSDictionary *)dic start:(NSInteger)start {
     __weak YDateViewController *dateVC = self;
     NSNumber *city = dic[@"city"];
-    [YNetWorkRequestManager getRequestWithUrl:HotRequest_Url(city.integerValue,[_handle multi], [_handle gender], [_handle time], [_handle age], [_handle constellation], [_handle occupation], start) successRequest:^(id dict) {
+    [YNetWorkRequestManager getRequestWithUrl:HotRequest_Url(@"010",[_handle multi], [_handle gender], [_handle time], [_handle age], [_handle constellation], [_handle occupation], start) successRequest:^(id dict) {
         NSNumber *count = dict[@"data"][@"total"];
         dateVC.hotCount = count.integerValue;
         if (dateVC.isHotDown) {
@@ -270,6 +249,8 @@
     __weak typeof(self) weakSelf = self;
     MJRefreshNormalHeader *headerHot = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         weakSelf.isHotDown = YES;
+        [self getData:@"MyDate"];
+        [self getData:@"MyParty"];
         [weakSelf requestHotDataWithDic:[weakSelf.handle city] start:0];
         [weakSelf.hotTableView.mj_header endRefreshing];
     }];
@@ -285,7 +266,6 @@
 
 - (void)loadMoreHotData:(MJRefreshAutoNormalFooter *)footer {
     if (self.hotArray.count >= self.hotCount) {
-        NSLog(@"%ld--%ld",self.hotCount,self.hotArray.count);
         footer.state = MJRefreshStateNoMoreData;
         return;
     }
@@ -430,7 +410,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     YDetailViewController *detailVC = [[YDetailViewController alloc]init];
     if (tableView == self.hotTableView) {
-        detailVC.model = self.hotArray[indexPath.section];
+        if(indexPath.section < self.ourServerData.count) {
+            detailVC.model = self.ourServerData[indexPath.section];
+        } else {
+            detailVC.model = self.hotArray[indexPath.section - self.ourServerData.count];
+        }
     } else {
         detailVC.model = self.nearByArray[indexPath.section];
     }
@@ -448,39 +432,8 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 20)];
     headerView.backgroundColor = [UIColor clearColor];
-    UIImageView *creditImage = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.width -56, 6, 46, 46)];
-    creditImage.image = [UIImage imageNamed:@"event_ranking_credit"];
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 28, 28)];
-    label.numberOfLines = 2;
-    label.text = @"信用10";
-    label.font = [UIFont systemFontOfSize:10];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.center = creditImage.center;
-    [headerView addSubview:creditImage];
-    [headerView addSubview:label];
     return headerView;
 }
-
-//去掉UItableview headerview黏性
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    if (scrollView == self.hotTableView || scrollView == self.nearbyTableView)
-//    {
-//        CGFloat sectionHeaderHeight = 12;
-//        if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
-//            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
-//        } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
-//            scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
-//        }
-//    }
-//}
-
-
-// 设置尾视图
-- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return nil;
-}
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

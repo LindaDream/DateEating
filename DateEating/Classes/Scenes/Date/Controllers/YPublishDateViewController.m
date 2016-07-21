@@ -16,13 +16,13 @@
 #import "YRestaurantViewController.h"
 #import "YCompleteViewController.h"
 @interface YPublishDateViewController ()<
-UITableViewDataSource,
-UITableViewDelegate,
-UIPickerViewDataSource,
-UIPickerViewDelegate,
-passObjectValue,
-passConcreteValue,
-UITextFieldDelegate
+    UITableViewDataSource,
+    UITableViewDelegate,
+    UIPickerViewDataSource,
+    UIPickerViewDelegate,
+    passObjectValue,
+    passConcreteValue,
+    UITextFieldDelegate
 >
 
 @property (weak, nonatomic) IBOutlet UITableView *dateTableView;
@@ -43,7 +43,7 @@ UITextFieldDelegate
 // 约会主题
 @property(strong,nonatomic)NSString *themeStr;
 // 约会说明
-@property(strong,nonatomic)NSMutableString *findStr;
+@property(strong,nonatomic)NSString *findStr;
 // 约会对象
 @property(strong,nonatomic)NSString *dateObj;
 // 约会花费
@@ -69,7 +69,6 @@ static NSString *const findeCellIdentifier = @"findeCell";
 }
 #pragma mark--返回方法--
 - (void)backAction{
-    NSLog(@"%@",self.findStr);
     if (nil != [[AVUser currentUser] objectForKey:@"age"] && nil != [[AVUser currentUser] objectForKey:@"gender"] && nil != [[AVUser currentUser] objectForKey:@"constellation"]) {
         if (nil != self.timeStr && nil != self.themeStr && nil != self.addressStr && nil != self.findStr && nil != self.concrete && nil != self.dateObj){
             // 发送publishDate通知
@@ -82,6 +81,7 @@ static NSString *const findeCellIdentifier = @"findeCell";
             [object setObject:self.timeStr forKey:@"time"];
             [object setObject:self.addressStr forKey:@"address"];
             [object setObject:self.findStr forKey:@"description"];
+            [object setObject:self.businessID forKey:@"businessID"];
             [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
                     NSLog(@"保存成功");
@@ -192,8 +192,9 @@ static NSString *const findeCellIdentifier = @"findeCell";
     }else if(indexPath.section == 2 && indexPath.row == 2){
         YRestaurantViewController *restaurantVC = [YRestaurantViewController new];
         restaurantVC.isDateView = self.isDateView;
-        restaurantVC.passValueBlock = ^(NSString *addressStr){
+        restaurantVC.passValueBlock = ^(NSString *addressStr,NSString *businessID){
             self.addressStr = addressStr;
+            self.businessID = businessID;
             [self.dateTableView reloadData];
         };
         [self.navigationController pushViewController:restaurantVC animated:YES];

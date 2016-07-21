@@ -11,4 +11,5 @@
 @interface YPublishPartyViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *partyTableView;
 @property(strong,nonatomic)NSString *addressStr;
+@property(strong,nonatomic)NSString *businessID;
 @end

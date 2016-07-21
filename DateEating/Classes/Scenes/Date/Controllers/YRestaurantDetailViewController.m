@@ -42,7 +42,6 @@ MFMessageComposeViewControllerDelegate
 @property(strong,nonatomic)UIButton *footBtn;
 @property(strong,nonatomic)YRestaurantDetailModel *model;
 @property(strong,nonatomic)NSString *object;
-@property(assign,nonatomic)CLLocationDistance distance;
 @end
 
 static NSString *const restaurantCellIdentifier = @"restaurantCell";
@@ -92,9 +91,8 @@ static NSString *const restaurantCellIdentifier = @"restaurantCell";
 - (void)getData{
     NSString *urlStr = [RestaurantDetail_URL(self.businessId) stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     [YRestaurantDetailModel parsesWithUrl:urlStr successRequest:^(id dict) {
-        self.model = dict;
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.distance = [self distanceToTarget:self.model.latitude log:self.model.longitude];
+            self.model = dict;
             [self.restaurantTableView reloadData];
             [self addHeadView];
         });
@@ -116,7 +114,7 @@ static NSString *const restaurantCellIdentifier = @"restaurantCell";
     cell.frame = rect;
     if (indexPath.section == 0) {
         cell.imgView.image = [UIImage imageNamed:@"locationCell"];
-        cell.desLabel.text = [NSString stringWithFormat:@"%@(%.2fkm)",self.model.address,self.distance];
+        cell.desLabel.text = self.model.address;
     }else{
         cell.imgView.image = [UIImage imageNamed:@"mine_restaurant"];
         cell.desLabel.text = [NSString stringWithFormat:@"关注此餐厅的人(%ld)",self.count];
@@ -160,16 +158,19 @@ static NSString *const restaurantCellIdentifier = @"restaurantCell";
     // 添加餐厅名称
     self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.headImgView.frame) + 10, CGRectGetMinY(self.headImgView.frame) - 15, 200, 30)];
     self.nameLabel.text = self.model.name;
+    [self.nameLabel setFont:[UIFont systemFontOfSize:16.0]];
     [self.headView addSubview:self.nameLabel];
     
     // 添加价格标签
     self.priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.nameLabel.frame), CGRectGetMaxY(self.nameLabel.frame) + 10, 100, 30)];
     self.priceLabel.text = [NSString stringWithFormat:@"人均￥%@元",self.model.avgPrice];
+    [self.priceLabel setFont:[UIFont systemFontOfSize:14.0]];
     [self.headView addSubview:self.priceLabel];
     
     // 添加类型标签
     self.typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.priceLabel.frame), CGRectGetMaxY(self.priceLabel.frame) + 5, 200, 30)];
     self.typeLabel.text = self.model.categoriesStr;
+    [self.typeLabel setFont:[UIFont systemFontOfSize:14.0]];
     [self.headView addSubview:self.typeLabel];
     
     // 添加电话按钮
@@ -186,6 +187,7 @@ static NSString *const restaurantCellIdentifier = @"restaurantCell";
     [self.attentionBtn setBackgroundImage:[UIImage imageNamed:@"guarantee_red_bg"] forState:(UIControlStateNormal)];
     self.attentionLabel.backgroundColor = [UIColor whiteColor];
     self.attentionLabel.text = @"关注";
+    [self.attentionLabel setFont:[UIFont systemFontOfSize:14.0]];
     self.attentionLabel.textColor = [UIColor colorWithRed:243/255.0 green:32/255.0 blue:37/255.0 alpha:1];
     [self.attentionBtn addSubview:self.attentionLabel];
     [self.attentionBtn addTarget:self action:@selector(attentAction:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -214,10 +216,12 @@ static NSString *const restaurantCellIdentifier = @"restaurantCell";
     if (self.isDateView) {
         YPublishDateViewController *dateVC = (YPublishDateViewController *)[vcArr objectAtIndex:1];
         dateVC.addressStr = self.nameStr;
+        dateVC.businessID = self.model.businessId;
         [self.navigationController popToViewController:dateVC animated:YES];
     }else{
         YPublishPartyViewController *partyVC = (YPublishPartyViewController *)[vcArr objectAtIndex:1];
         partyVC.addressStr = self.nameStr;
+        partyVC.businessID = self.model.businessId;
         [self.navigationController popToViewController:partyVC animated:YES];
     }
 

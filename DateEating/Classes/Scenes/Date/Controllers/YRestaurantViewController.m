@@ -45,7 +45,7 @@ static NSString *const restaurantListCellIndentifier = @"restaurantListCell";
     self.searchController.searchResultsUpdater = self;
 }
 #pragma mark--设置导航栏--
-- (void)setNavigationBar {
+- (void)setNavigationBar{
     // 设置城市按钮
     UIButton *cityBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width - 50, 0, 40, 30)];
     [cityBtn addTarget:self action:@selector(cityListAction:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -173,7 +173,7 @@ static NSString *const restaurantListCellIndentifier = @"restaurantListCell";
 }
 #pragma mark--点击“吃这家”按钮的代理方法实现--
 -(void)passCurrentCell:(YRestaurantDetailViewCell *)cell{
-    self.passValueBlock(cell.nameLabel.text);
+    self.passValueBlock(cell.nameLabel.text,cell.model.businessId);
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark--城市列表代理方法--
