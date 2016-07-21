@@ -2264,11 +2264,8 @@
 				D66E5AD41D33DE84003DED51 /* navigationButtonReturn@3x.png in Resources */,
 				D66E5B0D1D33DE84003DED51 /* tabBar_new_click_icon@3x.png in Resources */,
 				D66E5AB21D33DE84003DED51 /* MainTagSubIcon@2x.png in Resources */,
-<<<<<<< HEAD
-=======
 				CEE575911D3A7D81008B2906 /* YAttentionViewCell.xib in Resources */,
 				D6F20D9F1D3E204D0082E398 /* locationcell@3x.png in Resources */,
->>>>>>> c0afbc84cdc550b97d9140ee1cb6009af1527279
 				CEE575691D3A7ACA008B2906 /* DateLogo.jpg in Resources */,
 				D66E5B101D33DE84003DED51 /* tabBar_new_icon@3x.png in Resources */,
 				D66E5A981D33DE84003DED51 /* see-big-picture.png in Resources */,
