@@ -27,6 +27,8 @@
 		CE49795C1D3515170087FAF6 /* YActionUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4979571D3515170087FAF6 /* YActionUserModel.m */; };
 		CE49795D1D3515170087FAF6 /* YDateContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4979591D3515170087FAF6 /* YDateContentModel.m */; };
 		CE49795E1D3515170087FAF6 /* YFeeTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE49795B1D3515170087FAF6 /* YFeeTypeModel.m */; };
+		CE4A79F11D40F317007DF33B /* YMyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4A79EF1D40F317007DF33B /* YMyCollectionViewController.m */; };
+		CE4A79F21D40F317007DF33B /* YMyCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE4A79F01D40F317007DF33B /* YMyCollectionViewController.xib */; };
 		CE69131C1D33C95D001FE50B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE69131B1D33C95D001FE50B /* main.m */; };
 		CE6913251D33C95D001FE50B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6913231D33C95D001FE50B /* Main.storyboard */; };
 		CE6913271D33C95D001FE50B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE6913261D33C95D001FE50B /* Assets.xcassets */; };
@@ -516,6 +518,9 @@
 		CE4979591D3515170087FAF6 /* YDateContentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDateContentModel.m; sourceTree = "<group>"; };
 		CE49795A1D3515170087FAF6 /* YFeeTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFeeTypeModel.h; sourceTree = "<group>"; };
 		CE49795B1D3515170087FAF6 /* YFeeTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFeeTypeModel.m; sourceTree = "<group>"; };
+		CE4A79EE1D40F317007DF33B /* YMyCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMyCollectionViewController.h; sourceTree = "<group>"; };
+		CE4A79EF1D40F317007DF33B /* YMyCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMyCollectionViewController.m; sourceTree = "<group>"; };
+		CE4A79F01D40F317007DF33B /* YMyCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YMyCollectionViewController.xib; sourceTree = "<group>"; };
 		CE6913171D33C95D001FE50B /* DateEating.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DateEating.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE69131B1D33C95D001FE50B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CE6913241D33C95D001FE50B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1458,6 +1463,9 @@
 		CE9D35021D3E087000CAE063 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CE4A79EE1D40F317007DF33B /* YMyCollectionViewController.h */,
+				CE4A79EF1D40F317007DF33B /* YMyCollectionViewController.m */,
+				CE4A79F01D40F317007DF33B /* YMyCollectionViewController.xib */,
 				CEF06C9B1D3F568D00943754 /* YMyPublishViewController.h */,
 				CEF06C9C1D3F568D00943754 /* YMyPublishViewController.m */,
 				CEF06C9D1D3F568D00943754 /* YMyPublishViewController.xib */,
@@ -2264,7 +2272,6 @@
 				D66E5AD41D33DE84003DED51 /* navigationButtonReturn@3x.png in Resources */,
 				D66E5B0D1D33DE84003DED51 /* tabBar_new_click_icon@3x.png in Resources */,
 				D66E5AB21D33DE84003DED51 /* MainTagSubIcon@2x.png in Resources */,
-				CEE575911D3A7D81008B2906 /* YAttentionViewCell.xib in Resources */,
 				D6F20D9F1D3E204D0082E398 /* locationcell@3x.png in Resources */,
 				CEE575691D3A7ACA008B2906 /* DateLogo.jpg in Resources */,
 				D66E5B101D33DE84003DED51 /* tabBar_new_icon@3x.png in Resources */,
@@ -2441,6 +2448,7 @@
 				D66E5ADA1D33DE84003DED51 /* app_slogan@3x.png in Resources */,
 				D66E5AC61D33DE84003DED51 /* mine-sun-icon-click@2x.png in Resources */,
 				D61D1B361D3871BC00C36F84 /* other_more@2x.png in Resources */,
+				CE4A79F21D40F317007DF33B /* YMyCollectionViewController.xib in Resources */,
 				D6F0F3DE1D3B4B6700D1EF81 /* YEssenceViewController.xib in Resources */,
 				D66E5A671D33DE84003DED51 /* cellFollowIcon.png in Resources */,
 				D66E5AE61D33DE84003DED51 /* publish-review@3x.png in Resources */,
@@ -2644,6 +2652,7 @@
 				CEF06CAC1D3F576F00943754 /* YAttentionViewCell.m in Sources */,
 				D67A34671D3A829D00D5BA9D /* Foundation+Log.m in Sources */,
 				CED28D681D3793C900A468CF /* YPublishDateViewController.m in Sources */,
+				CE4A79F11D40F317007DF33B /* YMyCollectionViewController.m in Sources */,
 				CEF06CA41D3F570B00943754 /* YDateOrPartyTableViewCell.m in Sources */,
 				D6F0F3D71D3B49BE00D1EF81 /* EventView.m in Sources */,
 				CE05FBED1D3BA19B00362EE1 /* YCityTypeModel.m in Sources */,
