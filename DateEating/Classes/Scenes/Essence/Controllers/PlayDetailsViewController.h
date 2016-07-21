@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PlayDetailsViewControllerViewController : UIViewController
+@interface PlayDetailsViewController : UIViewController
 
 @property (nonatomic, strong)NSString *ID;
 @property (nonatomic, assign)BOOL isWhat;

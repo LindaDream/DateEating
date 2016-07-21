@@ -14,7 +14,7 @@
 #import "YPlayModel.h"
 #import "YPlayDetailModel.h"
 #import "YCityModel.h"
-#import "PlayDetailsViewControllerViewController.h"
+#import "PlayDetailsViewController.h"
 #import "MealDetailsViewController.h"
 
 
@@ -523,7 +523,7 @@ static NSString *const cityCellId = @"cityCellId";
         
     }else if (tableView == self.playTableView) {
         
-        PlayDetailsViewControllerViewController *playVC = [[PlayDetailsViewControllerViewController alloc] init];
+        PlayDetailsViewController *playVC = [[PlayDetailsViewController alloc] init];
         if ([self.playArr count] != 0) {
             YPlayModel *model = self.playArr[indexPath.row];
             playVC.ID = [NSString stringWithFormat:@"%ld", model.ID];

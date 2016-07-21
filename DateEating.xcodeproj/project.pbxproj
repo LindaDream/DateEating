@@ -29,6 +29,7 @@
 		CE49795E1D3515170087FAF6 /* YFeeTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE49795B1D3515170087FAF6 /* YFeeTypeModel.m */; };
 		CE4A79F11D40F317007DF33B /* YMyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4A79EF1D40F317007DF33B /* YMyCollectionViewController.m */; };
 		CE4A79F21D40F317007DF33B /* YMyCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE4A79F01D40F317007DF33B /* YMyCollectionViewController.xib */; };
+		CE4A7A381D410768007DF33B /* mine_about.png in Resources */ = {isa = PBXBuildFile; fileRef = CE4A7A371D410768007DF33B /* mine_about.png */; };
 		CE69131C1D33C95D001FE50B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE69131B1D33C95D001FE50B /* main.m */; };
 		CE6913251D33C95D001FE50B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6913231D33C95D001FE50B /* Main.storyboard */; };
 		CE6913271D33C95D001FE50B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE6913261D33C95D001FE50B /* Assets.xcassets */; };
@@ -441,7 +442,7 @@
 		D6F0F3941D3B464400D1EF81 /* user_img.png in Resources */ = {isa = PBXBuildFile; fileRef = D6F0F3561D3B464400D1EF81 /* user_img.png */; };
 		D6F0F3951D3B464400D1EF81 /* 标签1png.png in Resources */ = {isa = PBXBuildFile; fileRef = D6F0F3571D3B464400D1EF81 /* 标签1png.png */; };
 		D6F0F39A1D3B483400D1EF81 /* MealDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F0F3971D3B483400D1EF81 /* MealDetailsViewController.m */; };
-		D6F0F39B1D3B483400D1EF81 /* PlayDetailsViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F0F3991D3B483400D1EF81 /* PlayDetailsViewControllerViewController.m */; };
+		D6F0F39B1D3B483400D1EF81 /* PlayDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F0F3991D3B483400D1EF81 /* PlayDetailsViewController.m */; };
 		D6F0F3A01D3B491100D1EF81 /* YPlayDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F0F39D1D3B491100D1EF81 /* YPlayDetailModel.m */; };
 		D6F0F3A11D3B491100D1EF81 /* EventModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F0F39F1D3B491100D1EF81 /* EventModel.m */; };
 		D6F0F3D31D3B49BE00D1EF81 /* CarouselFinfure.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F0F3C11D3B49BE00D1EF81 /* CarouselFinfure.m */; };
@@ -521,6 +522,7 @@
 		CE4A79EE1D40F317007DF33B /* YMyCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMyCollectionViewController.h; sourceTree = "<group>"; };
 		CE4A79EF1D40F317007DF33B /* YMyCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMyCollectionViewController.m; sourceTree = "<group>"; };
 		CE4A79F01D40F317007DF33B /* YMyCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YMyCollectionViewController.xib; sourceTree = "<group>"; };
+		CE4A7A371D410768007DF33B /* mine_about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mine_about.png; sourceTree = "<group>"; };
 		CE6913171D33C95D001FE50B /* DateEating.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DateEating.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE69131B1D33C95D001FE50B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CE6913241D33C95D001FE50B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1009,8 +1011,8 @@
 		D6F0F3571D3B464400D1EF81 /* 标签1png.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "标签1png.png"; sourceTree = "<group>"; };
 		D6F0F3961D3B483400D1EF81 /* MealDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MealDetailsViewController.h; sourceTree = "<group>"; };
 		D6F0F3971D3B483400D1EF81 /* MealDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealDetailsViewController.m; sourceTree = "<group>"; };
-		D6F0F3981D3B483400D1EF81 /* PlayDetailsViewControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayDetailsViewControllerViewController.h; sourceTree = "<group>"; };
-		D6F0F3991D3B483400D1EF81 /* PlayDetailsViewControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayDetailsViewControllerViewController.m; sourceTree = "<group>"; };
+		D6F0F3981D3B483400D1EF81 /* PlayDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayDetailsViewController.h; sourceTree = "<group>"; };
+		D6F0F3991D3B483400D1EF81 /* PlayDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayDetailsViewController.m; sourceTree = "<group>"; };
 		D6F0F39C1D3B491100D1EF81 /* YPlayDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YPlayDetailModel.h; sourceTree = "<group>"; };
 		D6F0F39D1D3B491100D1EF81 /* YPlayDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YPlayDetailModel.m; sourceTree = "<group>"; };
 		D6F0F39E1D3B491100D1EF81 /* EventModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventModel.h; sourceTree = "<group>"; };
@@ -1222,6 +1224,7 @@
 		CE6913531D33CFDB001FE50B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CE4A7A371D410768007DF33B /* mine_about.png */,
 				CE289D151D3CBEFB00FE8CB1 /* mine_clear.png */,
 				CE289CFE1D3CBBC300FE8CB1 /* ic_sex_boy@2x.png */,
 				CE289CFF1D3CBBC300FE8CB1 /* ic_sex_boy@3x.png */,
@@ -1384,8 +1387,8 @@
 				D6F0F3DD1D3B4B6700D1EF81 /* YEssenceViewController.xib */,
 				D6F0F3961D3B483400D1EF81 /* MealDetailsViewController.h */,
 				D6F0F3971D3B483400D1EF81 /* MealDetailsViewController.m */,
-				D6F0F3981D3B483400D1EF81 /* PlayDetailsViewControllerViewController.h */,
-				D6F0F3991D3B483400D1EF81 /* PlayDetailsViewControllerViewController.m */,
+				D6F0F3981D3B483400D1EF81 /* PlayDetailsViewController.h */,
+				D6F0F3991D3B483400D1EF81 /* PlayDetailsViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2419,6 +2422,7 @@
 				D66E5ACB1D33DE84003DED51 /* nav_coin_icon.png in Resources */,
 				D66E5AC71D33DE84003DED51 /* mine-sun-icon-click@3x.png in Resources */,
 				D6F0F3931D3B464400D1EF81 /* tea.png in Resources */,
+				CE4A7A381D410768007DF33B /* mine_about.png in Resources */,
 				D66E5AF61D33DE84003DED51 /* pushguidetop@3x.png in Resources */,
 				D66E5AB31D33DE84003DED51 /* MainTagSubIcon@3x.png in Resources */,
 				D61D1B271D3871BC00C36F84 /* eventBgManContent_@2x.png in Resources */,
@@ -2637,7 +2641,7 @@
 				D61D1B061D3871A500C36F84 /* YDateListTableViewCell.m in Sources */,
 				D66E599B1D33DD20003DED51 /* YTabBar.m in Sources */,
 				CEE575811D3A7C25008B2906 /* YRestaurantDetailModel.m in Sources */,
-				D6F0F39B1D3B483400D1EF81 /* PlayDetailsViewControllerViewController.m in Sources */,
+				D6F0F39B1D3B483400D1EF81 /* PlayDetailsViewController.m in Sources */,
 				CED374EC1D37DBD60039709F /* YConcreteTableViewCell.m in Sources */,
 				D6F0F3DA1D3B49BE00D1EF81 /* YMealOrPlayTableViewCell.m in Sources */,
 				D66E599A1D33DD20003DED51 /* YTabBarController.m in Sources */,

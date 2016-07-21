@@ -15,6 +15,7 @@
 #import "YAttentionListViewController.h"
 #import "YCompleteViewController.h"
 #import "YMyPublishViewController.h"
+#import "YMyCollectionViewController.h"
 @interface YMeViewController ()<
     UITableViewDataSource,
     UITableViewDelegate,
@@ -46,7 +47,11 @@ static NSString *const clearCellIdentifier = @"clearCell";
 static NSString *const listCellIdentifier = @"listCell";
 
 @implementation YMeViewController
-
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"NotificationNight" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DateButtonClicked" object:nil];
+}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     if ([AVUser currentUser]) {
@@ -142,6 +147,7 @@ static NSString *const listCellIdentifier = @"listCell";
     self.nameLabel.text = @"未登录";
     self.nameLabel.backgroundColor = [UIColor clearColor];
     self.nameLabel.textColor = [UIColor colorWithRed:0.0 green:124.99/255.0 blue:29.62/255.0 alpha:1];
+    [self.nameLabel setFont:[UIFont systemFontOfSize:16.0]];
     [visualView addSubview:self.nameLabel];
     
     // 设置邮箱标签
@@ -149,6 +155,7 @@ static NSString *const listCellIdentifier = @"listCell";
     self.emailLabel.text = @"未登录";
     self.emailLabel.backgroundColor = [UIColor clearColor];
     self.emailLabel.textColor = [UIColor colorWithRed:0.0 green:124.99/255.0 blue:29.62/255.0 alpha:1];
+    [self.emailLabel setFont:[UIFont systemFontOfSize:16.0]];
     [visualView addSubview:self.emailLabel];
     
     // 设置登录、注销按钮
@@ -157,6 +164,7 @@ static NSString *const listCellIdentifier = @"listCell";
     self.loginButton.backgroundColor = [UIColor clearColor];
     [self.loginButton setTitleColor:[UIColor colorWithRed:0.0 green:124.99/255.0 blue:29.62/255.0 alpha:1] forState:(UIControlStateNormal)];
     [self.loginButton addTarget:self action:@selector(loginAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.loginButton setFont:[UIFont systemFontOfSize:16.0]];
     [self.loginButton setTitle:@"登录" forState:(UIControlStateNormal)];
     [visualView addSubview:self.loginButton];
     
@@ -166,6 +174,7 @@ static NSString *const listCellIdentifier = @"listCell";
     [self.completeBtn setTitle:@"完善资料" forState:(UIControlStateNormal)];
     [self.completeBtn setTitleColor:[UIColor colorWithRed:0.0 green:124.99/255.0 blue:29.62/255.0 alpha:1] forState:(UIControlStateNormal)];
     [self.completeBtn addTarget:self action:@selector(completeAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.completeBtn setFont:[UIFont systemFontOfSize:16.0]];
     [visualView addSubview:self.completeBtn];
     
     [self.headView addSubview:backImgView];
@@ -317,7 +326,7 @@ static NSString *const listCellIdentifier = @"listCell";
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == self.meTableView) {
-        return 3;
+        return 4;
     }
     return 5;
 }
@@ -325,9 +334,12 @@ static NSString *const listCellIdentifier = @"listCell";
     if (tableView == self.meTableView) {
         YClearTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:clearCellIdentifier forIndexPath:indexPath];
         if (indexPath.row == 0) {
+            cell.imgView.image = [UIImage imageNamed:@"mine_about"];
+            cell.cellNameLabel.text = @"我的收藏";
+        }else if (indexPath.row == 1) {
             cell.imgView.image = [UIImage imageNamed:@"mine_committed"];
             cell.cellNameLabel.text = @"我发起的";
-        }else if (indexPath.row == 1) {
+        }else if (indexPath.row == 2) {
             cell.imgView.image = [UIImage imageNamed:@"mine_save"];
             cell.cellNameLabel.text = @"我的关注";
         }else{
@@ -368,14 +380,21 @@ static NSString *const listCellIdentifier = @"listCell";
     if (tableView == self.meTableView) {
         if (indexPath.row == 0) {
             if ([AVUser currentUser]) {
+                YMyCollectionViewController *collectVC = [YMyCollectionViewController new];
+                [self.navigationController pushViewController:collectVC animated:YES];
+            }else{
+                YLoginViewController *loginVC = [YLoginViewController new];
+                [self presentViewController:loginVC animated:YES completion:nil];
+            }
+        }else if (indexPath.row == 1) {
+            if ([AVUser currentUser]) {
                 YMyPublishViewController *publishListVC = [YMyPublishViewController new];
                 [self.navigationController pushViewController:publishListVC animated:YES];
             }else{
                 YLoginViewController *loginVC = [YLoginViewController new];
                 [self presentViewController:loginVC animated:YES completion:nil];
             }
-
-        }else if (indexPath.row == 1) {
+        }else if (indexPath.row == 2) {
             if ([AVUser currentUser]) {
                 YAttentionListViewController *attentionListVC = [YAttentionListViewController new];
                 [self.navigationController pushViewController:attentionListVC animated:YES];
@@ -388,7 +407,7 @@ static NSString *const listCellIdentifier = @"listCell";
             UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认清楚缓存?" preferredStyle:(UIAlertControllerStyleAlert)];
             UIAlertAction *doneAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
                 [mySelf clearCache:kCachesPath];
-                [mySelf.meTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:2 inSection:0]] withRowAnimation:(UITableViewRowAnimationNone)];
+                [mySelf.meTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:3 inSection:0]] withRowAnimation:(UITableViewRowAnimationNone)];
             }];
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil];
             [alertView addAction:doneAction];

@@ -6,7 +6,7 @@
 //  Copyright © 2015年 TimeCollectorCompany. All rights reserved.
 //
 
-#import "PlayDetailsViewControllerViewController.h"
+#import "PlayDetailsViewController.h"
 #import "EventView.h"
 #import "EventModel.h"
 #import "ContentView.h"
@@ -15,7 +15,7 @@
 #import <UMSocialControllerService.h>
 #import "UMSocial.h"
 
-@interface PlayDetailsViewControllerViewController ()<UMSocialUIDelegate>
+@interface PlayDetailsViewController ()<UMSocialUIDelegate>
 
 @property (nonatomic, strong)EventView *myEventView;
 @property (nonatomic, strong)NSURLSessionDataTask *myTask;
@@ -40,7 +40,7 @@
 
 @end
 
-@implementation PlayDetailsViewControllerViewController
+@implementation PlayDetailsViewController
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -257,7 +257,7 @@
     NSDictionary *dic = [self.model.recommendAutomatic[number] valueForKey:@"data"];
     YPlayModel *model = [[YPlayModel alloc] init];
     [model setValuesForKeysWithDictionary:dic];
-    PlayDetailsViewControllerViewController *playVC = [[PlayDetailsViewControllerViewController alloc] init];
+    PlayDetailsViewController *playVC = [[PlayDetailsViewController alloc] init];
     playVC.ID = [NSString stringWithFormat:@"%ld", model.ID];
     playVC.isWhat = self.isWhat;
     [self.navigationController pushViewController:playVC animated:YES];
