@@ -25,5 +25,9 @@
 @property(strong,nonatomic)NSString *address;
 // 参数
 @property(strong,nonatomic)NSString *businessId;
+// 经纬度
+@property(assign,nonatomic)CGFloat latitude;
+@property(assign,nonatomic)CGFloat longitude;
+
 + (void)parsesWithUrl:(NSString *)url successRequest:(successRequest)success failurRequest:(failureRequest)failur;
 @end

@@ -10,4 +10,5 @@
 
 @interface YPublishDateViewController : UIViewController
 @property(strong,nonatomic)NSString *addressStr;
+@property(strong,nonatomic)NSString *businessID;
 @end

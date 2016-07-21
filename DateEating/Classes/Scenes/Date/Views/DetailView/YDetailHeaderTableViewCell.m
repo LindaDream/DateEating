@@ -47,16 +47,27 @@
     if (_model != model) {
         _model = nil;
         _model = model;
+        if (model.user.nick == [AVUser currentUser].username) {
+            _eventDateTime.text = model.dateTime;
+            if (model.fee == 0) {
+                _feeDesc.text = @"我请客";
+            }else {
+                _feeDesc.text = @"AA";
+            }
+            _userImage.image = model.img;
+        } else {
+            NSDateFormatter *formatter =[[NSDateFormatter alloc]init];
+            NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.eventDateTime/1000];
+            [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+            NSString *dateString = [formatter stringFromDate:date];
+            _eventDateTime.text = [NSString stringWithFormat:@"%@",dateString];
+            [_userImage sd_setImageWithURL:[NSURL URLWithString:model.user.userImageUrl] placeholderImage:[UIImage imageNamed:@"DefaultAvatar"]];
+            _feeDesc.text = model.feeType.desc;
+        }
         
         _eventName.text = model.eventName;
         _eventLocation.text = model.eventLocation;
         _distance.text = @"100km";
-        NSDateFormatter *formatter =[[NSDateFormatter alloc]init];
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.eventDateTime/1000];
-        [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
-        NSString *dateString = [formatter stringFromDate:date];
-        _eventDateTime.text = [NSString stringWithFormat:@"%@",dateString];
-        _feeDesc.text = model.feeType.desc;
         _eventDescription.text = model.eventDescription;
         _nick.text = model.user.nick;
         _constellation.text = model.user.constellation;
@@ -67,11 +78,19 @@
         _credit.text = [NSString stringWithFormat:@"%ld",model.credit];
         
         [_userImage sd_setImageWithURL:[NSURL URLWithString:model.user.userImageUrl] placeholderImage:[UIImage imageNamed:@"DefaultAvatar"]];
+        [_userImage addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)]];
         
     }
 }
 
 #pragma mark -- 按钮事件 --
+// 点击图片
+- (void)tapAction:(UITapGestureRecognizer *)tap {
+    if (_delegate && [_delegate respondsToSelector:@selector(userImageDidTap:)]) {
+        [_delegate userImageDidTap:self.model.userId];
+    }
+}
+
 // 聊天按钮
 - (IBAction)chatBtnAction:(id)sender {
     if (_delegate && [_delegate respondsToSelector:@selector(chatBtnDidClicked:)]) {

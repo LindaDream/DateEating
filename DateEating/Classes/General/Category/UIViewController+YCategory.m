@@ -56,6 +56,11 @@
         addBtn.transform = CGAffineTransformRotate(addBtn.transform, -M_PI_4);
         
     }];
+    [[self.view subviews] lastObject].userInteractionEnabled = YES;
+    [self.tabBarController.tabBar.subviews objectAtIndex:2].userInteractionEnabled = YES;
+    [self.tabBarController.tabBar.subviews objectAtIndex:3].userInteractionEnabled = YES;
+    [self.tabBarController.tabBar.subviews objectAtIndex:4].userInteractionEnabled = YES;
+    [self.tabBarController.tabBar.subviews objectAtIndex:5].userInteractionEnabled = YES;
     [self.navigationController pushViewController:dateVC animated:YES];
 }
 - (void)addParty:(UIButton *)btn{
@@ -70,6 +75,11 @@
         addBtn.transform = CGAffineTransformRotate(addBtn.transform, -M_PI_4);
         
     }];
+    [[self.view subviews] lastObject].userInteractionEnabled = YES;
+    [self.tabBarController.tabBar.subviews objectAtIndex:2].userInteractionEnabled = YES;
+    [self.tabBarController.tabBar.subviews objectAtIndex:3].userInteractionEnabled = YES;
+    [self.tabBarController.tabBar.subviews objectAtIndex:4].userInteractionEnabled = YES;
+    [self.tabBarController.tabBar.subviews objectAtIndex:5].userInteractionEnabled = YES;
     [self.navigationController pushViewController:partyVC animated:YES];
 }
 -(void)removeDateBtnAndPartyBtn{
@@ -83,4 +93,40 @@
     CGRect rect = [label.text boundingRectWithSize:CGSizeMake(label.frame.size.width, 500) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15.0]} context:nil];
     return rect.size.height;
 }
+#pragma mark--计算距离--
+-(CLLocationDegrees)userLat{
+    return 0;
+}
+-(CLLocationDegrees)userLog{
+    return 0;
+}
+-(CGFloat)distanceToTarget:(CLLocationDegrees)lat log:(CLLocationDegrees)log{
+    CGFloat distance = 0;
+    // 获取手机当前位置
+    //初始化BMKLocationService
+    BMKLocationService *locService = [[BMKLocationService alloc]init];
+    locService.delegate = self;
+    //启动LocationService
+    [locService startUserLocationService];
+    // 计算距离
+    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(self.userLat,self.userLog));
+    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(lat,log));
+    distance = BMKMetersBetweenMapPoints(point1,point2);
+    distance = distance / 1000000;
+    return distance;
+}
+//实现相关delegate 处理位置信息更新
+//处理方向变更信息
+- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
+{
+    NSLog(@"heading is %@",userLocation.heading);
+}
+//处理位置坐标更新
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+{
+    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    self.userLat = userLocation.location.coordinate.latitude;
+    self.userLog = userLocation.location.coordinate.longitude;
+}
+
 @end

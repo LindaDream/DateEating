@@ -173,7 +173,7 @@ static NSString *const restaurantListCellIndentifier = @"restaurantListCell";
 }
 #pragma mark--点击“吃这家”按钮的代理方法实现--
 -(void)passCurrentCell:(YRestaurantDetailViewCell *)cell{
-    self.passValueBlock(cell.nameLabel.text);
+    self.passValueBlock(cell.nameLabel.text,cell.model.businessId);
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark--城市列表代理方法--

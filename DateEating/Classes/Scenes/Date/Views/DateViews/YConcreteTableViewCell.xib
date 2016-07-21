@@ -25,6 +25,9 @@
                         <rect key="frame" x="221" y="5" width="25" height="30"/>
                         <animations/>
                         <state key="normal" backgroundImage="notSelected.png"/>
+                        <connections>
+                            <action selector="mypayAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0ce-hB-3Ex"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="我请客" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VoE-eg-BWZ">
                         <rect key="frame" x="169" y="0.0" width="53" height="39"/>
@@ -44,6 +47,9 @@
                         <rect key="frame" x="368" y="5" width="25" height="30"/>
                         <animations/>
                         <state key="normal" backgroundImage="notSelected.png"/>
+                        <connections>
+                            <action selector="AAAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Efu-ZM-wHP"/>
+                        </connections>
                     </button>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xri-LF-V8y">
                         <rect key="frame" x="0.0" y="38" width="414" height="1"/>
@@ -60,7 +66,6 @@
             </tableViewCellContentView>
             <animations/>
             <connections>
-                <outlet property="AABtn" destination="PVt-pJ-Rc4" id="jw8-L3-MGQ"/>
                 <outlet property="meBtn" destination="jHQ-Ly-QQn" id="Rt1-qx-rGr"/>
             </connections>
             <point key="canvasLocation" x="550" y="214"/>

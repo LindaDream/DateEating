@@ -10,7 +10,16 @@
 #import "YDateContentModel.h"
 
 #define YDateListTableViewCell_Identify @"YDateListTableViewCell_Identify"
+
+@protocol YDateListTableViewCellDelegate <NSObject>
+
+- (void)clickedUserImage:(NSInteger)userId;
+
+@end
+
 @interface YDateListTableViewCell : UITableViewCell
+
+@property (assign, nonatomic) id<YDateListTableViewCellDelegate>delegate;
 @property (weak, nonatomic) IBOutlet UILabel *cellIndex;
 
 @property (strong,nonatomic) YDateContentModel *model;

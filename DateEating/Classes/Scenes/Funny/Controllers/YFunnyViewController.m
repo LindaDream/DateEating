@@ -69,8 +69,10 @@ static NSString *const funnyNoImgCellId = @"funnyNoImgCellId";
     NSDictionary *userInfo = [notification userInfo];
     NSNumber *num = [userInfo objectForKey:@"isClicked"];
     if (num.boolValue) {
+        [self.view.subviews lastObject].userInteractionEnabled = NO;
         [self addDateBtnAndPartyBtn];
     }else{
+        [self.view.subviews lastObject].userInteractionEnabled = YES;
         [self removeDateBtnAndPartyBtn];
     }
 }

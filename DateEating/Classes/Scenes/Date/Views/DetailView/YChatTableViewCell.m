@@ -46,7 +46,13 @@
         }
         
         [_userImage sd_setImageWithURL:[NSURL URLWithString:model.user.userImageUrl] placeholderImage:[UIImage imageNamed:@"DefaultAvatar"]];
-        
+        [_userImage addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)]];
+    }
+}
+
+- (void)tapAction:(UITapGestureRecognizer *)tap {
+    if (_delegate && [_delegate respondsToSelector:@selector(userImageDidTap:)]) {
+        [_delegate userImageDidTap:self.model.userId];
     }
 }
 

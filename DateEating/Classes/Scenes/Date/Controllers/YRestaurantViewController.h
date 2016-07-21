@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef void(^passAddress)(NSString *addressStr);
+typedef void(^passAddress)(NSString *addressStr,NSString *businessID);
 
 @interface YRestaurantViewController : UITableViewController
 @property(copy,nonatomic)passAddress passValueBlock;

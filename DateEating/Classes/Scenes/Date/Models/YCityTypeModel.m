@@ -38,7 +38,6 @@
             }
             success(mArr);
         }
-        
     } failurRequest:^(NSError *error) {
         NSLog(@"%@",error);
     }];

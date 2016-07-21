@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *showCount;
 @property (weak, nonatomic) IBOutlet UILabel *candidateCount;
 @property (weak, nonatomic) IBOutlet UILabel *commentCount;
+@property (weak, nonatomic) IBOutlet UILabel *credit;
 
 @end
 
@@ -43,24 +44,44 @@
     if (_model != model) {
         _model = nil;
         _model = model;
-        
+        if (model.user.nick == [AVUser currentUser].username) {
+            _eventDateTime.text = model.dateTime;
+            if (model.fee == 0) {
+                _feeDesc.text = @"我请客";
+            }else {
+                _feeDesc.text = @"AA";
+            }
+            _userImage.image = model.img;
+             _credit.text = [NSString stringWithFormat:@"%d",20];
+        } else {
+            _credit.text = [NSString stringWithFormat:@"%ld",model.credit];
+            NSDateFormatter *formatter =[[NSDateFormatter alloc]init];
+            NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.eventDateTime/1000];
+            [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+            NSString *dateString = [formatter stringFromDate:date];
+            _eventDateTime.text = [NSString stringWithFormat:@"%@",dateString];
+            [_userImage sd_setImageWithURL:[NSURL URLWithString:model.user.userImageUrl] placeholderImage:[UIImage imageNamed:@"DefaultAvatar"]];
+            _feeDesc.text = model.feeType.desc;
+        }
         _eventName.text = model.eventName;
         _eventLocation.text = model.eventLocation;
         _eventDescription.text = model.eventDescription;
         _distance.text = @"100km";
-        NSDateFormatter *formatter =[[NSDateFormatter alloc]init];
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.eventDateTime/1000];
-        [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
-        NSString *dateString = [formatter stringFromDate:date];
-        _eventDateTime.text = [NSString stringWithFormat:@"%@",dateString];
         _nick.text = model.user.nick;
         _constellation.text = model.user.constellation;
         _age.text = [NSString stringWithFormat:@"%ld",model.user.age];
         _showCount.text = [NSString stringWithFormat:@"%ld",model.showCount];
         _candidateCount.text = [NSString stringWithFormat:@"%ld",model.candidateCount];
         _commentCount.text = [NSString stringWithFormat:@"%ld",model.commentCount];
-        [_userImage sd_setImageWithURL:[NSURL URLWithString:model.user.userImageUrl] placeholderImage:[UIImage imageNamed:@"DefaultAvatar"]];
+        
+        [_userImage addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)]];
+        _userImage.userInteractionEnabled = YES;
     }
 }
 
+- (void)tapAction:(id)sender {
+    if (_delegate && [_delegate respondsToSelector:@selector(clickedUserImage:)]) {
+        [_delegate clickedUserImage:self.model.userId];
+    }
+}
 @end
