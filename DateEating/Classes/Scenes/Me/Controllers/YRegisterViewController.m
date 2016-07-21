@@ -154,6 +154,7 @@
     self.avatarImgView.image = image;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 #pragma mark--注册按钮--
 - (IBAction)registerAction:(id)sender {
 #pragma mark--注册LeanCloud--

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YEditViewController">
+            <connections>
+                <outlet property="editTextView" destination="NKc-bq-JEM" id="fnQ-p0-H70"/>
+                <outlet property="imgCollectionView" destination="jLF-cc-koq" id="7Ln-hf-q5P"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="分享生活，留住感动" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NKc-bq-JEM">
+                    <rect key="frame" x="23" y="10" width="368" height="182"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="182" id="FgB-Nh-0Ty"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jLF-cc-koq">
+                    <rect key="frame" x="23" y="211" width="368" height="504"/>
+                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cu9-1N-yVX">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="AOZ-3I-Jmi"/>
+                        <outlet property="delegate" destination="-1" id="Mtt-gl-DLb"/>
+                    </connections>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="NKc-bq-JEM" secondAttribute="trailing" constant="23" id="1fG-ZQ-LOL"/>
+                <constraint firstAttribute="trailing" secondItem="jLF-cc-koq" secondAttribute="trailing" constant="23" id="2kn-fc-fZS"/>
+                <constraint firstItem="NKc-bq-JEM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="23" id="AFX-7v-fG1"/>
+                <constraint firstItem="jLF-cc-koq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="23" id="OhX-hM-g8D"/>
+                <constraint firstItem="jLF-cc-koq" firstAttribute="top" secondItem="NKc-bq-JEM" secondAttribute="bottom" constant="19" id="Qh9-rm-YZQ"/>
+                <constraint firstAttribute="bottom" secondItem="jLF-cc-koq" secondAttribute="bottom" constant="21" id="RUB-AP-iAF"/>
+                <constraint firstItem="NKc-bq-JEM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="YbB-ac-D9W"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+            <point key="canvasLocation" x="88" y="343"/>
+        </view>
+    </objects>
+</document>

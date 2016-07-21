@@ -89,7 +89,7 @@
     dispatch_async(myQueue, ^{
         
         NSString *urlString = [[kMealDetailsUrlOne stringByAppendingString:self.ID] stringByAppendingString:kMealDetailsUrlTwo];
-        NSLog(@"%@",urlString);
+        //NSLog(@"%@",urlString);
         NSURL *newUrl = [NSURL URLWithString:urlString];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:newUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
         [request setHTTPMethod:@"GET"];
@@ -345,8 +345,7 @@
 {
     
     AVObject *object = [AVObject objectWithClassName:@"MyMealCollection"];
-    if (self.isCollection) {
-        
+    if (self.isCollection == YES) {
         // 保存当前用户名
         [object setObject:[AVUser currentUser].username forKey:@"userName"];
         
@@ -376,7 +375,7 @@
         // 删除收藏的数据
         // 执行 CQL 语句实现删除一个 MyAttention 对象
         self.objId = [[NSUserDefaults standardUserDefaults] objectForKey:self.ID];
-        NSLog(@"%@",self.objId);
+        //NSLog(@"%@",self.objId);
         [AVQuery doCloudQueryInBackgroundWithCQL:[NSString stringWithFormat:@"delete from MyMealCollection where objectId='%@'",self.objId] callback:^(AVCloudQueryResult *result, NSError *error) {
             [self showAlertViewWithMessage:(@"取消收藏成功")];
         }];
@@ -563,7 +562,7 @@
     
     self.muenLabel.text = [self removeChar];
     self.muenLabel.font = [UIFont systemFontOfSize:16];
-    NSLog(@"%@", self.model.menu);
+    //NSLog(@"%@", self.model.menu);
     self.muenLabel.textColor = [UIColor blackColor];
     self.muenLabel.textAlignment = NSTextAlignmentCenter;
     CGRect newMuenFrame = self.muenLabel.frame;

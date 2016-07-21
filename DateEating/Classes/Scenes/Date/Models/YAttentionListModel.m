@@ -15,12 +15,12 @@
 + (void)parsesWithUrl:(NSString *)url successRequest:(successRequest)success failurRequest:(failureRequest)failure{
     NSMutableArray *mArr = [NSMutableArray array];
     [YNetWorkRequestManager getRequestWithUrl:url successRequest:^(NSDictionary *dict) {
-        NSLog(@"+++++++++++++%@",dict);
+        //NSLog(@"+++++++++++++%@",dict);
         if(dict){
             for (NSDictionary *dic in dict[@"data"][@"results"]) {
                 YAttentionListModel *model = [[YAttentionListModel alloc] init];
                 [model setValuesForKeysWithDictionary:dic[@"user"]];
-                NSLog(@"%@",model);
+                //NSLog(@"%@",model);
                 [mArr addObject:model];
             }
             success(mArr);
